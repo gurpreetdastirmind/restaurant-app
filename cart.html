@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Olives Mediterranean Grill</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cart-container {
+            min-height: 500px;
+            padding: 50px 0;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+        }
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .cart-item-details {
+            flex: 1;
+            min-width: 150px;
+        }
+        .cart-item-details h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .cart-item-price {
+            color: #c49a6c;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .quantity-control button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        .quantity-control button:hover:not(:disabled) {
+            background: #c49a6c;
+            color: white;
+            border-color: #c49a6c;
+        }
+        .quantity-control button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f0f0f0;
+            color: #999;
+        }
+        .quantity-control span {
+            min-width: 40px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .cart-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 100px;
+        }
+        .cart-summary h4 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .summary-total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c49a6c;
+            padding-top: 15px;
+        }
+        .btn-checkout {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #c49a6c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-checkout:hover {
+            background: #a87c4e;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .cart-count {
+            background: #c49a6c;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-remove:hover {
+            background: #c82333;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Cart Icon Styles */
+        .nav-cart {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+        .cart-icon {
+            font-size: 22px;
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .cart-icon:hover {
+            color: #c49a6c;
+        }
+        .cart-count-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #c49a6c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .cart-count-badge.hidden {
+            display: none;
+        }
+
+        /* Navbar user styles */
+        .nav-user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            background: #c49a6c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            background: #a06e3c;
+            transform: scale(1.05);
+        }
+
+        .user-name {
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .user-name:hover {
+            color: #c49a6c;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .login-nav-btn {
+            background: #c49a6c;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .login-nav-btn:hover {
+            background: #a06e3c;
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+
+        .signup-nav-btn {
+            background: transparent;
+            color: #c49a6c;
+            border: 1px solid #c49a6c;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .signup-nav-btn:hover {
+            background: #c49a6c;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .user-dropdown:hover .user-dropdown-content {
+            display: block;
+        }
+
+        .user-dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .user-dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #c49a6c;
+        }
+
+        .user-dropdown-content .dropdown-divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 5px 0;
+        }
+
+        .logout-dropdown-item {
+            color: #dc3545 !important;
+        }
+
+        .logout-dropdown-item:hover {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cart-item-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .action-buttons {
+                margin-top: 15px;
+                justify-content: center;
+            }
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="py-1 bg-black top">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <span class="text">+1587 272 1088</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <span class="text">olivesmgrill@gmail.com</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
+                                <span>11:00AM - 9:00PM</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+             <a class="navbar-brand" href="index.html">
+                <img src="images/backgroundimg1.png" alt="Olive Logo" style="height: 120px; width: 170px; ">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item cta"><a href="reservation.html" class="nav-link">Book a table</a></li>
+                    <!-- Cart Icon with Badge -->
+                    <li class="nav-item nav-cart">
+                        <a href="cart.html" class="nav-link cart-icon">
+                            <span class="icon-shopping-cart"></span>
+                            <span id="cartCountBadge" class="cart-count-badge hidden">0</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- User Section in Navbar -->
+                <div id="navbarUserSection" class="nav-user-section">
+                    <!-- This will be dynamically filled by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-2 bread">Your Shopping Cart</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> 
+                        <span>Cart <i class="ion-ios-arrow-forward"></i></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cart-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" id="cartItemsContainer">
+                    <div class="text-center">Loading your cart...</div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart-summary" id="cartSummary" style="display: none;">
+                        <h4>Order Summary</h4>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (5%)</span>
+                            <span id="tax">$0.00</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                        <button class="btn-checkout" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                        <div class="text-center mt-3">
+                            <small class="text-muted">Tax included in total</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container-fluid px-md-5 px-3">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <img src="images/backgroundimg1.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+                      <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
+                        <p>📞 +1587 272 1088</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Open Hours</h2>
+                        <ul class="list-unstyled open-hours">
+                            <li class="d-flex"><span>Monday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Tuesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Wednesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Thursday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Friday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Saturday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Sunday</span><span>11 am–9 pm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Instagram</h2>
+                        <div class="thumb d-sm-flex">
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.jpg);"></a>
+                        </div>
+                        <div class="thumb d-flex">
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.jpg);"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+                            target="_blank">Astirmind Software Solutions</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000';
+        let currentUser = null;
+        let cartItems = [];
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-message';
+            toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // ========== AUTHENTICATION FUNCTIONS ==========
+        
+        function isLoggedIn() {
+            const token = localStorage.getItem('token');
+            const userData = localStorage.getItem('user');
+            return !!(token && userData);
+        }
+
+        function getCurrentUser() {
+            try {
+                const user = localStorage.getItem('user');
+                return user ? JSON.parse(user) : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        // Update navbar user section
+        function updateNavbarUserSection() {
+            const token = localStorage.getItem('token');
+            const userData = localStorage.getItem('user');
+            const userSection = document.getElementById('navbarUserSection');
+
+            if (token && userData) {
+                try {
+                    const user = JSON.parse(userData);
+                    const firstName = user.firstName || user.first_name || 'User';
+                    const userInitial = firstName.charAt(0).toUpperCase();
+                    const role = user.role || 'user';
+
+                    if (role === 'user') {
+                        userSection.innerHTML = `
+                            <div class="user-dropdown">
+                                <div class="user-avatar">${userInitial}</div>
+                                <span class="user-name">${firstName}</span>
+                                <div class="user-dropdown-content">
+                                    <a href="#" onclick="viewProfile()">My Profile</a>
+                                    <a href="#" onclick="viewOrders()">My Orders</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        showGuestView();
+                    }
+
+                    validateToken(token);
+                } catch (error) {
+                    console.error('Error parsing user data:', error);
+                    showGuestView();
+                }
+            } else {
+                showGuestView();
+            }
+        }
+
+        function showGuestView() {
+            const userSection = document.getElementById('navbarUserSection');
+            userSection.innerHTML = `
+                <a href="login.html" class="login-nav-btn">
+                    <span class="icon-user"></span> Login
+                </a>
+                <a href="signup.html" class="signup-nav-btn">
+                    Sign Up
+                </a>
+            `;
+        }
+
+        async function validateToken(token) {
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    console.log('Token invalid, logging out...');
+                    logout();
+                }
+            } catch (error) {
+                console.error('Token validation error:', error);
+            }
+        }
+
+        function viewProfile() {
+            const userData = localStorage.getItem('user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                showToast(`👤 Name: ${user.firstName} ${user.lastName}\n📧 Email: ${user.email}\n👑 Role: ${user.role || 'User'}`, false);
+            } else {
+                showToast('Please login to view profile', true);
+            }
+        }
+
+        function viewOrders() {
+            showToast('🛒 Your orders will appear here soon!', false);
+        }
+
+        async function logout() {
+            const token = localStorage.getItem('token');
+
+            if (token) {
+                try {
+                    await fetch('http://localhost:5000/api/auth/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                } catch (error) {
+                    console.error('Logout API error:', error);
+                }
+            }
+
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            localStorage.removeItem('tokenExpiresAt');
+            localStorage.removeItem('guestCart');
+
+            showToast('You have been successfully logged out!');
+            updateNavbarUserSection();
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        }
+
+        // ========== CART FUNCTIONS ==========
+
+        async function checkAuth() {
+            if (!isLoggedIn()) {
+                return false;
+            }
+            try {
+                currentUser = getCurrentUser();
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function getImageUrl(imagePath) {
+            if (!imagePath) return 'images/default-menu.jpg';
+            if (imagePath.startsWith('http')) return imagePath;
+            if (imagePath.startsWith('/uploads/')) return `${API_BASE_URL}${imagePath}`;
+            return imagePath;
+        }
+
+        async function loadCart() {
+            await checkAuth();
+            if (isLoggedIn() && currentUser) {
+                await loadCartFromBackend();
+            } else {
+                loadCartFromLocalStorage();
+            }
+        }
+
+        async function loadCartFromBackend() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_BASE_URL}/api/cart/${currentUser._id || currentUser.id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (response.ok) {
+                    const cart = await response.json();
+                    cartItems = cart?.items || [];
+                    displayCart();
+                    updateCartCount();
+                } else {
+                    cartItems = [];
+                    displayCart();
+                }
+            } catch (error) {
+                console.error('Error loading cart from backend:', error);
+                cartItems = [];
+                displayCart();
+            }
+        }
+
+        function loadCartFromLocalStorage() {
+            try {
+                const guestCart = localStorage.getItem('guestCart');
+                cartItems = guestCart ? JSON.parse(guestCart) : [];
+                displayCart();
+                updateCartCount();
+            } catch (error) {
+                console.error('Error loading cart from localStorage:', error);
+                cartItems = [];
+                displayCart();
+            }
+        }
+
+        // Updated displayCart function with disabled "-" button when quantity is 1
+        function displayCart() {
+            const container = document.getElementById('cartItemsContainer');
+            const summary = document.getElementById('cartSummary');
+            
+            if (!cartItems || cartItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart">
+                        <h3>Your cart is empty</h3>
+                        <p>Add some delicious items from our menu!</p>
+                        <a href="menu.html" class="btn btn-primary">Browse Menu</a>
+                    </div>
+                `;
+                summary.style.display = 'none';
+                return;
+            }
+            
+            summary.style.display = 'block';
+            
+            let subtotal = 0;
+            let html = '';
+            
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                const imageUrl = getImageUrl(item.image);
+                // Disable minus button if quantity is 1
+                const isMinDisabled = item.quantity <= 1;
+                
+                html += `
+                    <div class="cart-item">
+                        <img src="${imageUrl}" class="cart-item-image" onerror="this.src='images/default-menu.jpg'" alt="${escapeHtml(item.name)}">
+                        <div class="cart-item-details">
+                            <h4>${escapeHtml(item.name)}</h4>
+                            <div class="cart-item-price">C$${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="quantity-control">
+                            <button onclick="updateQuantity('${item.productId}', -1)" ${isMinDisabled ? 'disabled' : ''}>-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.productId}', 1)">+</button>
+                        </div>
+                        <div class="action-buttons">
+                            <div class="cart-item-price" style="min-width: 80px;">C$${itemTotal.toFixed(2)}</div>
+                            <button class="btn-remove btn-sm" onclick="removeItem('${item.productId}')">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            const tax = subtotal * 0.05;
+            const total = subtotal + tax;
+            
+            document.getElementById('subtotal').textContent = `C$${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `C$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `C$${total.toFixed(2)}`;
+        }
+
+        async function updateQuantity(productId, change) {
+            // Find the current item
+            const item = cartItems.find(i => i.productId === productId);
+            if (!item) return;
+            
+            // For decrement operation, check if quantity would become 0 or less
+            if (change === -1 && item.quantity <= 1) {
+                // If trying to decrease below 1, just keep at 1 (button is disabled, but this is extra safety)
+                return;
+            }
+            
+            const newQuantity = item.quantity + change;
+            
+            if (newQuantity <= 0) {
+                await removeItem(productId);
+            } else {
+                // Update quantity
+                if (isLoggedIn() && currentUser) {
+                    await updateQuantityBackend(productId, newQuantity);
+                } else {
+                    await updateQuantityLocal(productId, newQuantity);
+                }
+            }
+        }
+
+        async function updateQuantityBackend(productId, newQuantity) {
+            try {
+                const token = localStorage.getItem('token');
+                const item = cartItems.find(i => i.productId === productId);
+                if (item) {
+                    item.quantity = newQuantity;
+                    
+                    await fetch(`${API_BASE_URL}/api/cart/update`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            userId: currentUser._id || currentUser.id,
+                            productId: productId,
+                            quantity: newQuantity
+                        })
+                    });
+                    
+                    await loadCartFromBackend();
+                }
+            } catch (error) {
+                console.error('Error updating quantity:', error);
+                showToast('Failed to update quantity', true);
+            }
+        }
+
+        async function updateQuantityLocal(productId, newQuantity) {
+            const item = cartItems.find(i => i.productId === productId);
+            if (item) {
+                item.quantity = newQuantity;
+                localStorage.setItem('guestCart', JSON.stringify(cartItems));
+                displayCart();
+                updateCartCount();
+            }
+        }
+
+        async function removeItem(productId) {
+            if (isLoggedIn() && currentUser) {
+                await removeItemBackend(productId);
+            } else {
+                removeItemLocal(productId);
+            }
+        }
+
+        async function removeItemBackend(productId) {
+            try {
+                const token = localStorage.getItem('token');
+                await fetch(`${API_BASE_URL}/api/cart/remove`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        userId: currentUser._id || currentUser.id,
+                        productId: productId
+                    })
+                });
+                
+                await loadCartFromBackend();
+                showToast('Item removed from cart');
+            } catch (error) {
+                console.error('Error removing item:', error);
+                showToast('Failed to remove item', true);
+            }
+        }
+
+        function removeItemLocal(productId) {
+            cartItems = cartItems.filter(i => i.productId !== productId);
+            localStorage.setItem('guestCart', JSON.stringify(cartItems));
+            displayCart();
+            updateCartCount();
+            showToast('Item removed from cart');
+        }
+
+        function proceedToCheckout() {
+            if (cartItems.length === 0) {
+                showToast('Your cart is empty!', true);
+                return;
+            }
+            
+            if (!isLoggedIn()) {
+                if (confirm('You are checking out as a guest. Would you like to login for faster checkout? Click Cancel to continue as guest.')) {
+                    localStorage.setItem('redirectAfterLogin', 'checkout.html');
+                    window.location.href = 'login.html';
+                    return;
+                }
+            }
+            
+            window.location.href = 'checkout.html';
+        }
+
+        async function updateCartCount() {
+            const badge = document.getElementById('cartCountBadge');
+            
+            if (isLoggedIn() && currentUser) {
+                try {
+                    const token = localStorage.getItem('token');
+                    const response = await fetch(`${API_BASE_URL}/api/cart/${currentUser._id || currentUser.id}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    
+                    if (response.ok) {
+                        const cart = await response.json();
+                        const count = cart?.items?.length || 0;
+                        if (badge) {
+                            badge.textContent = count;
+                            badge.classList.toggle('hidden', count === 0);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error updating cart count:', error);
+                }
+            } else {
+                const count = cartItems.length;
+                if (badge) {
+                    badge.textContent = count;
+                    badge.classList.toggle('hidden', count === 0);
+                }
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        async function mergeGuestCart() {
+            const guestCart = localStorage.getItem('guestCart');
+            if (!guestCart) return;
+            
+            const guestItems = JSON.parse(guestCart);
+            if (guestItems.length === 0) return;
+            
+            if (isLoggedIn() && currentUser) {
+                const token = localStorage.getItem('token');
+                
+                for (const item of guestItems) {
+                    try {
+                        await fetch(`${API_BASE_URL}/api/cart/add`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                userId: currentUser._id || currentUser.id,
+                                product: item
+                            })
+                        });
+                    } catch (error) {
+                        console.error('Error merging item:', error);
+                    }
+                }
+                
+                localStorage.removeItem('guestCart');
+                await loadCartFromBackend();
+                showToast('Your guest cart has been merged with your account!');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            updateNavbarUserSection();
+            
+            const justLoggedIn = sessionStorage.getItem('justLoggedIn');
+            if (justLoggedIn === 'true') {
+                sessionStorage.removeItem('justLoggedIn');
+                await mergeGuestCart();
+            }
+            
+            await loadCart();
+        });
+    </script>
+</body>
+</html>

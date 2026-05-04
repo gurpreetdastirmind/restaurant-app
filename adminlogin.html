@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Admin Login | Olives Mediterranean Grill</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Admin Login Specific Styles */
+    body {
+      background: #1a1a1a;
+    }
+    
+    .admin-login-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .admin-login-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/bg_3.jpg') center/cover no-repeat;
+      opacity: 0.08;
+      z-index: 0;
+    }
+    
+    .admin-card {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 25px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(0px);
+      border: 1px solid rgba(196, 154, 108, 0.2);
+    }
+    
+    .admin-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+    }
+    
+    .admin-header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 3px solid #c49a6c;
+    }
+    
+    .admin-header h3 {
+      color: #c49a6c;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    .admin-header p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+    
+    .admin-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #c49a6c 0%, #a06e3c 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+    }
+    
+    .admin-icon span {
+      font-size: 40px;
+      color: #fff;
+    }
+    
+    .admin-body {
+      padding: 2.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+    
+    .form-group .icon-field {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #c49a6c;
+      font-size: 1.2rem;
+      z-index: 10;
+    }
+    
+    .form-control-admin {
+      width: 100%;
+      padding: 14px 20px 14px 50px;
+      font-size: 1rem;
+      border: 2px solid #e5e5e5;
+      border-radius: 12px;
+      transition: all 0.3s;
+      background-color: #fafafa;
+      font-weight: 500;
+    }
+    
+    .form-control-admin:focus {
+      border-color: #c49a6c;
+      box-shadow: 0 0 0 4px rgba(196, 154, 108, 0.15);
+      outline: none;
+      background-color: #fff;
+    }
+    
+    .password-wrapper {
+      position: relative;
+    }
+    
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+      z-index: 10;
+      font-size: 1.1rem;
+    }
+    
+    .toggle-password:hover {
+      color: #c49a6c;
+    }
+    
+    .btn-admin-login {
+      background: linear-gradient(135deg, #c49a6c 0%, #a06e3c 100%);
+      border: none;
+      padding: 14px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      width: 100%;
+      color: #fff;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    
+    .btn-admin-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(160, 110, 60, 0.4);
+      background: linear-gradient(135deg, #d4aa7a 0%, #b57e48 100%);
+    }
+    
+    .btn-admin-login:disabled {
+      opacity: 0.7;
+      transform: none;
+      cursor: not-allowed;
+    }
+    
+    .admin-links {
+      text-align: center;
+      margin-top: 1.8rem;
+    }
+    
+    .admin-links a {
+      color: #c49a6c;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+    
+    .admin-links a:hover {
+      color: #a06e3c;
+      text-decoration: underline;
+    }
+    
+    .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 1.8rem 0 1.5rem;
+    }
+    
+    .separator::before,
+    .separator::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .separator span {
+      padding: 0 10px;
+      color: #999;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    
+    .alert-message {
+      display: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .alert-danger {
+      background: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+    
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+      border-left: 4px solid #28a745;
+    }
+    
+    .alert-warning {
+      background: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .security-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      font-size: 0.75rem;
+      color: #888;
+    }
+    
+    .security-badge span {
+      font-size: 0.9rem;
+    }
+    
+    .back-to-site {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    
+    .back-to-site a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .back-to-site a:hover {
+      color: #c49a6c;
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.6s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 576px) {
+      .admin-body {
+        padding: 1.8rem;
+      }
+      .admin-header h3 {
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .admin-icon {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Admin hint box */
+    .admin-hint {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 15px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+    }
+    .admin-hint p {
+      margin: 0;
+      font-size: 12px;
+      color: #666;
+    }
+    .admin-hint strong {
+      color: #c49a6c;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Admin Login Section -->
+  <section class="admin-login-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+          <div class="admin-card">
+            <div class="admin-header">
+              <div class="admin-icon">
+                <span class="icon-lock"></span>
+              </div>
+              <h3>Admin Portal</h3>
+              <p>Restaurant Management System</p>
+            </div>
+            <div class="admin-body">
+              <!-- Alert Messages -->
+              <div id="errorAlert" class="alert-message alert-danger">
+                <i class="icon-warning"></i> <span id="errorText"></span>
+              </div>
+              <div id="successAlert" class="alert-message alert-success">
+                <i class="icon-check"></i> <span id="successText"></span>
+              </div>
+              <div id="warningAlert" class="alert-message alert-warning">
+                <i class="icon-info"></i> <span id="warningText"></span>
+              </div>
+
+              <!-- Admin Login Form -->
+              <form id="adminLoginForm">
+                <div class="form-group">
+                  <span class="icon-field"><i class="icon-envelope"></i></span>
+                  <input type="email" class="form-control-admin" id="emailInput" 
+                         placeholder="Admin Email Address" autocomplete="off" required>
+                </div>
+                
+                <div class="form-group">
+                  <span class="icon-field"><i class="icon-lock"></i></span>
+                  <div class="password-wrapper">
+                    <input type="password" class="form-control-admin" id="passwordInput" 
+                           placeholder="Admin Password" required>
+                    <span class="toggle-password" onclick="togglePassword()">
+                      <i id="toggleIcon" class="icon-eye"></i>
+                    </span>
+                  </div>
+                </div>
+                
+                <!-- Remember Me Checkbox -->
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
+                  <input type="checkbox" id="rememberCheckbox" style="width: 18px; height: 18px; cursor: pointer; accent-color: #c49a6c;">
+                  <label for="rememberCheckbox" style="margin-bottom: 0; cursor: pointer; color: #666; font-size: 0.9rem;">
+                    Remember me on this device
+                  </label>
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" class="btn-admin-login" id="loginBtn">
+                    <i class="icon-login"></i> Access Dashboard
+                  </button>
+                </div>
+              </form>
+              
+              <div class="separator">
+                <span>Secure Access</span>
+              </div>
+              
+              <div class="admin-links">
+                <a href="admin-forgot-password.html" onclick="showForgotPassword()">Forgot Password?</a>
+                <span style="margin: 0 10px; color: #ddd;">|</span>
+                <a href="login.html">Customer Login</a>
+              </div>
+              
+              <!-- Admin Hint Box -->
+              <!-- <div class="admin-hint">
+                <p>🔐 <strong>Demo Admin Credentials</strong></p>
+                <p>Email: <strong>guru24055@gmail.com</strong> | Password: <strong>Admin@123</strong></p>
+              </div> -->
+         
+              <div class="back-to-site">
+                <a href="index.html">
+                  <i class="icon-arrow-left"></i> Back to Restaurant Website
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ftco-footer ftco-bg-dark ftco-section" style="padding: 2rem 0;">
+    <div class="container-fluid px-md-5 px-3">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p style="margin-bottom: 0;">
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | Olives Mediterranean Grill Admin Panel
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Hide all alerts initially
+    document.getElementById('errorAlert').style.display = 'none';
+    document.getElementById('successAlert').style.display = 'none';
+    document.getElementById('warningAlert').style.display = 'none';
+    
+    // Track login attempts for security
+    let loginAttempts = 0;
+    let isLocked = false;
+    let lockTimer = null;
+    
+    // Toggle password visibility
+    function togglePassword() {
+      const passwordInput = document.getElementById('passwordInput');
+      const toggleIcon = document.getElementById('toggleIcon');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('icon-eye');
+        toggleIcon.classList.add('icon-eye-off');
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('icon-eye-off');
+        toggleIcon.classList.add('icon-eye');
+      }
+    }
+    
+    // Show alert function
+    function showAlert(type, message) {
+      document.getElementById('errorAlert').style.display = 'none';
+      document.getElementById('successAlert').style.display = 'none';
+      document.getElementById('warningAlert').style.display = 'none';
+      
+      if (type === 'error') {
+        document.getElementById('errorText').innerText = message;
+        document.getElementById('errorAlert').style.display = 'block';
+      } else if (type === 'success') {
+        document.getElementById('successText').innerText = message;
+        document.getElementById('successAlert').style.display = 'block';
+      } else if (type === 'warning') {
+        document.getElementById('warningText').innerText = message;
+        document.getElementById('warningAlert').style.display = 'block';
+      }
+      
+      setTimeout(() => {
+        if (type === 'error') document.getElementById('errorAlert').style.display = 'none';
+        if (type === 'success') document.getElementById('successAlert').style.display = 'none';
+        if (type === 'warning') document.getElementById('warningAlert').style.display = 'none';
+      }, 4000);
+    }
+    
+    // Clear any existing admin session before login attempt
+    function clearExistingAdminSession() {
+      // Only clear admin tokens, not user tokens
+      localStorage.removeItem('adminToken');
+      localStorage.removeItem('adminUser');
+      // Note: We don't clear 'token' and 'user' as those are for customer login
+    }
+    
+    // Handle admin login form submission with backend API
+    document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      if (isLocked) {
+        showAlert('warning', 'Account temporarily locked due to multiple failed attempts. Please wait 30 seconds.');
+        return;
+      }
+      
+      const email = document.getElementById('emailInput').value.trim();
+      const password = document.getElementById('passwordInput').value;
+      const rememberMe = document.getElementById('rememberCheckbox').checked;
+      const loginBtn = document.getElementById('loginBtn');
+      
+      if (!email || !password) {
+        showAlert('error', 'Please enter both email and password.');
+        loginAttempts++;
+        checkLockout();
+        return;
+      }
+      
+      // Email format validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        showAlert('error', 'Please enter a valid email address.');
+        return;
+      }
+      
+      try {
+        loginBtn.innerHTML = '<span class="spinner"></span> Authenticating...';
+        loginBtn.disabled = true;
+        
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success && data.data.role === 'admin') {
+          loginAttempts = 0;
+          
+          // Clear any existing admin session first
+          clearExistingAdminSession();
+          
+          // IMPORTANT: Store admin session with ADMIN-specific keys
+          // This prevents mixing with customer tokens
+          localStorage.setItem('adminToken', data.data.token);
+          localStorage.setItem('adminUser', JSON.stringify(data.data));
+          
+          // Also store refresh token for admin
+          if (data.data.refreshToken) {
+            localStorage.setItem('adminRefreshToken', data.data.refreshToken);
+          }
+          
+          // Store token expiry
+          if (data.data.expiresAt) {
+            localStorage.setItem('adminTokenExpiresAt', data.data.expiresAt);
+          }
+          
+          // Remember me functionality
+          if (rememberMe) {
+            localStorage.setItem('remembered_admin_email', email);
+          } else {
+            localStorage.removeItem('remembered_admin_email');
+          }
+          
+          showAlert('success', `Welcome back, ${data.data.firstName || 'Admin'}! Redirecting to admin dashboard...`);
+          
+          setTimeout(() => {
+            window.location.href = 'admindashboard.html';
+          }, 1500);
+          
+        } else if (data.success && data.data.role !== 'admin') {
+          showAlert('error', 'Access denied. Admin privileges required. This account is a regular user.');
+          loginBtn.innerHTML = '<i class="icon-login"></i> Access Dashboard';
+          loginBtn.disabled = false;
+          document.getElementById('passwordInput').value = '';
+        } else {
+          loginAttempts++;
+          showAlert('error', data.message || 'Invalid credentials. Please check your email and password.');
+          document.getElementById('passwordInput').value = '';
+          loginBtn.innerHTML = '<i class="icon-login"></i> Access Dashboard';
+          loginBtn.disabled = false;
+          checkLockout();
+          
+          // Shake animation for error feedback
+          const adminCard = document.querySelector('.admin-card');
+          adminCard.style.transform = 'translateX(10px)';
+          setTimeout(() => { adminCard.style.transform = 'translateX(-8px)'; }, 80);
+          setTimeout(() => { adminCard.style.transform = 'translateX(5px)'; }, 160);
+          setTimeout(() => { adminCard.style.transform = 'translateX(-3px)'; }, 240);
+          setTimeout(() => { adminCard.style.transform = 'translateX(0)'; }, 320);
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        showAlert('error', 'Cannot connect to server. Please make sure the backend is running on port 5000');
+        loginBtn.innerHTML = '<i class="icon-login"></i> Access Dashboard';
+        loginBtn.disabled = false;
+      }
+    });
+    
+    function checkLockout() {
+      if (loginAttempts >= 3 && !isLocked) {
+        isLocked = true;
+        showAlert('warning', 'Too many failed attempts. Account locked for 30 seconds.');
+        
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.disabled = true;
+        loginBtn.style.opacity = '0.6';
+        
+        lockTimer = setTimeout(() => {
+          isLocked = false;
+          loginAttempts = 0;
+          const loginBtn = document.getElementById('loginBtn');
+          loginBtn.disabled = false;
+          loginBtn.style.opacity = '1';
+          showAlert('warning', 'Account unlocked. You can try again now.');
+        }, 30000);
+      }
+    }
+    
+    function showForgotPassword() {
+      const email = document.getElementById('emailInput').value;
+      if (email && email.includes('@')) {
+        showAlert('success', `Password reset link has been sent to ${email}`);
+      } else {
+        showAlert('warning', 'Please enter your admin email address to reset password.');
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if admin is already logged in
+      const existingAdminToken = localStorage.getItem('adminToken');
+      const existingAdminUser = localStorage.getItem('adminUser');
+      
+      if (existingAdminToken && existingAdminUser) {
+        try {
+          const user = JSON.parse(existingAdminUser);
+          if (user.role === 'admin') {
+            showAlert('warning', 'You are already logged in as admin. Redirecting to dashboard...');
+            setTimeout(() => {
+              window.location.href = 'admindashboard.html';
+            }, 2000);
+            return;
+          }
+        } catch(e) {
+          // Invalid data, continue to login
+        }
+      }
+      
+      // Load remembered email
+      const rememberedEmail = localStorage.getItem('remembered_admin_email');
+      if (rememberedEmail) {
+        document.getElementById('emailInput').value = rememberedEmail;
+        document.getElementById('rememberCheckbox').checked = true;
+        showAlert('warning', `Welcome back! Please enter your password.`);
+      }
+      
+      // Clear any stale admin tokens that might cause issues
+      // But preserve remembered email
+      const savedEmail = localStorage.getItem('remembered_admin_email');
+      clearExistingAdminSession();
+      if (savedEmail) {
+        localStorage.setItem('remembered_admin_email', savedEmail);
+      }
+      
+      // Smooth appearance animation for admin card
+      const adminCard = document.querySelector('.admin-card');
+      adminCard.style.opacity = '0';
+      adminCard.style.transform = 'translateY(30px)';
+      setTimeout(() => {
+        adminCard.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        adminCard.style.opacity = '1';
+        adminCard.style.transform = 'translateY(0)';
+      }, 100);
+      
+      // Focus on email field
+      document.getElementById('emailInput').focus();
+    });
+    
+    // Add keyboard shortcut (Ctrl+Shift+A) for admin quick access
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        document.getElementById('emailInput').focus();
+        showAlert('warning', 'Admin quick access - Enter your credentials.');
+      }
+    });
+    
+    window.addEventListener('beforeunload', function() {
+      if (lockTimer) {
+        clearTimeout(lockTimer);
+      }
+    });
+  </script>
+</body>
+
+</html>

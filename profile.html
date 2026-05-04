@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Profile | Olives Mediterranean Grill</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .profile-container {
+            min-height: 600px;
+            padding: 50px 0;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c49a6c;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: #c49a6c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .profile-header h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #c49a6c;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(196, 154, 108, 0.1);
+        }
+
+        .form-group input:disabled {
+            background: #f8f9fa;
+            color: #999;
+        }
+
+        .btn-save {
+            background: #c49a6c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-save:hover {
+            background: #a06e3c;
+            transform: translateY(-2px);
+        }
+
+        .btn-edit {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .edit-mode-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-label {
+            width: 130px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .info-value {
+            flex: 1;
+            color: #333;
+        }
+
+        .address-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .address-section h4 {
+            color: #c49a6c;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        /* Navbar user styles */
+        .nav-user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            background: #c49a6c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .user-name {
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .login-nav-btn {
+            background: #c49a6c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+
+        .signup-nav-btn {
+            background: transparent;
+            color: #c49a6c;
+            border: 1px solid #c49a6c;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .user-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        .user-dropdown:hover .user-dropdown-content {
+            display: block;
+        }
+
+        .user-dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .user-dropdown-content a:hover {
+            background: #f1f1f1;
+            color: #c49a6c;
+        }
+
+        .logout-dropdown-item {
+            color: #dc3545 !important;
+        }
+
+        .nav-cart {
+            position: relative;
+            margin-left: 15px;
+        }
+
+        .cart-icon {
+            font-size: 22px;
+            color: white;
+        }
+
+        .cart-count-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #c49a6c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-count-badge.hidden {
+            display: none;
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="py-1 bg-black top">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-phone2"></span></div>
+                            <span class="text">+1587 272 1088</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-paper-plane"></span></div>
+                            <span class="text">olivesmgrill@gmail.com</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
+                                <span>11:00AM - 9:00PM</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+				<img src="images/backgroundimg1.png" alt="Olive Logo" style="height: 120px; width: 170px;  ">
+				
+			</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item cta"><a href="reservation.html" class="nav-link">Book a table</a></li>
+                    <li class="nav-item nav-cart">
+                        <a href="cart.html" class="nav-link cart-icon">
+                            <span class="icon-shopping-cart"></span>
+                            <span id="cartCountBadge" class="cart-count-badge hidden">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="navbarUserSection" class="nav-user-section"></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');"
+        data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-2 bread">My Profile</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                                    class="ion-ios-arrow-forward"></i></a></span>
+                        <span>Profile <i class="ion-ios-arrow-forward"></i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="profile-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar" id="profileAvatar">G</div>
+                            <h3 id="profileName">Loading...</h3>
+                            <p id="profileEmail">Loading...</p>
+                            <p><span class="badge" id="profileRole"
+                                    style="background:#c49a6c; color:white; padding:5px 15px; border-radius:20px;">User</span>
+                            </p>
+                        </div>
+
+                        <!-- View Mode -->
+                        <div id="viewMode">
+                            <div class="info-row">
+                                <div class="info-label">First Name:</div>
+                                <div class="info-value" id="viewFirstName">-</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Last Name:</div>
+                                <div class="info-value" id="viewLastName">-</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Email:</div>
+                                <div class="info-value" id="viewEmail">-</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Phone:</div>
+                                <div class="info-value" id="viewPhone">-</div>
+                            </div>
+
+                            <div class="address-section">
+                                <h4>Delivery Address</h4>
+                                <div class="info-row">
+                                    <div class="info-label">Street Address:</div>
+                                    <div class="info-value" id="viewStreet">Not set</div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">City:</div>
+                                    <div class="info-value" id="viewCity">Not set</div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">State/Province:</div>
+                                    <div class="info-value" id="viewState">Not set</div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">Postal Code:</div>
+                                    <div class="info-value" id="viewPostalCode">Not set</div>
+                                </div>
+                            </div>
+
+                            <button class="btn-edit" onclick="enableEditMode()">✏️ Edit Profile</button>
+                        </div>
+
+                        <!-- Edit Mode -->
+                        <div id="editMode" style="display: none;">
+                            <form id="profileForm">
+                                <div class="form-group">
+                                    <label>First Name *</label>
+                                    <input type="text" id="editFirstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input type="text" id="editLastName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input type="email" id="editEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number *</label>
+                                    <input type="tel" id="editPhone" required placeholder="Enter your phone number">
+                                </div>
+
+                                <div class="address-section">
+                                    <h4>Delivery Address Information</h4>
+                                    <div class="form-group">
+                                        <label>Street Address</label>
+                                        <input type="text" id="editStreet" placeholder="Enter your street address">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" id="editCity" placeholder="Enter your city">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>State/Province</label>
+                                                <input type="text" id="editState" placeholder="Enter your state">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="text" id="editPostalCode" placeholder="Enter postal code">
+                                    </div>
+                                </div>
+
+                                <div class="edit-mode-actions">
+                                    <button type="submit" class="btn-save">💾 Save Changes</button>
+                                    <button type="button" class="btn-cancel" onclick="disableEditMode()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container-fluid px-md-5 px-3">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <img src="images/backgroundimg1.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+                       <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
+                        <p>📞 +1587 272 1088</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Open Hours</h2>
+                        <ul class="list-unstyled open-hours">
+                            <li class="d-flex"><span>Monday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Tuesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Wednesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Thursday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Friday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Saturday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Sunday</span><span>11 am–9 pm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Newsletter</h2>
+                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-2 text-center"
+                                    placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="form-control submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Instagram</h2>
+                        <div class="thumb d-sm-flex">
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.jpg);"></a>
+                        </div>
+                        <div class="thumb d-flex">
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.jpg);"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+                            target="_blank">Astirmind Software Solutions</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000';
+        let currentUser = null;
+        let userAddress = {};
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-message';
+            toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function isLoggedIn() {
+            return !!(localStorage.getItem('token') && localStorage.getItem('user'));
+        }
+
+        function getCurrentUser() {
+            try {
+                const user = localStorage.getItem('user');
+                return user ? JSON.parse(user) : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        async function checkAuth() {
+            if (!isLoggedIn()) {
+                showToast('Please login to view your profile', true);
+                setTimeout(() => {
+                    window.location.href = 'login.html?redirect=profile.html';
+                }, 1500);
+                return false;
+            }
+            currentUser = getCurrentUser();
+            return true;
+        }
+
+        function updateNavbarUserSection() {
+            const token = localStorage.getItem('token');
+            const userData = localStorage.getItem('user');
+            const userSection = document.getElementById('navbarUserSection');
+
+            if (token && userData) {
+                try {
+                    const user = JSON.parse(userData);
+                    const firstName = user.firstName || user.first_name || 'User';
+                    const userInitial = firstName.charAt(0).toUpperCase();
+
+                    userSection.innerHTML = `
+                        <div class="user-dropdown">
+                            <div class="user-avatar">${userInitial}</div>
+                            <span class="user-name">${firstName}</span>
+                            <div class="user-dropdown-content">
+                                <a href="profile.html">My Profile</a>
+                                <a href="my-orders.html">My Orders</a>
+                                <a href="my-reservations.html">My Reservations</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error parsing user data:', error);
+                    showGuestView();
+                }
+            } else {
+                showGuestView();
+            }
+        }
+
+        function showGuestView() {
+            const userSection = document.getElementById('navbarUserSection');
+            userSection.innerHTML = `
+                <a href="login.html" class="login-nav-btn">Login</a>
+                <a href="signup.html" class="signup-nav-btn">Sign Up</a>
+            `;
+        }
+
+        async function logout() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    await fetch('http://localhost:5000/api/auth/logout', {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                } catch (error) { }
+            }
+            localStorage.clear();
+            showToast('Logged out successfully!');
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        }
+
+        async function updateCartCount() {
+            const badge = document.getElementById('cartCountBadge');
+            if (!badge) return;
+
+            if (!isLoggedIn()) {
+                const guestCart = localStorage.getItem('guestCart');
+                const count = guestCart ? JSON.parse(guestCart).length : 0;
+                badge.textContent = count;
+                badge.classList.toggle('hidden', count === 0);
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('token');
+                const user = getCurrentUser();
+                const response = await fetch(`${API_BASE_URL}/api/cart/${user._id || user.id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (response.ok) {
+                    const cart = await response.json();
+                    const count = cart?.items?.length || 0;
+                    badge.textContent = count;
+                    badge.classList.toggle('hidden', count === 0);
+                }
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+            }
+        }
+
+        async function loadUserProfile() {
+            const isAuth = await checkAuth();
+            if (!isAuth) return;
+
+            // Load saved address from localStorage
+            const savedAddress = localStorage.getItem('userAddress');
+            if (savedAddress) {
+                userAddress = JSON.parse(savedAddress);
+            }
+
+            displayProfile();
+        }
+
+        function displayProfile() {
+            const firstName = currentUser.firstName || currentUser.first_name || 'User';
+            const lastName = currentUser.lastName || currentUser.last_name || '';
+            const email = currentUser.email || '';
+            const phone = currentUser.phone || '';
+            const role = currentUser.role || 'user';
+
+            // Update header
+            document.getElementById('profileAvatar').textContent = firstName.charAt(0).toUpperCase();
+            document.getElementById('profileName').textContent = `${firstName} ${lastName}`;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('profileRole').textContent = role.toUpperCase();
+
+            // View mode
+            document.getElementById('viewFirstName').textContent = firstName;
+            document.getElementById('viewLastName').textContent = lastName;
+            document.getElementById('viewEmail').textContent = email;
+            document.getElementById('viewPhone').textContent = phone || 'Not provided';
+
+            // Address view mode
+            document.getElementById('viewStreet').textContent = userAddress.street || 'Not set';
+            document.getElementById('viewCity').textContent = userAddress.city || 'Not set';
+            document.getElementById('viewState').textContent = userAddress.state || 'Not set';
+            document.getElementById('viewPostalCode').textContent = userAddress.postalCode || 'Not set';
+
+            // Edit mode - populate fields
+            document.getElementById('editFirstName').value = firstName;
+            document.getElementById('editLastName').value = lastName;
+            document.getElementById('editEmail').value = email;
+            document.getElementById('editPhone').value = phone || '';
+            document.getElementById('editStreet').value = userAddress.street || '';
+            document.getElementById('editCity').value = userAddress.city || '';
+            document.getElementById('editState').value = userAddress.state || '';
+            document.getElementById('editPostalCode').value = userAddress.postalCode || '';
+        }
+
+        function enableEditMode() {
+            document.getElementById('viewMode').style.display = 'none';
+            document.getElementById('editMode').style.display = 'block';
+        }
+
+        function disableEditMode() {
+            document.getElementById('viewMode').style.display = 'block';
+            document.getElementById('editMode').style.display = 'none';
+            displayProfile(); // Reset form with original data
+        }
+
+        async function updateUserProfile(firstName, lastName, email, phone) {
+            try {
+                const token = localStorage.getItem('token');
+
+                const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        phone: phone
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Update local storage with new user data
+                    const updatedUser = { ...currentUser, firstName, lastName, email, phone };
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                    currentUser = updatedUser;
+                    return true;
+                } else {
+                    showToast(data.message || 'Failed to update profile', true);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                showToast('Network error. Please try again.', true);
+                return false;
+            }
+        }
+
+        function saveAddressToLocalStorage(street, city, state, postalCode) {
+            userAddress = { street, city, state, postalCode };
+            localStorage.setItem('userAddress', JSON.stringify(userAddress));
+        }
+
+        document.getElementById('profileForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById('editFirstName').value.trim();
+            const lastName = document.getElementById('editLastName').value.trim();
+            const email = document.getElementById('editEmail').value.trim();
+            const phone = document.getElementById('editPhone').value.trim();
+            const street = document.getElementById('editStreet').value.trim();
+            const city = document.getElementById('editCity').value.trim();
+            const state = document.getElementById('editState').value.trim();
+            const postalCode = document.getElementById('editPostalCode').value.trim();
+
+            if (!firstName || !lastName || !email) {
+                showToast('Please fill in all required fields', true);
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showToast('Please enter a valid email address', true);
+                return;
+            }
+
+            const submitBtn = document.querySelector('#profileForm button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Saving...';
+            submitBtn.disabled = true;
+
+            try {
+                // Update user profile in backend
+                const profileUpdated = await updateUserProfile(firstName, lastName, email, phone);
+
+                if (profileUpdated) {
+                    // Save address to localStorage
+                    saveAddressToLocalStorage(street, city, state, postalCode);
+
+                    showToast('✅ Profile updated successfully!');
+                    disableEditMode();
+                    displayProfile(); // Refresh display
+                } else {
+                    showToast('Failed to update profile. Please try again.', true);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('An error occurred. Please try again.', true);
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateNavbarUserSection();
+            updateCartCount();
+            loadUserProfile();
+        });
+    </script>
+</body>
+
+</html>

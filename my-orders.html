@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Olives Mediterranean Grill</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .orders-container {
+            min-height: 500px;
+            padding: 50px 0;
+        }
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .order-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        .order-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c49a6c;
+        }
+        .order-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-processing { background: #d1ecf1; color: #0c5460; }
+        .status-completed { background: #d4edda; color: #155724; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .order-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .order-items {
+            flex: 2;
+        }
+        .order-total {
+            text-align: right;
+            font-weight: bold;
+            color: #c49a6c;
+            font-size: 18px;
+        }
+        .btn-view-order {
+            background: #c49a6c;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .empty-orders {
+            text-align: center;
+            padding: 60px;
+        }
+        .empty-orders .icon {
+            font-size: 60px;
+            color: #c49a6c;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar user styles (same as before) */
+        .nav-user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            background: #c49a6c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .user-name {
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .login-nav-btn {
+            background: #c49a6c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+        .signup-nav-btn {
+            background: transparent;
+            color: #c49a6c;
+            border: 1px solid #c49a6c;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+        .user-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .user-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            z-index: 1000;
+        }
+        .user-dropdown:hover .user-dropdown-content {
+            display: block;
+        }
+        .user-dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .user-dropdown-content a:hover {
+            background: #f1f1f1;
+            color: #c49a6c;
+        }
+        .logout-dropdown-item {
+            color: #dc3545 !important;
+        }
+        .nav-cart {
+            position: relative;
+            margin-left: 15px;
+        }
+        .cart-icon {
+            font-size: 22px;
+            color: white;
+        }
+        .cart-count-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #c49a6c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-count-badge.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Same navbar structure as other pages -->
+    <div class="py-1 bg-black top">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-phone2"></span></div>
+                            <span class="text">+1587 272 1088</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-paper-plane"></span></div>
+                            <span class="text">olivesmgrill@gmail.com</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
+                                <span>11:00AM - 9:00PM</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+				<img src="images/backgroundimg1.png" alt="Olive Logo" style="height: 120px; width: 170px;  ">
+				
+			</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="reservation.html" class="nav-link">Book a table</a></li>
+                    <li class="nav-item nav-cart">
+                        <a href="cart.html" class="nav-link cart-icon">
+                            <span class="icon-shopping-cart"></span>
+                            <span id="cartCountBadge" class="cart-count-badge hidden">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="navbarUserSection" class="nav-user-section"></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1 class="mb-2 bread">My Orders</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="orders-container">
+        <div class="container">
+            <div id="ordersList"></div>
+        </div>
+    </div>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container-fluid px-md-5 px-3">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <img src="images/backgroundimg1.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
+                        <p>📞 +1587 272 1088</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Open Hours</h2>
+                        <ul class="list-unstyled open-hours">
+                            <li class="d-flex"><span>Monday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Tuesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Wednesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Thursday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Friday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Saturday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Sunday</span><span>11 am–9 pm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Newsletter</h2>
+                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-2 text-center"
+                                    placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="form-control submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Instagram</h2>
+                        <div class="thumb d-sm-flex">
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.jpg);"></a>
+                        </div>
+                        <div class="thumb d-flex">
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.jpg);"></a>
+                            <a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.jpg);"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+                            target="_blank">Astirmind Software Solutions</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+      <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000';
+        let orders = [];
+
+        function isLoggedIn() {
+            return !!(localStorage.getItem('token') && localStorage.getItem('user'));
+        }
+
+        function updateNavbarUserSection() {
+            const token = localStorage.getItem('token');
+            const userData = localStorage.getItem('user');
+            const userSection = document.getElementById('navbarUserSection');
+            if (token && userData) {
+                const user = JSON.parse(userData);
+                const firstName = user.firstName || 'User';
+                userSection.innerHTML = `
+                    <div class="user-dropdown">
+                        <div class="user-avatar">${firstName.charAt(0)}</div>
+                        <span class="user-name">${firstName}</span>
+                        <div class="user-dropdown-content">
+                            <a href="#" onclick="viewProfile()">My Profile</a>
+                            <a href="#" onclick="viewOrders()">My Orders</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                userSection.innerHTML = `<a href="login.html" class="login-nav-btn">Login</a><a href="signup.html" class="signup-nav-btn">Sign Up</a>`;
+            }
+        }
+
+        async function loadOrders() {
+            if (!isLoggedIn()) {
+                document.getElementById('ordersList').innerHTML = `
+                    <div class="empty-orders">
+                        <div class="icon icon-lock"></div>
+                        <h3>Please Login to View Orders</h3>
+                        <p>You need to be logged in to see your order history.</p>
+                        <a href="login.html?redirect=my-orders.html" class="btn btn-primary">Login Now</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('token');
+                const user = JSON.parse(localStorage.getItem('user'));
+                const response = await fetch(`${API_BASE_URL}/api/orders/user/${user._id || user.id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    orders = data.data || data;
+                    displayOrders();
+                } else {
+                    showDemoOrders();
+                }
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                showDemoOrders();
+            }
+        }
+
+        function showDemoOrders() {
+            orders = [
+                { _id: 'ORD001', orderNumber: 'ORD-001', date: new Date().toISOString(), total: 45.99, status: 'completed', items: [{ name: 'Chicken Wrap', quantity: 1, price: 12.99 }, { name: 'Greek Salad', quantity: 1, price: 11.99 }] },
+                { _id: 'ORD002', orderNumber: 'ORD-002', date: new Date(Date.now() - 7*24*60*60*1000).toISOString(), total: 28.99, status: 'processing', items: [{ name: 'Mixed Grill Platter', quantity: 1, price: 28.99 }] }
+            ];
+            displayOrders();
+        }
+
+        function displayOrders() {
+            const container = document.getElementById('ordersList');
+            if (!orders || orders.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-orders">
+                        <div class="icon icon-shopping-cart"></div>
+                        <h3>No Orders Yet</h3>
+                        <p>You haven't placed any orders yet.</p>
+                        <a href="menu.html" class="btn btn-primary">Start Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = orders.map(order => {
+                const statusClass = getStatusClass(order.status);
+                const orderDate = new Date(order.date || order.createdAt).toLocaleDateString();
+                const itemCount = order.items?.length || 0;
+                return `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <span class="order-number">${order.orderNumber || order._id}</span>
+                            <span class="order-status ${statusClass}">${order.status || 'Pending'}</span>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-items">
+                                <strong>Items:</strong> ${itemCount} item(s)<br>
+                                <small>${orderDate}</small>
+                            </div>
+                            <div class="order-total">
+                                C$${(order.total || 0).toFixed(2)}
+                            </div>
+                        </div>
+                        <button class="btn-view-order" onclick="viewOrder('${order._id}')">View Details</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getStatusClass(status) {
+            switch(status?.toLowerCase()) {
+                case 'completed': return 'status-completed';
+                case 'processing': return 'status-processing';
+                case 'cancelled': return 'status-cancelled';
+                default: return 'status-pending';
+            }
+        }
+
+        function viewOrder(orderId) {
+            window.location.href = `order-confirmation.html?orderId=${orderId}`;
+        }
+
+        function viewProfile() { showToast('Profile feature coming soon!'); }
+        function viewOrders() { window.location.href = 'my-orders.html'; }
+        function showToast(msg, isError) { alert(msg); }
+        
+        async function logout() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNavbarUserSection();
+            loadOrders();
+        });
+    </script>
+</body>
+</html>

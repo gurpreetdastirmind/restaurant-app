@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Reservation | Olives Mediterranean Grill</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/aos.css">
+
+	<link rel="stylesheet" href="css/ionicons.min.css">
+
+	<!-- REMOVE conflicting datepicker CSS -->
+	<!-- <link rel="stylesheet" href="css/bootstrap-datepicker.css"> -->
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+		.map-container {
+			width: 100%;
+			margin-left: 20px;
+			margin-top: 80px;
+		}
+
+		.map-wrapper {
+			width: 100%;
+			height: 400px;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		.map-wrapper iframe {
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+
+		/* Navbar user styles */
+		.nav-user-section {
+			display: flex;
+			align-items: center;
+			gap: 15px;
+			margin-left: 20px;
+		}
+
+		.user-avatar {
+			width: 38px;
+			height: 38px;
+			background: #c49a6c;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.user-avatar:hover {
+			background: #a06e3c;
+			transform: scale(1.05);
+		}
+
+		.user-name {
+			color: white;
+			font-weight: 500;
+			cursor: pointer;
+			padding: 5px 10px;
+			border-radius: 20px;
+			transition: all 0.3s ease;
+		}
+
+		.user-name:hover {
+			color: #c49a6c;
+			background: rgba(255, 255, 255, 0.1);
+		}
+
+		.login-nav-btn {
+			background: #c49a6c;
+			color: white;
+			border: none;
+			padding: 8px 20px;
+			border-radius: 25px;
+			font-size: 14px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		.login-nav-btn:hover {
+			background: #a06e3c;
+			transform: translateY(-2px);
+			color: white;
+			text-decoration: none;
+		}
+
+		.signup-nav-btn {
+			background: transparent;
+			color: #c49a6c;
+			border: 1px solid #c49a6c;
+			padding: 8px 20px;
+			border-radius: 25px;
+			font-size: 14px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		.signup-nav-btn:hover {
+			background: #c49a6c;
+			color: white;
+			transform: translateY(-2px);
+			text-decoration: none;
+		}
+
+		.user-dropdown {
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			cursor: pointer;
+			padding: 5px 10px;
+			border-radius: 40px;
+			transition: all 0.3s ease;
+		}
+
+		.user-dropdown:hover {
+			background: rgba(255, 255, 255, 0.1);
+		}
+
+		.user-dropdown-content {
+			display: none;
+			position: absolute;
+			right: 0;
+			top: 50px;
+			background-color: white;
+			min-width: 220px;
+			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+			z-index: 1000;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		.user-dropdown:hover .user-dropdown-content {
+			display: block;
+		}
+
+		.user-dropdown-content a {
+			color: #333;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			font-size: 14px;
+			transition: background 0.3s;
+		}
+
+		.user-dropdown-content a:hover {
+			background-color: #f1f1f1;
+			color: #c49a6c;
+		}
+
+		.user-dropdown-content .dropdown-divider {
+			height: 1px;
+			background-color: #e0e0e0;
+			margin: 5px 0;
+		}
+
+		.logout-dropdown-item {
+			color: #dc3545 !important;
+		}
+
+		.logout-dropdown-item:hover {
+			background-color: #dc3545 !important;
+			color: white !important;
+		}
+
+		.toast-message {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			background: #28a745;
+			color: white;
+			padding: 12px 20px;
+			border-radius: 8px;
+			z-index: 1000;
+			animation: slideIn 0.3s ease;
+		}
+
+		@keyframes slideIn {
+			from {
+				transform: translateX(100%);
+				opacity: 0;
+			}
+			to {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		/* Fix for date input styling */
+		input[type="date"] {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ced4da;
+			border-radius: 5px;
+			font-size: 16px;
+			background-color: white;
+		}
+		
+		input[type="date"]:focus {
+			border-color: #c49a6c;
+			outline: none;
+			box-shadow: 0 0 0 3px rgba(196, 154, 108, 0.1);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="py-1 bg-black top">
+		<div class="container">
+			<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+				<div class="col-lg-12 d-block">
+					<div class="row d-flex">
+						<div class="col-md pr-4 d-flex topper align-items-center">
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+									class="icon-phone2"></span></div>
+							<span class="text">+1587 272 1088</span>
+						</div>
+						<div class="col-md pr-4 d-flex topper align-items-center">
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+									class="icon-paper-plane"></span></div>
+							<span class="text">olivesmgrill@gmail.com</span>
+						</div>
+						<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+							<p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
+								<span>11:00AM - 9:00PM</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			    <a class="navbar-brand" href="index.html">
+				<img src="images/backgroundimg1.png" alt="Olive Logo" style="height: 120px; width: 170px;  ">
+				
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+					<li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+				</ul>
+
+				<!-- User Section in Navbar -->
+				<div id="navbarUserSection" class="nav-user-section">
+					<!-- This will be dynamically filled by JavaScript -->
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');"
+		data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<h1 class="mb-2 bread">Reservation</h1>
+					<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+									class="ion-ios-arrow-forward"></i></a></span> <span>Reservation <i
+								class="ion-ios-arrow-forward"></i></span></p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
+		<div class="container-fluid px-0">
+			<div class="row d-flex no-gutters">
+				<div class="col-md-6 order-md-last ftco-animate makereservation p-4 p-md-5 pt-5">
+					<div class="py-md-5">
+						<div class="heading-section ftco-animate mb-5">
+							<span class="subheading">Book a table</span>
+							<h2 class="mb-4">Make Reservation</h2>
+						</div>
+						<form id="reservationForm">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="resName">Name</label>
+										<input type="text" id="resName" class="form-control" placeholder="Your Name" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="resEmail">Email</label>
+										<input type="email" id="resEmail" class="form-control" placeholder="Your Email" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="resPhone">Phone</label>
+										<input type="tel" id="resPhone" class="form-control" placeholder="Phone" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="book_date">Date</label>
+										<input type="date" class="form-control" id="book_date" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="book_time">Time</label>
+										<select class="form-control" id="book_time" required>
+											<option value="">Select Time</option>
+											<option value="11:00 AM">11:00 AM</option>
+											<option value="11:30 AM">11:30 AM</option>
+											<option value="12:00 PM">12:00 PM</option>
+											<option value="12:30 PM">12:30 PM</option>
+											<option value="1:00 PM">1:00 PM</option>
+											<option value="1:30 PM">1:30 PM</option>
+											<option value="2:00 PM">2:00 PM</option>
+											<option value="5:00 PM">5:00 PM</option>
+											<option value="5:30 PM">5:30 PM</option>
+											<option value="6:00 PM">6:00 PM</option>
+											<option value="6:30 PM">6:30 PM</option>
+											<option value="7:00 PM">7:00 PM</option>
+											<option value="7:30 PM">7:30 PM</option>
+											<option value="8:00 PM">8:00 PM</option>
+											<option value="8:30 PM">8:30 PM</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="resPerson">Number of Guests</label>
+										<div class="select-wrap one-third">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select id="resPerson" class="form-control" required>
+												<option value="">Select Guests</option>
+												<option value="1">1 Person</option>
+												<option value="2">2 People</option>
+												<option value="3">3 People</option>
+												<option value="4">4 People</option>
+												<option value="5">5 People</option>
+												<option value="6">6 People</option>
+												<option value="7">7 People</option>
+												<option value="8">8 People</option>
+												<option value="9">9 People</option>
+												<option value="10">10+ People</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="specialRequests">Special Requests (Optional)</label>
+										<textarea id="specialRequests" class="form-control" rows="3" placeholder="Any special requests or dietary requirements?"></textarea>
+									</div>
+								</div>
+								<div class="col-md-12 mt-3">
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary py-3 px-5" id="submitBtn">
+											Book a Table
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div id="reservationMessage" style="display:none; margin-top:20px;"></div>
+					</div>
+				</div>
+				<div class="col-md-6 d-flex align-items-stretch pb-5 pb-md-0">
+					<div class="map-container w-100">
+						<h2>Find Us Here</h2>
+
+						<div class="map-wrapper">
+							<iframe
+								src="https://www.google.com/maps?q=Olives+Mediterranean+Grill+Red+Deer&z=17&output=embed"
+								allowfullscreen="" loading="lazy">
+							</iframe>
+						</div>
+
+						<div class="map-actions">
+							<a href="https://maps.google.com/?q=159b+Leva+Ave+%23103+Red+Deer+AB+T4E+0A5"
+								target="_blank" class="btn btn-primary mt-3">
+								Get Directions
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container-fluid px-md-5 px-3">
+			<div class="row mb-5">
+				<div class="col-md-6 col-lg-4">
+					<div class="ftco-footer-widget mb-4">
+						<img src="images/backgroundimg1.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+							there live the blind texts.</p>
+						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+							<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Open Hours</h2>
+						<ul class="list-unstyled open-hours">
+							<li class="d-flex"><span>Monday</span><span>11 am–9 pm</span></li>
+							<li class="d-flex"><span>Tuesday</span><span>11 am–9 pm</span></li>
+							<li class="d-flex"><span>Wednesday</span><span>11 am–9 pm</span></li>
+							<li class="d-flex"><span>Thursday</span><span>11 am–9 pm</span></li>
+							<li class="d-flex"><span>Friday</span><span>11 am–9 pm</span></li>
+							<li class="d-flex"><span>Saturday</span><span>11 am–9 pm</span></li>
+							<li class="d-flex"><span>Sunday</span><span>11 am–9 pm</span></li>
+						</ul>
+					</div>
+				</div>
+				<!-- <div class="col-md-6 col-lg-3">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Newsletter</h2>
+						<p>Far far away, behind the word mountains, far from the countries.</p>
+						<form action="#" class="subscribe-form">
+							<div class="form-group">
+								<input type="text" class="form-control mb-2 text-center"
+									placeholder="Enter email address">
+								<input type="submit" value="Subscribe" class="form-control submit px-3">
+							</div>
+						</form>
+					</div>
+				</div> -->
+				<div class="col-md-6 col-lg-4">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Instagram</h2>
+						<div class="thumb d-sm-flex">
+							<a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.jpg);"></a>
+							<a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.jpg);"></a>
+							<a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.jpg);"></a>
+						</div>
+						<div class="thumb d-flex">
+							<a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.jpg);"></a>
+							<a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.jpg);"></a>
+							<a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.jpg);"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p>Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+						is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+							target="_blank">Astirmind Software Solutions</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<!-- REMOVE conflicting datepicker JS -->
+	<!-- <script src="js/bootstrap-datepicker.js"></script> -->
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+		const API_BASE_URL = 'http://localhost:5000';
+		let pendingReservationData = null;
+
+		function showToast(message, isError = false) {
+			const toast = document.createElement('div');
+			toast.className = 'toast-message';
+			toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+			toast.textContent = message;
+			document.body.appendChild(toast);
+			setTimeout(() => {
+				toast.remove();
+			}, 3000);
+		}
+
+		// ========== AUTHENTICATION FUNCTIONS ==========
+		
+		function isLoggedIn() {
+			const token = localStorage.getItem('token');
+			const userData = localStorage.getItem('user');
+			return !!(token && userData);
+		}
+
+		function getCurrentUser() {
+			try {
+				const user = localStorage.getItem('user');
+				return user ? JSON.parse(user) : null;
+			} catch (error) {
+				return null;
+			}
+		}
+
+		function updateNavbarUserSection() {
+			const token = localStorage.getItem('token');
+			const userData = localStorage.getItem('user');
+			const userSection = document.getElementById('navbarUserSection');
+
+			if (token && userData) {
+				try {
+					const user = JSON.parse(userData);
+					const firstName = user.firstName || user.first_name || 'User';
+					const userInitial = firstName.charAt(0).toUpperCase();
+					const role = user.role || 'user';
+
+					if (role === 'user') {
+						userSection.innerHTML = `
+							<div class="user-dropdown">
+								<div class="user-avatar">${userInitial}</div>
+								<span class="user-name">${firstName}</span>
+								<div class="user-dropdown-content">
+									<a href="profile.html">My Profile</a>
+									<a href="#" onclick="viewOrders()">My Orders</a>
+									<a href="#" onclick="viewMyReservations()">My Reservations</a>
+									<div class="dropdown-divider"></div>
+									<a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+								</div>
+							</div>
+						`;
+					} else {
+						showGuestView();
+					}
+
+					validateToken(token);
+					
+					// Auto-fill form if logged in
+					if (user) {
+						document.getElementById('resName').value = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+						document.getElementById('resEmail').value = user.email || '';
+						document.getElementById('resPhone').value = user.phone || '';
+						
+						// Check if there's pending reservation after login
+						checkPendingReservation();
+					}
+
+				} catch (error) {
+					console.error('Error parsing user data:', error);
+					showGuestView();
+				}
+			} else {
+				showGuestView();
+			}
+		}
+
+		function showGuestView() {
+			const userSection = document.getElementById('navbarUserSection');
+			userSection.innerHTML = `
+				<a href="login.html" class="login-nav-btn">
+					<span class="icon-user"></span> Login
+				</a>
+				<a href="signup.html" class="signup-nav-btn">
+					Sign Up
+				</a>
+			`;
+		}
+
+		async function validateToken(token) {
+			try {
+				const response = await fetch('http://localhost:5000/api/auth/me', {
+					method: 'GET',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					}
+				});
+
+				if (!response.ok) {
+					console.log('Token invalid, logging out...');
+					logout();
+				}
+			} catch (error) {
+				console.error('Token validation error:', error);
+			}
+		}
+
+		function viewOrders() {
+			if (isLoggedIn()) {
+				window.location.href = 'my-orders.html';
+			} else {
+				showToast('Please login to view your orders', true);
+				window.location.href = 'login.html?redirect=my-orders.html';
+			}
+		}
+
+		function viewMyReservations() {
+			if (isLoggedIn()) {
+				window.location.href = 'my-reservations.html';
+			} else {
+				showToast('Please login to view your reservations', true);
+				window.location.href = 'login.html?redirect=my-reservations.html';
+			}
+		}
+
+		async function logout() {
+			const token = localStorage.getItem('token');
+
+			if (token) {
+				try {
+					await fetch('http://localhost:5000/api/auth/logout', {
+						method: 'POST',
+						headers: {
+							'Authorization': `Bearer ${token}`,
+							'Content-Type': 'application/json'
+						}
+					});
+				} catch (error) {
+					console.error('Logout API error:', error);
+				}
+			}
+
+			localStorage.removeItem('token');
+			localStorage.removeItem('refreshToken');
+			localStorage.removeItem('user');
+			localStorage.removeItem('tokenExpiresAt');
+			localStorage.removeItem('pendingReservation');
+
+			showToast('You have been successfully logged out!');
+			updateNavbarUserSection();
+
+			// Clear form
+			document.getElementById('resName').value = '';
+			document.getElementById('resEmail').value = '';
+			document.getElementById('resPhone').value = '';
+
+			setTimeout(() => {
+				window.location.reload();
+			}, 1500);
+		}
+
+		// ========== RESERVATION FUNCTIONS ==========
+
+		// Save reservation data before redirecting to login
+		function savePendingReservation(formData) {
+			localStorage.setItem('pendingReservation', JSON.stringify(formData));
+		}
+
+		// Check for pending reservation after login
+		function checkPendingReservation() {
+			const pendingReservation = localStorage.getItem('pendingReservation');
+			if (pendingReservation) {
+				const reservationData = JSON.parse(pendingReservation);
+				// Auto-fill the form
+				document.getElementById('resName').value = reservationData.name || '';
+				document.getElementById('resEmail').value = reservationData.email || '';
+				document.getElementById('resPhone').value = reservationData.phone || '';
+				document.getElementById('book_date').value = reservationData.date || '';
+				document.getElementById('book_time').value = reservationData.time || '';
+				document.getElementById('resPerson').value = reservationData.guests || '';
+				document.getElementById('specialRequests').value = reservationData.specialRequests || '';
+				
+				// Clear pending reservation after restoring
+				localStorage.removeItem('pendingReservation');
+				showToast('Please confirm your reservation details and click "Book a Table" again.', false);
+			}
+		}
+
+		// Initialize date picker with native HTML5 date input
+		function initializeDatePicker() {
+			const dateInput = document.getElementById('book_date');
+			if (dateInput) {
+				const today = new Date();
+				const year = today.getFullYear();
+				const month = String(today.getMonth() + 1).padStart(2, '0');
+				const day = String(today.getDate()).padStart(2, '0');
+				const todayFormatted = `${year}-${month}-${day}`;
+				
+				dateInput.min = todayFormatted;
+				
+				if (!dateInput.value) {
+					dateInput.value = todayFormatted;
+				}
+				
+				if (dateInput.hasAttribute('data-datepicker')) {
+					dateInput.removeAttribute('data-datepicker');
+				}
+			}
+		}
+
+		document.getElementById('reservationForm').addEventListener('submit', async function(e) {
+			e.preventDefault();
+			
+			const name = document.getElementById('resName').value.trim();
+			const email = document.getElementById('resEmail').value.trim();
+			const phone = document.getElementById('resPhone').value.trim();
+			const date = document.getElementById('book_date').value;
+			const time = document.getElementById('book_time').value;
+			const guests = document.getElementById('resPerson').value;
+			const specialRequests = document.getElementById('specialRequests').value.trim();
+			
+			// Validation
+			if (!name || !email || !phone || !date || !time || !guests) {
+				showToast('Please fill in all required fields', true);
+				return;
+			}
+			
+			// Validate email format
+			const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!emailPattern.test(email)) {
+				showToast('Please enter a valid email address', true);
+				return;
+			}
+			
+			// Validate phone (basic)
+			if (phone.length < 10) {
+				showToast('Please enter a valid phone number', true);
+				return;
+			}
+			
+			// CHECK IF USER IS LOGGED IN FIRST
+			if (!isLoggedIn()) {
+				// Save reservation data to localStorage
+				const reservationData = {
+					name, email, phone, date, time, guests: parseInt(guests), specialRequests
+				};
+				savePendingReservation(reservationData);
+				
+				showToast('Please login to complete your reservation. Redirecting to login page...', false);
+				
+				// Redirect to login page with return URL
+				setTimeout(() => {
+					window.location.href = 'login.html?redirect=reservation.html';
+				}, 1500);
+				return;
+			}
+			
+			const submitBtn = document.getElementById('submitBtn');
+			const originalText = submitBtn.innerHTML;
+			submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Booking...';
+			submitBtn.disabled = true;
+			
+			try {
+				const currentUser = getCurrentUser();
+				const userId = currentUser ? (currentUser._id || currentUser.id) : null;
+				
+				const reservationData = {
+					name,
+					email,
+					phone,
+					date,
+					time,
+					guests: parseInt(guests),
+					userId: userId,
+					specialRequests: specialRequests || ""
+				};
+				
+				console.log('Sending reservation:', reservationData);
+				
+				const response = await fetch(`${API_BASE_URL}/api/reservations/create`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(reservationData)
+				});
+				
+				const data = await response.json();
+				console.log('Response:', data);
+				
+				if (data.success) {
+					showToast(data.message || '🎉 Table booked successfully! We\'ll contact you shortly.');
+					
+					// Clear any pending reservation
+					localStorage.removeItem('pendingReservation');
+					
+					// Reset form but keep date
+					document.getElementById('resName').value = '';
+					document.getElementById('resEmail').value = '';
+					document.getElementById('resPhone').value = '';
+					document.getElementById('book_time').value = '';
+					document.getElementById('resPerson').value = '';
+					document.getElementById('specialRequests').value = '';
+					
+					// Reset date to today
+					const today = new Date();
+					const year = today.getFullYear();
+					const month = String(today.getMonth() + 1).padStart(2, '0');
+					const day = String(today.getDate()).padStart(2, '0');
+					document.getElementById('book_date').value = `${year}-${month}-${day}`;
+					
+					// Auto-fill again if logged in
+					if (isLoggedIn()) {
+						const user = getCurrentUser();
+						if (user) {
+							document.getElementById('resName').value = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+							document.getElementById('resEmail').value = user.email || '';
+							document.getElementById('resPhone').value = user.phone || '';
+						}
+					}
+				} else {
+					showToast(data.message || 'Failed to book table. Please try again.', true);
+				}
+			} catch (error) {
+				console.error('Reservation error:', error);
+				showToast('Cannot connect to server. Please make sure the backend is running on port 5000', true);
+			} finally {
+				submitBtn.innerHTML = originalText;
+				submitBtn.disabled = false;
+			}
+		});
+
+		// Check for redirect after login
+		function checkRedirectAfterLogin() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const redirect = urlParams.get('redirect');
+			if (redirect === 'reservation.html') {
+				const justLoggedIn = sessionStorage.getItem('justLoggedIn');
+				if (justLoggedIn === 'true') {
+					sessionStorage.removeItem('justLoggedIn');
+					checkPendingReservation();
+				}
+			}
+		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			updateNavbarUserSection();
+			initializeDatePicker();
+			checkRedirectAfterLogin();
+		});
+	</script>
+</body>
+
+</html>
