@@ -597,7 +597,7 @@
     <script src="js/main.js"></script>
 
     <script>
-        const API_BASE_URL = 'http://localhost:5000';
+        const API_BASE_URL = 'https://restaurant-app-ru0u.onrender.com';
         let currentUser = null;
         let userAddress = {};
 
@@ -680,7 +680,7 @@
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    await fetch('http://localhost:5000/api/auth/logout', {
+                    await fetch('https://restaurant-app-ru0u.onrender.com/api/auth/logout', {
                         method: 'POST',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
