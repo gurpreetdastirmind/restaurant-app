@@ -1162,7 +1162,7 @@
 
 		async function validateAdminToken(token) {
 			try {
-				const response = await fetch('https://your-backend.onrender.com/api/auth/me', {
+				const response = await fetch('https://restaurant-app-ru0u.onrender.com//api/auth/me', {
 					headers: { 'Authorization': `Bearer ${token}` }
 				});
 				if (!response.ok) return false;
@@ -1177,7 +1177,7 @@
 			const token = getAdminToken();
 			if (token) {
 				try {
-					await fetch('https://your-backend.onrender.com/api/auth/logout', {
+					await fetch('https://restaurant-app-ru0u.onrender.com//api/auth/logout', {
 						method: 'POST',
 						headers: { 'Authorization': `Bearer ${token}` }
 					});
@@ -1190,7 +1190,7 @@
 
 		async function loadDashboardData() {
 			try {
-				const usersResponse = await fetch('https://your-backend.onrender.com/api/admin/users', {
+				const usersResponse = await fetch('https://restaurant-app-ru0u.onrender.com//api/admin/users', {
 					headers: { 'Authorization': `Bearer ${getAdminToken()}` }
 				});
 				if (usersResponse.ok) {
@@ -1206,7 +1206,7 @@
 
 		async function loadAllOrders() {
 			try {
-				const response = await fetch('https://your-backend.onrender.com/api/orders/admin/all', {
+				const response = await fetch('https://restaurant-app-ru0u.onrender.com//api/orders/admin/all', {
 					headers: { 'Authorization': `Bearer ${getAdminToken()}` }
 				});
 				if (response.ok) {
@@ -1284,7 +1284,7 @@
 
 		async function loadReservationsData() {
 			try {
-				const response = await fetch('https://your-backend.onrender.com/api/reservations/all', {
+				const response = await fetch('https://restaurant-app-ru0u.onrender.com//api/reservations/all', {
 					headers: { 'Authorization': `Bearer ${getAdminToken()}` }
 				});
 				if (response.ok) {
@@ -1325,7 +1325,7 @@
 		async function updateReservationStatus(reservationId, newStatus) {
 			if (!confirm(`Change reservation status to ${newStatus}?`)) return;
 			try {
-				const response = await fetch(`https://your-backend.onrender.com/api/reservations/${reservationId}/status`, {
+				const response = await fetch(`https://restaurant-app-ru0u.onrender.com//api/reservations/${reservationId}/status`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getAdminToken()}` },
 					body: JSON.stringify({ status: newStatus })
@@ -1346,7 +1346,7 @@
 
 		async function loadUsers() {
 			try {
-				const response = await fetch('https://your-backend.onrender.com/api/admin/users', {
+				const response = await fetch('https://restaurant-app-ru0u.onrender.com//api/admin/users', {
 					headers: { 'Authorization': `Bearer ${getAdminToken()}` }
 				});
 				if (response.ok) {
@@ -1402,7 +1402,7 @@
 
 		async function loadMenuItems() {
 			try {
-				const response = await fetch('https://your-backend.onrender.com/api/products');
+				const response = await fetch('https://restaurant-app-ru0u.onrender.com//api/products');
 				const data = await response.json();
 				if (data.success && data.data) {
 					allMenuItems = data.data;
@@ -1421,7 +1421,7 @@
 			}
 			tbody.innerHTML = items.map((item, index) => {
 				let imageUrl = item.image || 'images/default.jpg';
-				if (imageUrl && !imageUrl.startsWith('http')) imageUrl = `https://your-backend.onrender.com${imageUrl}`;
+				if (imageUrl && !imageUrl.startsWith('http')) imageUrl = `https://restaurant-app-ru0u.onrender.com/${imageUrl}`;
 				return `<tr>
 					<td data-label="S.No">${index + 1}</td>
 					<td data-label="Image"><img src="${imageUrl}" class="menu-image-thumb" onerror="this.src='https://via.placeholder.com/50?text=No+Image'"></td>
@@ -1494,13 +1494,13 @@
 				const token = getAdminToken();
 				let response;
 				if (id) {
-					response = await fetch(`https://your-backend.onrender.com/api/products/${id}`, {
+					response = await fetch(`https://restaurant-app-ru0u.onrender.com//api/products/${id}`, {
 						method: 'PUT',
 						headers: { 'Authorization': `Bearer ${token}` },
 						body: formData
 					});
 				} else {
-					response = await fetch('https://your-backend.onrender.com/api/products', {
+					response = await fetch('https://restaurant-app-ru0u.onrender.com//api/products', {
 						method: 'POST',
 						headers: { 'Authorization': `Bearer ${token}` },
 						body: formData
@@ -1519,7 +1519,7 @@
 		async function deleteMenuItem(id) {
 			if (confirm('Delete this menu item?')) {
 				try {
-					const response = await fetch(`https://your-backend.onrender.com/api/products/${id}`, {
+					const response = await fetch(`https://restaurant-app-ru0u.onrender.com//api/products/${id}`, {
 						method: 'DELETE',
 						headers: { 'Authorization': `Bearer ${getAdminToken()}` }
 					});
