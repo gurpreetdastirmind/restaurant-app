@@ -809,7 +809,7 @@
 
         async function validateToken(token) {
             try {
-                const response = await fetch('http://https://restaurant-app-ru0u.onrender.com/api/auth/me', {
+                const response = await fetch('https://restaurant-app-ru0u.onrender.com/api/auth/me', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
