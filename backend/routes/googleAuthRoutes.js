@@ -97,10 +97,10 @@ router.get(
       });
       
       // Redirect back to frontend with token
-      const redirectUrl = `http://localhost:5500/auth-callback.html?token=${token}&userId=${user._id}&firstName=${user.firstName}&lastName=${user.lastName}&email=${user.email}&role=${user.role}`;
+      const redirectUrl = `https://restaurant-app-ru0u.onrender.com/auth-callback.html?token=${token}&userId=${user._id}&firstName=${user.firstName}&lastName=${user.lastName}&email=${user.email}&role=${user.role}`;
       res.redirect(redirectUrl);
     } catch (err) {
-      res.redirect("http://localhost:5500/login.html?error=google_auth_failed");
+      res.redirect("https://restaurant-app-ru0u.onrender.com/login.html?error=google_auth_failed");
     }
   }
 );
