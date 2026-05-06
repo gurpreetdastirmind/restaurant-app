@@ -27,7 +27,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/api/auth/google/callback",
+      callbackURL: "https://restaurant-app-ru0u.onrender.com/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -80,7 +80,7 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { session: false, failureRedirect: "http://localhost:5500/login.html" }),
+  passport.authenticate("google", { session: false, failureRedirect: "https://restaurant-app-ru0u.onrender.com/login.html" }),
   async (req, res) => {
     try {
       const user = req.user;
