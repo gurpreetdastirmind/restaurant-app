@@ -444,6 +444,77 @@
                 width: 119px;
             } 
         }
+
+        /* ===== MOBILE SCROLL FIX FOR HOME SLIDER ===== */
+        @media (max-width: 768px) {
+            /* Fix for full-height slider on mobile */
+            .home-slider,
+            .slider-item,
+            .js-fullheight {
+                min-height: 100vh;
+                height: auto !important;
+                overflow-y: visible !important;
+            }
+            
+            .home-slider .owl-stage-outer,
+            .home-slider .owl-stage,
+            .home-slider .owl-item,
+            .home-slider .slider-item {
+                height: auto !important;
+                min-height: 100vh;
+            }
+            
+            .home-slider .slider-item {
+                overflow-y: visible;
+                position: relative;
+            }
+            
+            /* Fix for the owl carousel touch drag interference */
+            .owl-carousel {
+                touch-action: pan-y pinch-zoom;
+            }
+            
+            /* Ensure the slider container allows vertical scroll */
+            .home-slider.owl-carousel {
+                position: relative;
+                overflow-y: visible !important;
+            }
+            
+            .home-slider .owl-stage-outer {
+                overflow: visible !important;
+                position: relative;
+            }
+            
+            /* Allow scroll after slider */
+            body {
+                overflow-x: hidden;
+                position: relative;
+            }
+            
+            /* Additional mobile scroll fix */
+            .home-slider {
+                position: relative;
+                max-height: 100vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .home-slider .item {
+                height: auto;
+                min-height: 100vh;
+                position: relative;
+            }
+            
+            .slider-text {
+                padding: 40px 20px;
+            }
+            
+            /* Prevent body from being position fixed */
+            body {
+                position: static !important;
+                overflow-x: visible !important;
+            }
+        }
     </style>
 </head>
 
@@ -1370,12 +1441,31 @@
             });
         }
 
+        // Mobile scroll fix for home slider
+        function fixMobileScroll() {
+            if (window.innerWidth <= 768) {
+                // Remove js-fullheight class temporarily to fix scroll
+                $('.js-fullheight').css('height', 'auto');
+                
+                // Reset any inline heights set by main.js
+                $('.home-slider .owl-stage-outer, .home-slider .owl-stage, .home-slider .owl-item, .home-slider .slider-item')
+                    .css('height', 'auto')
+                    .css('min-height', '100vh');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             updateNavbarUserSection();
             initializeDatePicker();
             updateCartCount();
             loadOMGMenu();
             loadAllProducts();
+            
+            // Fix mobile scroll issue
+            fixMobileScroll();
+            $(window).on('resize orientationchange', function() {
+                setTimeout(fixMobileScroll, 100);
+            });
         });
     </script>
 </body>
