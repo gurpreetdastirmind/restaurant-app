@@ -80,7 +80,7 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { session: false, failureRedirect: "https://restaurant-app-ru0u.onrender.com/login.html" }),
+  passport.authenticate("google", { session: false, failureRedirect: "https://restaurant-app-1-bhjp.onrender.com/login.html" }),
   async (req, res) => {
     try {
       const user = req.user;
@@ -97,10 +97,10 @@ router.get(
       });
       
       // Redirect back to frontend with token
-      const redirectUrl = `https://restaurant-app-ru0u.onrender.com/auth-callback.html?token=${token}&userId=${user._id}&firstName=${user.firstName}&lastName=${user.lastName}&email=${user.email}&role=${user.role}`;
+      const redirectUrl = `https://restaurant-app-1-bhjp.onrender.com/auth-callback.html?token=${token}&userId=${user._id}&firstName=${user.firstName}&lastName=${user.lastName}&email=${user.email}&role=${user.role}`;
       res.redirect(redirectUrl);
     } catch (err) {
-      res.redirect("https://restaurant-app-ru0u.onrender.com/login.html?error=google_auth_failed");
+      res.redirect("https://restaurant-app-1-bhjp.onrender.com/login.html?error=google_auth_failed");
     }
   }
 );
