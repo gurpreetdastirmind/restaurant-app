@@ -22,6 +22,9 @@ const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const session = require("express-session");
+const passport = require("passport");
+const googleAuthRoutes = require("./routes/googleAuthRoutes");
 
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
@@ -30,6 +33,16 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes); 
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/auth", googleAuthRoutes);
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || "your_session_secret",
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Test route
 app.get("/api/test", (req, res) => {
