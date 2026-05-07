@@ -4,7 +4,7 @@
 <head>
     <title>Olives Mediterranean Grill</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, viewport-fit=cover">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
@@ -30,16 +30,6 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        html, body {
-    overflow-x: hidden;
-    touch-action: pan-y;
-}
-
-.carousel,
-.owl-carousel,
-.swiper {
-    touch-action: pan-y !important;
-}
         .map-container {
             width: 100%;
             margin: 20px;
@@ -454,6 +444,45 @@
                 width: 119px;
             } 
         }
+
+        /* ========== MOBILE CAROUSEL TOUCH SCROLL FIX ========== */
+        @media (max-width: 768px) {
+            .home-slider,
+            .home-slider .slider-item,
+            .home-slider .owl-stage-outer,
+            .home-slider .owl-stage,
+            .home-slider .owl-item {
+                touch-action: pan-y pinch-zoom !important;
+            }
+            
+            .home-slider .slider-item {
+                cursor: grab;
+                cursor: -webkit-grab;
+            }
+            
+            .home-slider .slider-item:active {
+                cursor: grabbing;
+                cursor: -webkit-grabbing;
+            }
+            
+            /* Prevent carousel from blocking vertical scroll when swiping horizontally near edges */
+            .owl-carousel {
+                touch-action: auto !important;
+            }
+            
+            .owl-carousel .owl-stage-outer {
+                touch-action: pan-y pinch-zoom !important;
+            }
+            
+            .home-slider .owl-stage-outer {
+                overflow-x: hidden !important;
+            }
+            
+            .home-slider {
+                overflow-x: hidden !important;
+                position: relative;
+            }
+        }
     </style>
 </head>
 
@@ -661,28 +690,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ========== FULL MENU SECTION (All Products from API) ========== -->
-    <!-- <section class="ftco-section" id="fullMenuSection">
-        <div class="container">
-            <div class="row justify-content-center mb-5 pb-2">
-                <div class="col-md-7 text-center heading-section ftco-animate">
-                    <span class="subheading">Our Selection</span>
-                    <h2 class="mb-4">Full Menu</h2>
-                    <p>Explore all our delicious offerings made with fresh ingredients</p>
-                </div>
-            </div>
-            <div id="fullMenuContainer">
-                 Full menu items will be injected here -->
-                <!-- <div class="col-12 text-center loading-spinner">
-                    <div class="spinner-border text-primary spinner-border-sm-custom" role="status">
-                        <span class="sr-only">Loading Menu...</span>
-                    </div>
-                    <p class="mt-3">Loading our delicious menu...</p>
-                </div>
-            </div>
-        </div> -->
-    <!-- </section> --> 
 
     <!-- Book a Table Section - Updated with login check -->
     <section class="ftco-section ftco-no-pt ftco-no-pb">
@@ -893,19 +900,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Newsletter</h2>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
-                        <form action="#" class="subscribe-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control mb-2 text-center"
-                                    placeholder="Enter email address">
-                                <input type="submit" value="Subscribe" class="form-control submit px-3">
-                            </div>
-                        </form>
-                    </div>
-                </div> -->
                 <div class="col-md-6 col-lg-4">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Instagram</h2>
@@ -1134,6 +1128,8 @@
         function displayFullMenu(products) {
             const container = document.getElementById('fullMenuContainer');
             
+            if (!container) return;
+            
             if (!products || products.length === 0) {
                 container.innerHTML = '<div class="col-12 no-items-msg"><h4>No menu items available</h4></div>';
                 return;
@@ -1233,23 +1229,9 @@
         }
 
         async function loadAllProducts() {
-            const fullMenuContainer = document.getElementById('fullMenuContainer');
-            fullMenuContainer.innerHTML = `<div class="col-12 text-center loading-spinner"><div class="spinner-border text-primary spinner-border-sm-custom" role="status"></div><p class="mt-3">Loading menu...</p></div>`;
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/products`);
-                const result = await response.json();
-                
-                if (result.success && result.data && result.data.length > 0) {
-                    allProducts = result.data;
-                    displayFullMenu(allProducts);
-                } else {
-                    fullMenuContainer.innerHTML = `<div class="col-12 no-items-msg"><h4>No menu items found</h4><p>Please check back later</p></div>`;
-                }
-            } catch (error) {
-                console.error('Failed to load products:', error);
-                fullMenuContainer.innerHTML = `<div class="col-12 no-items-msg"><h4>⚠️ Connection Error</h4><p>Unable to connect to the server. Please make sure the backend is running on port 5000.</p></div>`;
-            }
+            // Note: fullMenuContainer div was commented out in HTML, so we don't need to load full menu
+            // Only OMG menu is being displayed
+            return;
         }
 
         function updateNavbarUserSection() {
@@ -1380,21 +1362,66 @@
             });
         }
 
+        // ========== MOBILE CAROUSEL TOUCH SCROLL FIX JAVASCRIPT ==========
+        function fixMobileCarouselScroll() {
+            // Only apply on mobile devices
+            const isMobileDevice = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (!isMobileDevice) return;
+            
+            const carousel = document.querySelector('.home-slider');
+            if (!carousel) return;
+            
+            let touchStartY = 0;
+            let touchStartX = 0;
+            let isVerticalScroll = false;
+            
+            carousel.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+                touchStartX = e.touches[0].clientX;
+                isVerticalScroll = false;
+            }, { passive: true });
+            
+            carousel.addEventListener('touchmove', function(e) {
+                const touchCurrentY = e.touches[0].clientY;
+                const touchCurrentX = e.touches[0].clientX;
+                const deltaY = Math.abs(touchCurrentY - touchStartY);
+                const deltaX = Math.abs(touchCurrentX - touchStartX);
+                
+                // If vertical movement is greater than horizontal (by at least 10px), it's a scroll
+                if (deltaY > deltaX && deltaY > 10) {
+                    isVerticalScroll = true;
+                    // Don't prevent default - allow page to scroll naturally
+                    return;
+                }
+            }, { passive: true });
+            
+            // Fix Owl Carousel initialization if it exists
+            if (typeof $.fn.owlCarousel === 'function') {
+                const $carousel = $('.home-slider');
+                if ($carousel.length && $carousel.data('owl.carousel')) {
+                    // Ensure touchDrag is enabled and drag handling is optimized for mobile
+                    $carousel.trigger('refresh.owl.carousel');
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             updateNavbarUserSection();
             initializeDatePicker();
             updateCartCount();
             loadOMGMenu();
             loadAllProducts();
+            // Apply mobile carousel scroll fix
+            fixMobileCarouselScroll();
+            // Reapply on orientation change
+            window.addEventListener('orientationchange', function() {
+                setTimeout(fixMobileCarouselScroll, 100);
+            });
+            window.addEventListener('resize', function() {
+                setTimeout(fixMobileCarouselScroll, 100);
+            });
         });
     </script>
-    <script>
-document.querySelectorAll('.carousel').forEach(carousel => {
-    carousel.addEventListener('touchstart', function(e) {
-        e.stopPropagation();
-    }, { passive: true });
-});
-</script>
 </body>
 
 </html>
