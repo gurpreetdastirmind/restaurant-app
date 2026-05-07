@@ -434,15 +434,16 @@
             flex: 1;
         }
 
-        .navbar-brand  img {
-               height: 120px;
-                width: 170px;
-            } 
-         @media (max-width: 768px) {
-             .navbar-brand  img {
-               height: 94px;
+        .navbar-brand img {
+            height: 120px;
+            width: 170px;
+        } 
+
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 94px;
                 width: 119px;
-            } 
+            }
         }
 
         /* ========== MOBILE CAROUSEL TOUCH SCROLL FIX ========== */
@@ -465,7 +466,6 @@
                 cursor: -webkit-grabbing;
             }
             
-            /* Prevent carousel from blocking vertical scroll when swiping horizontally near edges */
             .owl-carousel {
                 touch-action: auto !important;
             }
@@ -482,6 +482,113 @@
                 overflow-x: hidden !important;
                 position: relative;
             }
+        }
+
+        /* ========== FIX FOR MOBILE NAVBAR VISIBILITY ON SCROLL ========== */
+        @media (max-width: 992px) {
+            /* When navbar is scrolled and has white background */
+            .ftco-navbar-light.scrolled .navbar-toggler {
+                border-color: #7A9A01 !important;
+            }
+            
+            .ftco-navbar-light.scrolled .navbar-toggler .oi-menu {
+                color: #7A9A01 !important;
+            }
+            
+            .ftco-navbar-light.scrolled .collapse.navbar-collapse {
+                background: white !important;
+            }
+            
+            .ftco-navbar-light.scrolled .navbar-nav .nav-link {
+                color: #333 !important;
+            }
+            
+            .ftco-navbar-light.scrolled .navbar-nav .nav-link:hover,
+            .ftco-navbar-light.scrolled .navbar-nav .nav-link:focus {
+                color: #7A9A01 !important;
+            }
+            
+            /* Fix for menu items when collapsed */
+            .navbar-collapse {
+                background-color: #1a1a1a;
+                padding: 15px;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+            
+            .ftco-navbar-light.scrolled .navbar-collapse {
+                background-color: white !important;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            /* Ensure cart icon visibility on scroll */
+            .ftco-navbar-light.scrolled .cart-icon {
+                color: #333 !important;
+            }
+            
+            .ftco-navbar-light.scrolled .cart-icon:hover {
+                color: #7A9A01 !important;
+            }
+            
+            /* User section buttons visibility on scroll */
+            .ftco-navbar-light.scrolled .login-nav-btn {
+                background: #7A9A01 !important;
+                color: white !important;
+            }
+            
+            .ftco-navbar-light.scrolled .signup-nav-btn {
+                border-color: #7A9A01 !important;
+                color: #7A9A01 !important;
+            }
+            
+            .ftco-navbar-light.scrolled .signup-nav-btn:hover {
+                background: #7A9A01 !important;
+                color: white !important;
+            }
+            
+            .ftco-navbar-light.scrolled .user-name {
+                color: #333 !important;
+            }
+            
+            .ftco-navbar-light.scrolled .user-dropdown:hover .user-name {
+                color: #7A9A01 !important;
+            }
+            
+            /* Mobile menu item spacing */
+            .navbar-nav .nav-item {
+                margin: 5px 0;
+            }
+            
+            .nav-cart {
+                margin: 10px 0;
+            }
+            
+            .nav-user-section {
+                margin-left: 0;
+                margin-top: 15px;
+                padding-top: 10px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                justify-content: center;
+            }
+            
+            .ftco-navbar-light.scrolled .nav-user-section {
+                border-top-color: rgba(0,0,0,0.1);
+            }
+        }
+
+        /* Ensure navbar toggler icon is always visible */
+        .navbar-toggler .oi-menu {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .ftco-navbar-light.scrolled .navbar-toggler .oi-menu {
+            color: #7A9A01;
+        }
+
+        /* Active nav item styling on scroll */
+        .ftco-navbar-light.scrolled .navbar-nav .nav-item.active .nav-link {
+            color: #7A9A01 !important;
         }
     </style>
 </head>
@@ -515,9 +622,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-				<img src="images/background.png" alt="Olive Logo" >
-				
-			</a>
+                <img src="images/background.png" alt="Olive Logo" >
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -612,13 +718,6 @@
                         the word "and" and the Little Blind Text should turn around and return to its own, safe country.
                         A small river named Duden flows by their place and supplies it with the necessary regelialia. It
                         is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-                    <!-- <div class="video justify-content-center">
-                        <a href="https://vimeo.com/45830194"
-                            class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-                            <span class="ion-ios-play"></span>
-                        </a>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -1124,68 +1223,6 @@
             });
         }
 
-        // Display all products grouped by category (excluding OMG! Menu to avoid duplication)
-        function displayFullMenu(products) {
-            const container = document.getElementById('fullMenuContainer');
-            
-            if (!container) return;
-            
-            if (!products || products.length === 0) {
-                container.innerHTML = '<div class="col-12 no-items-msg"><h4>No menu items available</h4></div>';
-                return;
-            }
-            
-            // Filter out OMG! Menu items to avoid duplication (since OMG section shows them separately)
-            const nonOmgProducts = products.filter(p => p.category !== 'OMG! Menu');
-            
-            if (nonOmgProducts.length === 0) {
-                container.innerHTML = '<div class="col-12 no-items-msg"><h4>Menu items coming soon</h4></div>';
-                return;
-            }
-            
-            // Group by category
-            const grouped = {};
-            nonOmgProducts.forEach(product => {
-                const cat = product.category || 'Other';
-                if (!grouped[cat]) grouped[cat] = [];
-                grouped[cat].push(product);
-            });
-            
-            const categories = Object.keys(grouped).sort();
-            
-            let html = '';
-            categories.forEach(category => {
-                html += `<div class="category-section"><div class="row"><div class="col-12"><h3>${escapeHtml(category)}</h3></div></div><div class="row">`;
-                
-                grouped[category].forEach(product => {
-                    const imageUrl = getImageUrl(product.image);
-                    const price = typeof product.price === 'number' ? product.price.toFixed(2) : parseFloat(product.price).toFixed(2);
-                    const description = product.description || 'Delicious meal prepared with fresh ingredients';
-                    const productJson = JSON.stringify(product).replace(/'/g, "\\'");
-                    
-                    html += `
-                        <div class="col-md-6 col-lg-4">
-                            <div class="menu-card">
-                                <div class="menu-img" style="background-image: url('${imageUrl}');"></div>
-                                <div class="menu-info">
-                                    <h4>${escapeHtml(product.name)}</h4>
-                                    <div class="price">C$${price}</div>
-                                    <p class="description">${escapeHtml(description.substring(0, 100))}</p>
-                                    <button class="add-to-cart-btn" onclick='addToCart(${productJson})'>
-                                        <span class="icon-shopping-cart"></span> Add to Cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                html += `</div></div>`;
-            });
-            
-            container.innerHTML = html;
-        }
-
         async function loadOMGMenu() {
             const container = document.getElementById('dynamicOMGMenuContainer');
             if (!container) return;
@@ -1226,12 +1263,6 @@
                 console.error('Failed to load OMG Menu:', error);
                 container.innerHTML = `<div class="col-12 no-items-msg"><h4>⚠️ Unable to load menu</h4><p>Please ensure backend server is running on port 5000</p></div>`;
             }
-        }
-
-        async function loadAllProducts() {
-            // Note: fullMenuContainer div was commented out in HTML, so we don't need to load full menu
-            // Only OMG menu is being displayed
-            return;
         }
 
         function updateNavbarUserSection() {
@@ -1314,6 +1345,22 @@
             }
         }
 
+        // Navbar scroll handler for mobile visibility
+        function initNavbarScrollHandler() {
+            const navbar = document.getElementById('ftco-navbar');
+            if (navbar) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+                // Trigger scroll event on page load to set initial state
+                window.dispatchEvent(new Event('scroll'));
+            }
+        }
+
         const reservationForm = document.getElementById('reservationForm');
         if (reservationForm) {
             reservationForm.addEventListener('submit', async function(e) {
@@ -1364,7 +1411,6 @@
 
         // ========== MOBILE CAROUSEL TOUCH SCROLL FIX JAVASCRIPT ==========
         function fixMobileCarouselScroll() {
-            // Only apply on mobile devices
             const isMobileDevice = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             if (!isMobileDevice) return;
             
@@ -1373,12 +1419,10 @@
             
             let touchStartY = 0;
             let touchStartX = 0;
-            let isVerticalScroll = false;
             
             carousel.addEventListener('touchstart', function(e) {
                 touchStartY = e.touches[0].clientY;
                 touchStartX = e.touches[0].clientX;
-                isVerticalScroll = false;
             }, { passive: true });
             
             carousel.addEventListener('touchmove', function(e) {
@@ -1387,19 +1431,14 @@
                 const deltaY = Math.abs(touchCurrentY - touchStartY);
                 const deltaX = Math.abs(touchCurrentX - touchStartX);
                 
-                // If vertical movement is greater than horizontal (by at least 10px), it's a scroll
                 if (deltaY > deltaX && deltaY > 10) {
-                    isVerticalScroll = true;
-                    // Don't prevent default - allow page to scroll naturally
                     return;
                 }
             }, { passive: true });
             
-            // Fix Owl Carousel initialization if it exists
             if (typeof $.fn.owlCarousel === 'function') {
                 const $carousel = $('.home-slider');
                 if ($carousel.length && $carousel.data('owl.carousel')) {
-                    // Ensure touchDrag is enabled and drag handling is optimized for mobile
                     $carousel.trigger('refresh.owl.carousel');
                 }
             }
@@ -1410,10 +1449,9 @@
             initializeDatePicker();
             updateCartCount();
             loadOMGMenu();
-            loadAllProducts();
-            // Apply mobile carousel scroll fix
+            initNavbarScrollHandler();
             fixMobileCarouselScroll();
-            // Reapply on orientation change
+            
             window.addEventListener('orientationchange', function() {
                 setTimeout(fixMobileCarouselScroll, 100);
             });
