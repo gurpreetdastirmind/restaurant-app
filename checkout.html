@@ -70,6 +70,86 @@
         .btn-place-order:hover {
             background: #a87c4e;
         }
+        
+        /* Coupon Styles */
+        .coupon-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .coupon-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .coupon-input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        .coupon-input-group input:disabled {
+            background: #f0f0f0;
+            cursor: not-allowed;
+        }
+        .btn-apply-coupon {
+            padding: 10px 20px;
+            background: #7A9A01;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-apply-coupon:hover:not(:disabled) {
+            background: #a87c4e;
+        }
+        .btn-apply-coupon:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .btn-remove-coupon {
+            padding: 5px 15px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        .btn-remove-coupon:hover {
+            background: #c82333;
+        }
+        .coupon-message {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .coupon-message.success {
+            color: #28a745;
+        }
+        .coupon-message.error {
+            color: #dc3545;
+        }
+        .discount-row {
+            color: #28a745;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+        }
+        .applied-coupon-box {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
         .cart-count {
             background: #7A9A01;
             color: white;
@@ -283,15 +363,16 @@
             }
         }
 
-           .navbar-brand  img {
-               height: 120px;
-                width: 170px;
-            } 
-         @media (max-width: 768px) {
-             .navbar-brand  img {
-               height: 94px;
+        .navbar-brand img {
+            height: 120px;
+            width: 170px;
+        } 
+
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 94px;
                 width: 119px;
-            } 
+            }
         }
     </style>
 </head>
@@ -321,10 +402,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-             <a class="navbar-brand" href="index.html">
-				<img src="images/background.png" alt="Olive Logo" style="height: 120px; width: 170px;  ">
-				
-			</a>
+            <a class="navbar-brand" href="index.html">
+                <img src="images/background.png" alt="Olive Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -337,7 +417,6 @@
                     <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                     <li class="nav-item cta"><a href="reservation.html" class="nav-link">Book a table</a></li>
-                    <!-- Cart Icon with Badge -->
                     <li class="nav-item nav-cart">
                         <a href="cart.html" class="nav-link cart-icon">
                             <span class="icon-shopping-cart"></span>
@@ -345,11 +424,7 @@
                         </a>
                     </li>
                 </ul>
-
-                <!-- User Section in Navbar -->
-                <div id="navbarUserSection" class="nav-user-section">
-                    <!-- This will be dynamically filled by JavaScript -->
-                </div>
+                <div id="navbarUserSection" class="nav-user-section"></div>
             </div>
         </div>
     </nav>
@@ -428,18 +503,54 @@
                     <div class="order-summary">
                         <h3>Your Order</h3>
                         <div id="orderItems"></div>
+                        
+                        <!-- Subtotal -->
                         <div class="order-item" style="font-weight: bold; border-top: 2px solid #7A9A01; margin-top: 10px; padding-top: 15px;">
                             <span>Subtotal</span>
                             <span id="checkoutSubtotal">$0.00</span>
                         </div>
+                        
+                        <!-- Coupon Section - Only ONE coupon allowed -->
+                        <div class="coupon-section" id="couponSection">
+                            <div id="couponInputArea">
+                                <div class="coupon-input-group">
+                                    <input type="text" id="couponCode" placeholder="Enter coupon code" maxlength="50">
+                                    <button class="btn-apply-coupon" id="applyCouponBtn" onclick="applyCoupon()">Apply</button>
+                                </div>
+                                <div id="couponMessage" class="coupon-message"></div>
+                            </div>
+                            <div id="appliedCouponArea" style="display: none;">
+                                <div class="applied-coupon-box">
+                                    <div>
+                                        <strong>✓ Coupon Applied!</strong><br>
+                                        <small id="appliedCouponCode"></small>
+                                    </div>
+                                    <div>
+                                        <span id="appliedDiscountAmount" style="color: #28a745; font-weight: bold;"></span>
+                                        <button class="btn-remove-coupon" onclick="removeCoupon()">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Discount Row (shows when coupon applied) -->
+                        <div id="discountRow" class="order-item discount-row" style="display: none;">
+                            <span>Discount (<span id="discountTypeText"></span>)</span>
+                            <span>-$<span id="discountAmount">0.00</span></span>
+                        </div>
+                        
+                        <!-- Tax -->
                         <div class="order-item">
                             <span>Tax (5%)</span>
                             <span id="checkoutTax">$0.00</span>
                         </div>
+                        
+                        <!-- Total -->
                         <div class="order-item" style="font-size: 20px; font-weight: bold; color: #7A9A01;">
                             <span>Total</span>
                             <span id="checkoutTotal">$0.00</span>
                         </div>
+                        
                         <button class="btn-place-order" onclick="placeOrder()">Place Order</button>
                     </div>
                 </div>
@@ -452,9 +563,10 @@
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-4">
                     <div class="ftco-footer-widget mb-4">
-                        <img src="images/background.png" alt="olives Logo" >
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <img src="images/background.png" alt="olives Logo">
+                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
+                        <p>📞 +1587 272 1088</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -476,19 +588,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Newsletter</h2>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
-                        <form action="#" class="subscribe-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control mb-2 text-center"
-                                    placeholder="Enter email address">
-                                <input type="submit" value="Subscribe" class="form-control submit px-3">
-                            </div>
-                        </form>
-                    </div>
-                </div> -->
                 <div class="col-md-6 col-lg-4">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Instagram</h2>
@@ -544,6 +643,9 @@
         let currentUser = null;
         let cartItems = [];
         let subtotal = 0;
+        let appliedCoupon = null;
+        let discountAmount = 0;
+        let finalSubtotal = 0;
 
         function showToast(message, isError = false) {
             const toast = document.createElement('div');
@@ -551,9 +653,7 @@
             toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
+            setTimeout(() => toast.remove(), 3000);
         }
 
         // ========== AUTHENTICATION FUNCTIONS ==========
@@ -573,7 +673,6 @@
             }
         }
 
-        // Update navbar user section
         function updateNavbarUserSection() {
             const token = localStorage.getItem('token');
             const userData = localStorage.getItem('user');
@@ -584,29 +683,21 @@
                     const user = JSON.parse(userData);
                     const firstName = user.firstName || user.first_name || 'User';
                     const userInitial = firstName.charAt(0).toUpperCase();
-                    const role = user.role || 'user';
 
-                    if (role === 'user' || role === 'admin') {
-                        userSection.innerHTML = `
-                            <div class="user-dropdown">
-                                <div class="user-avatar">${userInitial}</div>
-                                <span class="user-name">${firstName}</span>
-                                <div class="user-dropdown-content">
-                                    <a href="#" onclick="viewProfile()">My Profile</a>
-                                    <a href="#" onclick="viewOrders()">My Orders</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
-                                </div>
+                    userSection.innerHTML = `
+                        <div class="user-dropdown">
+                            <div class="user-avatar">${userInitial}</div>
+                            <span class="user-name">${firstName}</span>
+                            <div class="user-dropdown-content">
+                                <a href="#" onclick="viewProfile()">My Profile</a>
+                                <a href="#" onclick="viewOrders()">My Orders</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
                             </div>
-                        `;
-                    } else {
-                        showGuestView();
-                    }
-
+                        </div>
+                    `;
                     validateToken(token);
-
                 } catch (error) {
-                    console.error('Error parsing user data:', error);
                     showGuestView();
                 }
             } else {
@@ -630,64 +721,146 @@
             try {
                 const response = await fetch('https://restaurant-app-ru0u.onrender.com/api/auth/me', {
                     method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
+                    headers: { 'Authorization': `Bearer ${token}` }
                 });
-
-                if (!response.ok) {
-                    console.log('Token invalid, logging out...');
-                    logout();
-                }
-            } catch (error) {
-                console.error('Token validation error:', error);
-            }
+                if (!response.ok) logout();
+            } catch (error) {}
         }
 
         function viewProfile() {
-            const userData = localStorage.getItem('user');
-            if (userData) {
-                const user = JSON.parse(userData);
-                showToast(`👤 Name: ${user.firstName} ${user.lastName}\n📧 Email: ${user.email}\n👑 Role: ${user.role || 'User'}`, false);
-            } else {
-                showToast('Please login to view profile', true);
+            const user = getCurrentUser();
+            if (user) {
+                showToast(`👤 Name: ${user.firstName} ${user.lastName}\n📧 Email: ${user.email}`, false);
             }
         }
 
         function viewOrders() {
-            showToast('🛒 Your orders will appear here soon!', false);
+            window.location.href = 'my-orders.html';
         }
 
         async function logout() {
             const token = localStorage.getItem('token');
-
             if (token) {
                 try {
                     await fetch('https://restaurant-app-ru0u.onrender.com/api/auth/logout', {
                         method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        }
+                        headers: { 'Authorization': `Bearer ${token}` }
                     });
-                } catch (error) {
-                    console.error('Logout API error:', error);
-                }
+                } catch (error) {}
             }
-
-            localStorage.removeItem('token');
-            localStorage.removeItem('refreshToken');
-            localStorage.removeItem('user');
-            localStorage.removeItem('tokenExpiresAt');
-            localStorage.removeItem('guestCart');
-
-            showToast('You have been successfully logged out!');
+            localStorage.clear();
+            showToast('Logged out successfully!');
             updateNavbarUserSection();
+            setTimeout(() => window.location.reload(), 1500);
+        }
+
+        // ========== COUPON FUNCTIONS - ONLY ONE COUPON ALLOWED ==========
+        
+        async function applyCoupon() {
+            // Check if a coupon is already applied
+            if (appliedCoupon !== null) {
+                showToast('Only one coupon can be used per order. Please remove the current coupon first.', true);
+                return;
+            }
             
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
+            const couponCode = document.getElementById('couponCode').value.trim().toUpperCase();
+            const messageDiv = document.getElementById('couponMessage');
+            
+            if (!couponCode) {
+                messageDiv.innerHTML = 'Please enter a coupon code';
+                messageDiv.className = 'coupon-message error';
+                return;
+            }
+            
+            const currentSubtotal = subtotal;
+            
+            messageDiv.innerHTML = 'Validating coupon...';
+            messageDiv.className = 'coupon-message';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/coupons/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        code: couponCode,
+                        cartTotal: currentSubtotal,
+                        userId: currentUser?._id || currentUser?.id || null
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    appliedCoupon = result.data.coupon;
+                    discountAmount = result.data.discount;
+                    finalSubtotal = currentSubtotal - discountAmount;
+                    
+                    messageDiv.innerHTML = `✅ ${result.message} You saved $${discountAmount.toFixed(2)}!`;
+                    messageDiv.className = 'coupon-message success';
+                    
+                    // Hide input area, show applied coupon area
+                    document.getElementById('couponInputArea').style.display = 'none';
+                    document.getElementById('appliedCouponArea').style.display = 'block';
+                    document.getElementById('appliedCouponCode').innerHTML = `<strong>${appliedCoupon.code}</strong><br>${appliedCoupon.name || ''}`;
+                    
+                    let discountText = '';
+                    if (appliedCoupon.type === 'percentage') {
+                        discountText = `${appliedCoupon.value}% OFF`;
+                    } else if (appliedCoupon.type === 'fixed') {
+                        discountText = `$${appliedCoupon.value} OFF`;
+                    } else if (appliedCoupon.type === 'freeshipping') {
+                        discountText = `FREE SHIPPING`;
+                    } else if (appliedCoupon.type === 'bogo') {
+                        discountText = `BOGO`;
+                    }
+                    
+                    document.getElementById('appliedDiscountAmount').innerHTML = `-$${discountAmount.toFixed(2)}`;
+                    document.getElementById('discountTypeText').textContent = discountText;
+                    document.getElementById('discountAmount').textContent = discountAmount.toFixed(2);
+                    document.getElementById('discountRow').style.display = 'flex';
+                    
+                    // Update order totals with discount
+                    updateOrderTotalsWithDiscount();
+                    
+                } else {
+                    messageDiv.innerHTML = `❌ ${result.message}`;
+                    messageDiv.className = 'coupon-message error';
+                }
+            } catch (error) {
+                console.error('Error applying coupon:', error);
+                messageDiv.innerHTML = '❌ Error validating coupon. Please try again.';
+                messageDiv.className = 'coupon-message error';
+            }
+        }
+        
+        function removeCoupon() {
+            appliedCoupon = null;
+            discountAmount = 0;
+            finalSubtotal = subtotal;
+            
+            // Show input area, hide applied coupon area
+            document.getElementById('couponInputArea').style.display = 'block';
+            document.getElementById('appliedCouponArea').style.display = 'none';
+            document.getElementById('couponCode').value = '';
+            document.getElementById('couponMessage').innerHTML = '';
+            document.getElementById('discountRow').style.display = 'none';
+            
+            updateOrderTotalsWithDiscount();
+            showToast('Coupon removed', false);
+        }
+        
+        function updateOrderTotalsWithDiscount() {
+            const displaySubtotal = finalSubtotal;
+            const tax = displaySubtotal * 0.05;
+            const total = displaySubtotal + tax;
+            
+            if (appliedCoupon) {
+                document.getElementById('checkoutSubtotal').innerHTML = `<span class="original-price">$${subtotal.toFixed(2)}</span> $${displaySubtotal.toFixed(2)}`;
+            } else {
+                document.getElementById('checkoutSubtotal').innerHTML = `$${displaySubtotal.toFixed(2)}`;
+            }
+            document.getElementById('checkoutTax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('checkoutTotal').textContent = `$${total.toFixed(2)}`;
         }
 
         // ========== CHECKOUT FUNCTIONS ==========
@@ -696,24 +869,15 @@
             const token = localStorage.getItem('token');
             const userData = localStorage.getItem('user');
             
-            if (!token || !userData) {
-                // Guest user - allow checkout
-                return true;
-            }
+            if (!token || !userData) return true;
             
             try {
                 currentUser = JSON.parse(userData);
-                const userRole = currentUser.role || 'user';
-                
-                // ADMIN USERS CANNOT CHECKOUT AS CUSTOMERS
-                if (userRole === 'admin') {
-                    showToast('Admin accounts cannot place customer orders. Please use a customer account to place orders.', true);
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 3000);
+                if (currentUser.role === 'admin') {
+                    showToast('Admin accounts cannot place customer orders.', true);
+                    setTimeout(() => window.location.href = 'index.html', 3000);
                     return false;
                 }
-                
                 return true;
             } catch (error) {
                 return false;
@@ -724,17 +888,11 @@
             const checkResult = await checkAuthAndRole();
             if (!checkResult) return;
             
-            // Check if user is logged in (regular user) or guest
-            if (isLoggedIn() && currentUser && currentUser.role !== 'admin') {
+            if (isLoggedIn() && currentUser?.role !== 'admin') {
                 await loadCartFromBackend();
             } else if (!isLoggedIn()) {
-                // Guest user
                 loadCartFromLocalStorage();
-            } else if (currentUser && currentUser.role === 'admin') {
-                // Admin user - already handled, but just return
-                return;
             } else {
-                // No cart - redirect to menu
                 window.location.href = 'menu.html';
             }
         }
@@ -752,15 +910,12 @@
                     
                     if (cartItems.length === 0) {
                         showToast('Your cart is empty! Redirecting to menu...', false);
-                        setTimeout(() => {
-                            window.location.href = 'menu.html';
-                        }, 2000);
+                        setTimeout(() => window.location.href = 'menu.html', 2000);
                         return;
                     }
                     
                     displayOrderSummary();
                     
-                    // Auto-fill user info from profile
                     if (currentUser) {
                         document.getElementById('fullName').value = `${currentUser.firstName || ''} ${currentUser.lastName || ''}`.trim();
                         document.getElementById('email').value = currentUser.email || '';
@@ -770,7 +925,7 @@
                     window.location.href = 'cart.html';
                 }
             } catch (error) {
-                console.error('Error loading cart from backend:', error);
+                console.error('Error loading cart:', error);
                 window.location.href = 'cart.html';
             }
         }
@@ -782,15 +937,13 @@
                 
                 if (cartItems.length === 0) {
                     showToast('Your cart is empty! Redirecting to menu...', false);
-                    setTimeout(() => {
-                        window.location.href = 'menu.html';
-                    }, 2000);
+                    setTimeout(() => window.location.href = 'menu.html', 2000);
                     return;
                 }
                 
                 displayOrderSummary();
             } catch (error) {
-                console.error('Error loading cart from localStorage:', error);
+                console.error('Error loading cart:', error);
                 window.location.href = 'cart.html';
             }
         }
@@ -806,6 +959,7 @@
             
             let html = '';
             subtotal = 0;
+            finalSubtotal = 0;
             
             cartItems.forEach(item => {
                 const itemTotal = item.price * item.quantity;
@@ -819,6 +973,7 @@
             });
             
             container.innerHTML = html;
+            finalSubtotal = subtotal;
             
             const tax = subtotal * 0.05;
             const total = subtotal + tax;
@@ -826,198 +981,163 @@
             document.getElementById('checkoutSubtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('checkoutTax').textContent = `$${tax.toFixed(2)}`;
             document.getElementById('checkoutTotal').textContent = `$${total.toFixed(2)}`;
-            
-            // Update cart badge
             updateCartCount();
         }
 
         async function updateCartCount() {
             const badge = document.getElementById('cartCountBadge');
-            
-            if (isLoggedIn() && currentUser && currentUser.role !== 'admin') {
-                try {
-                    const token = localStorage.getItem('token');
-                    const response = await fetch(`${API_BASE_URL}/api/cart/${currentUser._id || currentUser.id}`, {
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
-                    
-                    if (response.ok) {
-                        const cart = await response.json();
-                        const count = cart?.items?.length || 0;
-                        if (badge) {
-                            badge.textContent = count;
-                            badge.classList.toggle('hidden', count === 0);
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error updating cart count:', error);
-                }
-            } else {
-                const count = cartItems.length;
-                if (badge) {
-                    badge.textContent = count;
-                    badge.classList.toggle('hidden', count === 0);
-                }
+            const count = cartItems.length;
+            if (badge) {
+                badge.textContent = count;
+                badge.classList.toggle('hidden', count === 0);
             }
         }
 
         async function placeOrder() {
-    const fullName = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const city = document.getElementById('city').value.trim();
-    const state = document.getElementById('state').value.trim();
-    const postalCode = document.getElementById('postalCode').value.trim();
-    const instructions = document.getElementById('instructions').value;
-    const paymentMethod = document.getElementById('paymentMethod').value;
-    
-    if (!fullName || !email || !phone || !address || !city || !state || !postalCode || !paymentMethod) {
-        showToast('Please fill in all required fields', true);
-        return;
-    }
-    
-    if (cartItems.length === 0) {
-        showToast('Your cart is empty!', true);
-        return;
-    }
-    
-    const tax = subtotal * 0.05;
-    const total = subtotal + tax;
-    const orderNumber = 'ORD-' + Math.floor(Math.random() * 10000) + Date.now().toString().slice(-6);
-    
-    const orderData = {
-        orderNumber: orderNumber,
-        userId: currentUser?._id || currentUser?.id || null,
-        items: cartItems,
-        subtotal: subtotal,
-        tax: tax,
-        total: total,
-        customerInfo: {
-            fullName: fullName,
-            email: email,
-            phone: phone,
-            address: {
-                street: address,
-                city: city,
-                state: state,
-                postalCode: postalCode
-            },
-            instructions: instructions,
-            paymentMethod: paymentMethod
-        },
-        status: 'pending',
-        orderDate: new Date().toISOString()
-    };
-    
-    // Save to localStorage as backup
-    localStorage.setItem('lastOrder', JSON.stringify(orderData));
-    
-    // Show loading state
-    const placeBtn = document.querySelector('.btn-place-order');
-    const originalText = placeBtn.textContent;
-    placeBtn.textContent = 'Placing Order...';
-    placeBtn.disabled = true;
-    
-    try {
-        let response;
-        const token = localStorage.getItem('token');
-        
-        const apiOrderData = {
-            userId: currentUser?._id || currentUser?.id || null,
-            items: cartItems,
-            subtotal: subtotal,
-            tax: tax,
-            total: total,
-            customerInfo: {
-                fullName: fullName,
-                email: email,
-                phone: phone,
-                address: {
-                    street: address,
-                    city: city,
-                    state: state,
-                    postalCode: postalCode
-                },
-                instructions: instructions,
-                paymentMethod: paymentMethod
-            }
-        };
-        
-        if (token && currentUser && currentUser.role !== 'admin') {
-            // Logged in user
-            response = await fetch(`${API_BASE_URL}/api/orders/place`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(apiOrderData)
-            });
-        } else {
-            // Guest user
-            response = await fetch(`${API_BASE_URL}/api/orders/place`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(apiOrderData)
-            });
-        }
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            // Clear cart
-            if (token && currentUser && currentUser.role !== 'admin') {
-                try {
-                    await fetch(`${API_BASE_URL}/api/cart/clear`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        body: JSON.stringify({
-                            userId: currentUser._id || currentUser.id
-                        })
-                    });
-                } catch(e) { console.error('Error clearing cart:', e); }
-            } else {
-                localStorage.removeItem('guestCart');
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const postalCode = document.getElementById('postalCode').value.trim();
+            const instructions = document.getElementById('instructions').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            
+            if (!fullName || !email || !phone || !address || !city || !state || !postalCode || !paymentMethod) {
+                showToast('Please fill in all required fields', true);
+                return;
             }
             
-            // Update lastOrder with server response
-            if (result.order) {
-                localStorage.setItem('lastOrder', JSON.stringify(result.order));
-                showToast('Order placed successfully! Thank you for your order.', false);
-                setTimeout(() => {
-                    window.location.href = 'order-confirmation.html?orderId=' + result.order._id;
-                }, 2000);
-            } else {
-                showToast('Order placed successfully! Thank you for your order.', false);
-                setTimeout(() => {
-                    window.location.href = 'order-confirmation.html';
-                }, 2000);
+            if (cartItems.length === 0) {
+                showToast('Your cart is empty!', true);
+                return;
             }
-        } else {
-            throw new Error(result.message || 'Failed to place order');
+            
+            const tax = finalSubtotal * 0.05;
+            const total = finalSubtotal + tax;
+            const orderNumber = 'ORD-' + Math.floor(Math.random() * 10000) + Date.now().toString().slice(-6);
+            
+            const orderData = {
+                orderNumber: orderNumber,
+                userId: currentUser?._id || currentUser?.id || null,
+                items: cartItems,
+                subtotal: finalSubtotal,
+                originalSubtotal: subtotal,
+                tax: tax,
+                total: total,
+                couponApplied: appliedCoupon ? {
+                    code: appliedCoupon.code,
+                    discountAmount: discountAmount,
+                    type: appliedCoupon.type,
+                    name: appliedCoupon.name
+                } : null,
+                customerInfo: {
+                    fullName: fullName,
+                    email: email,
+                    phone: phone,
+                    address: {
+                        street: address,
+                        city: city,
+                        state: state,
+                        postalCode: postalCode
+                    },
+                    instructions: instructions,
+                    paymentMethod: paymentMethod
+                },
+                status: 'pending',
+                orderDate: new Date().toISOString()
+            };
+            
+            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            
+            const placeBtn = document.querySelector('.btn-place-order');
+            const originalText = placeBtn.textContent;
+            placeBtn.textContent = 'Placing Order...';
+            placeBtn.disabled = true;
+            
+            try {
+                let response;
+                const token = localStorage.getItem('token');
+                
+                const apiOrderData = {
+                    userId: currentUser?._id || currentUser?.id || null,
+                    items: cartItems,
+                    subtotal: finalSubtotal,
+                    originalSubtotal: subtotal,
+                    tax: tax,
+                    total: total,
+                    couponApplied: appliedCoupon ? {
+                        code: appliedCoupon.code,
+                        discountAmount: discountAmount,
+                        type: appliedCoupon.type,
+                        name: appliedCoupon.name
+                    } : null,
+                    customerInfo: {
+                        fullName: fullName,
+                        email: email,
+                        phone: phone,
+                        address: {
+                            street: address,
+                            city: city,
+                            state: state,
+                            postalCode: postalCode
+                        },
+                        instructions: instructions,
+                        paymentMethod: paymentMethod
+                    }
+                };
+                
+                response = await fetch(`${API_BASE_URL}/api/orders/place`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token && { 'Authorization': `Bearer ${token}` })
+                    },
+                    body: JSON.stringify(apiOrderData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    if (token && currentUser) {
+                        try {
+                            await fetch(`${API_BASE_URL}/api/cart/clear`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify({ userId: currentUser._id || currentUser.id })
+                            });
+                        } catch(e) {}
+                    } else {
+                        localStorage.removeItem('guestCart');
+                    }
+                    
+                    showToast('Order placed successfully! Thank you for your order.', false);
+                    setTimeout(() => {
+                        window.location.href = 'order-confirmation.html?orderId=' + (result.order?._id || '');
+                    }, 2000);
+                } else {
+                    throw new Error(result.message || 'Failed to place order');
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+                showToast('Failed to place order. Please try again.', true);
+                placeBtn.textContent = originalText;
+                placeBtn.disabled = false;
+            }
         }
-    } catch (error) {
-        console.error('Error placing order:', error);
-        showToast('Failed to place order. Please try again.', true);
-        placeBtn.textContent = originalText;
-        placeBtn.disabled = false;
-    }
-}
 
         function escapeHtml(str) {
             if (!str) return '';
-            return str
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
         }
 
         document.addEventListener('DOMContentLoaded', async function() {

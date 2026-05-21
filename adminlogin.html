@@ -12,18 +12,13 @@
 
   <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="css/animate.css">
-
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
-
   <link rel="stylesheet" href="css/aos.css">
-
   <link rel="stylesheet" href="css/ionicons.min.css">
-
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
   <link rel="stylesheet" href="css/jquery.timepicker.css">
-
   <link rel="stylesheet" href="css/flaticon.css">
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
@@ -419,12 +414,6 @@
                 <span style="margin: 0 10px; color: #ddd;">|</span>
                 <a href="login.html">Customer Login</a>
               </div>
-              
-              <!-- Admin Hint Box -->
-              <!-- <div class="admin-hint">
-                <p>🔐 <strong>Demo Admin Credentials</strong></p>
-                <p>Email: <strong>guru24055@gmail.com</strong> | Password: <strong>Admin@123</strong></p>
-              </div> -->
          
               <div class="back-to-site">
                 <a href="index.html">
@@ -469,6 +458,31 @@
   <script src="js/main.js"></script>
 
   <script>
+    // ADMIN SPECIFIC STORAGE KEYS - SEPARATE FROM USER
+    // This is the KEY FIX - using different keys for admin
+    const ADMIN_STORAGE = {
+      TOKEN: 'adminAuthToken',      // Separate from user's 'token'
+      USER: 'adminUserData',         // Separate from user's 'user'
+      REFRESH_TOKEN: 'adminRefreshToken',
+      EXPIRES_AT: 'adminTokenExpiresAt',
+      REMEMBERED_EMAIL: 'remembered_admin_email'
+    };
+
+    // ========== ADMIN LOGOUT FUNCTION - FIXED ==========
+    // This function only clears admin storage, NOT user storage
+    // This prevents admin logout from affecting customer sessions
+    function adminLogout() {
+      // Clear ONLY admin storage keys
+      localStorage.removeItem(ADMIN_STORAGE.TOKEN);
+      localStorage.removeItem(ADMIN_STORAGE.USER);
+      localStorage.removeItem(ADMIN_STORAGE.REFRESH_TOKEN);
+      localStorage.removeItem(ADMIN_STORAGE.EXPIRES_AT);
+      // Note: We do NOT clear 'token' and 'user' - those belong to regular users
+      
+      // Redirect to admin login page
+      window.location.href = 'adminlogin.html';
+    }
+
     // Hide all alerts initially
     document.getElementById('errorAlert').style.display = 'none';
     document.getElementById('successAlert').style.display = 'none';
@@ -518,12 +532,13 @@
       }, 4000);
     }
     
-    // Clear any existing admin session before login attempt
+    // Clear any existing admin session (only clears admin keys, NOT user keys)
     function clearExistingAdminSession() {
-      // Only clear admin tokens, not user tokens
-      localStorage.removeItem('adminToken');
-      localStorage.removeItem('adminUser');
-      // Note: We don't clear 'token' and 'user' as those are for customer login
+      localStorage.removeItem(ADMIN_STORAGE.TOKEN);
+      localStorage.removeItem(ADMIN_STORAGE.USER);
+      localStorage.removeItem(ADMIN_STORAGE.REFRESH_TOKEN);
+      localStorage.removeItem(ADMIN_STORAGE.EXPIRES_AT);
+      // Note: We do NOT clear 'token' and 'user' - those belong to regular users
     }
     
     // Handle admin login form submission with backend API
@@ -571,29 +586,29 @@
         if (data.success && data.data.role === 'admin') {
           loginAttempts = 0;
           
-          // Clear any existing admin session first
+          // Clear any existing admin session first (but keep user session intact)
           clearExistingAdminSession();
           
-          // IMPORTANT: Store admin session with ADMIN-specific keys
+          // IMPORTANT: Store admin session with SEPARATE keys
           // This prevents mixing with customer tokens
-          localStorage.setItem('adminToken', data.data.token);
-          localStorage.setItem('adminUser', JSON.stringify(data.data));
+          localStorage.setItem(ADMIN_STORAGE.TOKEN, data.data.token);
+          localStorage.setItem(ADMIN_STORAGE.USER, JSON.stringify(data.data));
           
           // Also store refresh token for admin
           if (data.data.refreshToken) {
-            localStorage.setItem('adminRefreshToken', data.data.refreshToken);
+            localStorage.setItem(ADMIN_STORAGE.REFRESH_TOKEN, data.data.refreshToken);
           }
           
           // Store token expiry
           if (data.data.expiresAt) {
-            localStorage.setItem('adminTokenExpiresAt', data.data.expiresAt);
+            localStorage.setItem(ADMIN_STORAGE.EXPIRES_AT, data.data.expiresAt);
           }
           
           // Remember me functionality
           if (rememberMe) {
-            localStorage.setItem('remembered_admin_email', email);
+            localStorage.setItem(ADMIN_STORAGE.REMEMBERED_EMAIL, email);
           } else {
-            localStorage.removeItem('remembered_admin_email');
+            localStorage.removeItem(ADMIN_STORAGE.REMEMBERED_EMAIL);
           }
           
           showAlert('success', `Welcome back, ${data.data.firstName || 'Admin'}! Redirecting to admin dashboard...`);
@@ -660,10 +675,13 @@
       }
     }
     
+    // Expose adminLogout function globally for use in dashboard
+    window.adminLogout = adminLogout;
+    
     document.addEventListener('DOMContentLoaded', function() {
-      // Check if admin is already logged in
-      const existingAdminToken = localStorage.getItem('adminToken');
-      const existingAdminUser = localStorage.getItem('adminUser');
+      // Check if admin is already logged in using SEPARATE keys
+      const existingAdminToken = localStorage.getItem(ADMIN_STORAGE.TOKEN);
+      const existingAdminUser = localStorage.getItem(ADMIN_STORAGE.USER);
       
       if (existingAdminToken && existingAdminUser) {
         try {
@@ -681,19 +699,18 @@
       }
       
       // Load remembered email
-      const rememberedEmail = localStorage.getItem('remembered_admin_email');
+      const rememberedEmail = localStorage.getItem(ADMIN_STORAGE.REMEMBERED_EMAIL);
       if (rememberedEmail) {
         document.getElementById('emailInput').value = rememberedEmail;
         document.getElementById('rememberCheckbox').checked = true;
         showAlert('warning', `Welcome back! Please enter your password.`);
       }
       
-      // Clear any stale admin tokens that might cause issues
-      // But preserve remembered email
-      const savedEmail = localStorage.getItem('remembered_admin_email');
+      // Clear any stale admin tokens (but preserve remembered email)
+      const savedEmail = localStorage.getItem(ADMIN_STORAGE.REMEMBERED_EMAIL);
       clearExistingAdminSession();
       if (savedEmail) {
-        localStorage.setItem('remembered_admin_email', savedEmail);
+        localStorage.setItem(ADMIN_STORAGE.REMEMBERED_EMAIL, savedEmail);
       }
       
       // Smooth appearance animation for admin card

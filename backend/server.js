@@ -25,6 +25,7 @@ const contactRoutes = require("./routes/contactRoutes");
 const session = require("express-session");
 const passport = require("passport");
 const googleAuthRoutes = require("./routes/googleAuthRoutes");
+const couponRoutes = require("./routes/couponRoutes");
 
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
@@ -34,6 +35,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", googleAuthRoutes);
+app.use("/api/coupons", couponRoutes);
 
 app.use(session({
   secret: process.env.SESSION_SECRET || "your_session_secret",
