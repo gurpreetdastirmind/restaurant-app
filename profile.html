@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>My Profile | Olives Mediterranean Grill</title>
+    <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name="description" content="Manage your Olives Mediterranean Grill profile, update account details, view orders, save preferences, and enjoy online ordering for fresh Mediterranean halal food in Red Deer.">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
@@ -24,6 +24,13 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        html,
+        body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            position: relative;
+        }
+
         .profile-container {
             min-height: 600px;
             padding: 50px 0;
@@ -151,12 +158,14 @@
 
         .info-row {
             display: flex;
+            align-items: flex-start;
+            gap: 20px;
             padding: 12px 0;
             border-bottom: 1px solid #f0f0f0;
         }
 
         .info-label {
-            width: 130px;
+            min-width: 160px;
             font-weight: 600;
             color: #555;
         }
@@ -164,6 +173,7 @@
         .info-value {
             flex: 1;
             color: #333;
+            word-break: break-word;
         }
 
         .address-section {
@@ -314,15 +324,369 @@
                 opacity: 1;
             }
         }
-           .navbar-brand  img {
-               height: 120px;
-                width: 170px;
-            } 
-         @media (max-width: 768px) {
-             .navbar-brand  img {
-               height: 94px;
+
+        .navbar-brand img {
+            height: 120px;
+            width: 170px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 94px;
                 width: 119px;
-            } 
+            }
+        }
+
+        /* =========================
+   MOBILE RESPONSIVE FIX
+========================= */
+
+        @media (max-width: 768px) {
+
+            html,
+            body {
+                overflow-x: hidden !important;
+                width: 100%;
+            }
+
+            .container {
+                max-width: 100%;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .profile-container {
+                padding: 20px 0;
+            }
+
+            .profile-card {
+                padding: 18px;
+                border-radius: 15px;
+                margin-bottom: 20px;
+            }
+
+            .profile-header {
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+
+            .profile-avatar {
+                width: 75px;
+                height: 75px;
+                font-size: 28px;
+            }
+
+            .profile-header h3 {
+                font-size: 28px;
+                line-height: 1.3;
+                word-break: break-word;
+            }
+
+            .profile-header p {
+                font-size: 13px;
+                word-break: break-word;
+            }
+
+            /* FIX INFO ROW */
+            .info-row {
+                display: block;
+                /* padding: 12px 0; */
+            }
+
+            .info-label {
+                min-width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .info-value {
+                width: 100%;
+                display: block;
+                font-size: 15px;
+                word-break: break-word;
+            }
+
+            /* FORM FIX */
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .col-md-6 {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            /* BUTTON FIX */
+            .edit-mode-actions {
+                flex-direction: column;
+            }
+
+            .btn-save,
+            .btn-cancel,
+            .btn-edit {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            /* NAVBAR FIX */
+            .navbar-brand img {
+                height: 80px;
+                width: auto;
+            }
+
+            .navbar-toggler {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
+
+            /* USER SECTION */
+            .nav-user-section {
+                margin-top: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-dropdown-content {
+                right: auto;
+                left: 0;
+            }
+
+            /* ADDRESS TITLE */
+            .address-section h4 {
+                font-size: 20px;
+            }
+        }
+
+        /* ================= IMPROVED MOBILE NAVBAR - REPLACE YOUR EXISTING MEDIA QUERY ================= */
+        @media (max-width: 991px) {
+
+            /* Solid navbar background */
+            .ftco-navbar-light {
+                background: #1a1a1a !important;
+            }
+
+            #ftco-nav {
+                background: #ffffff;
+                padding: 20px 20px 30px;
+                border-radius: 0 0 24px 24px;
+                overflow-y: auto;
+                max-height: 85vh;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            #ftco-nav .navbar-nav {
+                width: 100%;
+                margin-bottom: 25px;
+            }
+
+            #ftco-nav .nav-item {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            #ftco-nav .nav-link {
+                color: #222 !important;
+                font-size: 17px;
+                padding: 12px 16px;
+                display: block;
+                border-radius: 14px;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+
+            #ftco-nav .nav-link:hover {
+                background: #f0f3e8;
+                color: #7A9A01 !important;
+            }
+
+            /* BOOK A TABLE BUTTON - PROMINENT & ATTRACTIVE */
+            #ftco-nav .cta {
+                margin-top: 10px;
+                margin-bottom: 8px;
+            }
+
+            #ftco-nav .cta .nav-link {
+                background: linear-gradient(135deg, #7A9A01 0%, #5c7a00 100%);
+                color: #fff !important;
+                text-align: center;
+                font-weight: 700;
+                border-radius: 50px;
+                padding: 14px 20px;
+                box-shadow: 0 6px 14px rgba(122, 154, 1, 0.35);
+                letter-spacing: 0.5px;
+                font-size: 18px;
+            }
+
+            #ftco-nav .cta .nav-link:before {
+                content: "📅 ";
+                font-size: 1.2em;
+            }
+
+            /* CART ITEM - FULL WIDTH VISIBLE CARD */
+            .nav-cart {
+                margin: 15px 0 8px 0;
+                background: #f8f9fc;
+                border-radius: 60px;
+                padding: 8px 18px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                border: 1px solid #e9ecef;
+            }
+
+            .cart-icon {
+                color: #1e2a2e !important;
+                font-size: 20px;
+                font-weight: 600;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .cart-icon span:first-child {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .cart-icon:before {
+                /* content: "🛒"; */
+                font-size: 1.3rem;
+                margin-right: 8px;
+            }
+
+            .cart-count-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-left: auto;
+                background: #7A9A01;
+                color: white;
+                width: 26px;
+                height: 26px;
+                font-size: 13px;
+            }
+
+            /* USER SECTION - MODERN & EASY TO TAP */
+            .nav-user-section {
+                width: 100%;
+                margin: 10px 0 5px 0;
+                display: block;
+                border-top: 1px solid #e2e8f0;
+                padding-top: 20px;
+            }
+
+            .user-dropdown {
+                width: 100%;
+                padding: 14px;
+                background: #f8fafc;
+                border-radius: 24px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                border: 1px solid #e2e8f0;
+            }
+
+            .user-avatar {
+                width: 48px;
+                height: 48px;
+                background: #7A9A01;
+                font-size: 22px;
+            }
+
+            .user-name {
+                color: #2d3748 !important;
+                font-size: 18px;
+                font-weight: 700;
+                flex: 1;
+                background: transparent;
+            }
+
+            /* dropdown on mobile always visible */
+            .user-dropdown-content {
+                position: relative !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 100%;
+                display: block !important;
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+                margin-top: 16px;
+                border-radius: 20px;
+                background: #ffffff;
+                border: 1px solid #eef2f6;
+            }
+
+            .user-dropdown-content a {
+                padding: 14px 20px;
+                font-size: 16px;
+                border-bottom: 1px solid #f1f5f9;
+                font-weight: 500;
+            }
+
+            .user-dropdown-content a:last-child {
+                border-bottom: none;
+            }
+
+            /* Login/Signup buttons row */
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 48%;
+                display: inline-block;
+                text-align: center;
+                padding: 12px 0;
+                font-size: 16px;
+                margin: 6px 1%;
+                border-radius: 40px;
+            }
+
+            .nav-user-section {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            /* additional spacing */
+            .navbar-collapse {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .user-dropdown {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-name {
+                margin-top: 4px;
+                width: 100%;
+            }
+
+            .user-avatar {
+                margin-bottom: 4px;
+            }
         }
     </style>
 </head>
@@ -345,7 +709,8 @@
                         </div>
                         <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
                             <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
-                                <span>11:00AM - 9:00PM</span></p>
+                                <span>11:00AM - 9:00PM</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -356,9 +721,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-				<img src="images/background.png" alt="Olive Logo">
-				
-			</a>
+                <img src="images/background.png" alt="Olive Logo">
+
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -373,7 +738,7 @@
                     <li class="nav-item cta"><a href="reservation.html" class="nav-link">Book a table</a></li>
                     <li class="nav-item nav-cart">
                         <a href="cart.html" class="nav-link cart-icon">
-                            <span class="icon-shopping-cart"></span>
+                            <span><span class="icon-shopping-cart"></span> <span class="cart-text">My Cart</span></span>
                             <span id="cartCountBadge" class="cart-count-badge hidden">0</span>
                         </a>
                     </li>
@@ -518,8 +883,10 @@
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-4">
                     <div class="ftco-footer-widget mb-4">
-                        <img src="images/background.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
-                       <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <img src="images/background.png" alt="olives Logo"
+                            style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients,
+                            delicious recipes, and a welcoming atmosphere for every food lover.</p>
                         <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
                         <p>📞 +1587 272 1088</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">

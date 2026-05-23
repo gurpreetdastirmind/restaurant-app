@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>Olives Mediterranean Grill</title>
+     <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, viewport-fit=cover">
+    <meta name="description"
+    content="Enjoy the best shawarma, falafel, and Mediterranean food in Red Deer. Fresh ingredients, halal options & fast pickup. Order online now!">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
@@ -25,6 +27,22 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        /* PREVENT HORIZONTAL SCROLLING */
+        html,
+        body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            position: relative;
+        }
+
+        /* body {
+            overflow-x: hidden;
+        }
+        
+        .container, .container-fluid {
+            overflow-x: hidden;
+        } */
+
         /* Map Styles */
         .map-container {
             width: 100%;
@@ -155,9 +173,10 @@
             overflow: hidden;
         }
 
+        /* 
         .user-dropdown:hover .user-dropdown-content {
             display: block;
-        }
+        } */
 
         .user-dropdown-content a {
             color: #333;
@@ -244,6 +263,7 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -351,162 +371,223 @@
             }
         }
 
-        /* ========== COUPON SLIDER/CAROUSEL STYLES ========== */
+        /* ========== COUPON SECTION - WITH MOBILE DROPDOWN & SQUARE CARDS ========== */
         .coupon-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
 
-        /* Coupon Slider Container */
+        /* Filter Wrapper - Desktop chips */
+        .coupon-filter-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* Mobile Dropdown - Hidden by default, shown on mobile */
+        .coupon-filter-dropdown {
+            display: none;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .filter-select {
+            width: 90%;
+            max-width: 280px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #7A9A01;
+            border-radius: 50px;
+            background: white;
+            color: #7A9A01;
+            cursor: pointer;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A9A01' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 18px;
+        }
+
+        .filter-select:focus {
+            border-color: #7A9A01;
+            box-shadow: 0 0 0 3px rgba(122, 154, 1, 0.2);
+        }
+
+        .filter-chip {
+            padding: 8px 22px;
+            border-radius: 40px;
+            background: white;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 600;
+            border: 2px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-chip:hover,
+        .filter-chip.active {
+            background: #7A9A01;
+            color: white;
+            border-color: #7A9A01;
+            transform: translateY(-2px);
+        }
+
+        /* Slider Container */
         .coupon-slider-wrapper {
             position: relative;
-            padding: 20px 0;
+            padding: 10px 40px;
         }
 
         .coupon-slider {
             overflow: hidden;
             position: relative;
-            padding: 20px 40px;
         }
 
         .coupon-slider-track {
             display: flex;
-            transition: transform 0.5s ease;
-            gap: 30px;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            gap: 24px;
         }
 
-        /* Coupon Card Styles for Slider */
         .coupon-slide {
-            flex: 0 0 calc(33.333% - 20px);
-            min-width: calc(33.333% - 20px);
-            transition: all 0.3s ease;
+            flex: 0 0 calc(33.333% - 16px);
+            min-width: calc(33.333% - 16px);
         }
 
+        /* Coupon Card - Clean Square Design */
         .coupon-card {
             background: white;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.35s ease;
-            position: relative;
-            border: 1px solid rgba(122, 154, 1, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(122, 154, 1, 0.15);
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
         .coupon-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(122, 154, 1, 0.15);
-        }
-
-        .coupon-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #7A9A01, #c49a6c);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(122, 154, 1, 0.12);
+            border-color: rgba(122, 154, 1, 0.3);
         }
 
         .coupon-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 12px;
+            right: 12px;
             background: linear-gradient(135deg, #dc3545, #c82333);
             color: white;
-            padding: 6px 14px;
+            padding: 4px 12px;
             border-radius: 30px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            z-index: 1;
-            box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.25);
         }
 
         .coupon-content {
-            padding: 30px;
+            padding: 22px 18px 24px;
             text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .coupon-icon {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        .coupon-name {
-            font-size: 22px;
-            font-weight: 800;
-            color: #222;
+            font-size: 44px;
             margin-bottom: 8px;
         }
 
+        .coupon-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #222;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
         .coupon-value {
-            font-size: 38px;
+            font-size: 30px;
             font-weight: 800;
             color: #7A9A01;
-            margin: 15px 0 10px;
+            margin: 10px 0 8px;
             letter-spacing: -0.5px;
         }
 
         .coupon-value small {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: #888;
         }
 
         .coupon-code {
-            background: linear-gradient(135deg, #f5f5f5, #eeeeee);
-            padding: 14px 20px;
+            background: #f5f5f5;
+            padding: 10px 14px;
             border-radius: 50px;
-            font-family: 'Courier New', monospace;
-            font-size: 20px;
+            font-family: monospace;
+            font-size: 16px;
             font-weight: 800;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: #7A9A01;
-            margin: 20px 0;
+            margin: 12px 0;
             display: inline-block;
             border: 2px dashed #7A9A01;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
+            word-break: break-all;
         }
 
         .coupon-code:hover {
             background: #7A9A01;
             color: white;
-            transform: scale(1.03);
             border-color: white;
+            transform: scale(1.02);
         }
 
         .coupon-description {
             color: #666;
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 12px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .coupon-meta {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin: 20px 0 10px;
+            margin: 8px 0 4px;
+        }
+
+        .coupon-min-order,
+        .coupon-expiry {
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
         }
 
         .coupon-min-order {
             background: #f0f7e8;
-            padding: 6px 15px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
             color: #7A9A01;
         }
 
         .coupon-expiry {
             background: #fff3e0;
-            padding: 6px 15px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
             color: #e67e22;
         }
 
@@ -516,27 +597,27 @@
         }
 
         .coupon-terms {
-            font-size: 11px;
+            font-size: 9px;
             color: #aaa;
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 10px;
+            padding-top: 8px;
             border-top: 1px solid #f0f0f0;
         }
 
-        /* Slider Navigation Buttons */
+        /* Slider Navigation */
         .slider-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 10;
             border: 1px solid #e0e0e0;
@@ -559,19 +640,19 @@
         .slider-nav span {
             font-size: 24px;
             font-weight: bold;
+            line-height: 1;
         }
 
-        /* Slider Dots */
         .slider-dots {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
+            gap: 10px;
+            margin-top: 30px;
         }
 
         .slider-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: #ccc;
             cursor: pointer;
@@ -579,75 +660,120 @@
         }
 
         .slider-dot.active {
-            width: 30px;
-            border-radius: 10px;
+            width: 28px;
+            border-radius: 12px;
             background: #7A9A01;
         }
 
-        .slider-dot:hover {
-            background: #7A9A01;
-        }
-
-        /* Coupon Type Specific Styles */
-        .coupon-card.percentage {
-            border-top: 1px solid #e8f5e9;
-        }
-        .coupon-card.fixed {
-            border-top: 1px solid #e3f2fd;
-        }
-        .coupon-card.bogo {
-            border-top: 1px solid #fce4ec;
-        }
-        .coupon-card.freeshipping {
-            border-top: 1px solid #fff3e0;
-        }
-        .coupon-card.freeshipping .coupon-value {
-            color: #e67e22;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
+        /* Responsive - Square Shape & Dropdown on Mobile */
+        @media (max-width: 992px) {
             .coupon-slide {
-                flex: 0 0 calc(50% - 15px);
-                min-width: calc(50% - 15px);
+                flex: 0 0 calc(50% - 12px);
+                min-width: calc(50% - 12px);
             }
         }
 
         @media (max-width: 768px) {
             .coupon-section {
-                padding: 50px 0;
+                padding: 40px 0;
             }
+
+            /* Hide chips on mobile, show dropdown */
+            .coupon-filter-wrapper {
+                display: none;
+            }
+
+            .coupon-filter-dropdown {
+                display: block;
+            }
+
+            .coupon-slider-wrapper {
+                padding: 5px 35px;
+            }
+
             .coupon-slide {
                 flex: 0 0 100%;
                 min-width: 100%;
             }
+
+            /* Square-like card on mobile */
+            .coupon-card {
+                aspect-ratio: 3 / 3.6;
+                min-height: auto;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
             .coupon-content {
-                padding: 25px;
+                padding: 18px 16px 20px;
             }
-            .coupon-code {
-                font-size: 16px;
-                padding: 10px 16px;
-                letter-spacing: 2px;
+
+            .coupon-icon {
+                font-size: 38px;
+                margin-bottom: 6px;
             }
-            .coupon-value {
-                font-size: 32px;
-            }
+
             .coupon-name {
-                font-size: 18px;
+                font-size: 17px;
             }
+
+            .coupon-value {
+                font-size: 28px;
+                margin: 6px 0;
+            }
+
+            .coupon-code {
+                font-size: 14px;
+                padding: 8px 12px;
+                letter-spacing: 1.5px;
+            }
+
+            .coupon-description {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+
+            .coupon-meta {
+                gap: 8px;
+                margin: 5px 0;
+            }
+
             .slider-nav {
-                width: 35px;
-                height: 35px;
+                width: 32px;
+                height: 32px;
             }
+
             .slider-nav span {
-                font-size: 18px;
+                font-size: 20px;
             }
         }
 
-        /* Mobile Responsive Fixes */
+        @media (max-width: 480px) {
+            .coupon-card {
+                aspect-ratio: 3 / 3.8;
+            }
+
+            .coupon-content {
+                padding: 14px 12px 16px;
+            }
+
+            .coupon-name {
+                font-size: 16px;
+            }
+
+            .coupon-value {
+                font-size: 24px;
+            }
+
+            .coupon-code {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Mobile Navigation Fixes */
         @media (max-width: 992px) {
             .navbar-collapse {
-                background-color: #1a1a1a;
                 padding: 15px;
                 border-radius: 10px;
                 margin-top: 10px;
@@ -666,40 +792,309 @@
             }
         }
 
-        /* Filter Buttons */
-        .coupon-filter-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+        /* Fix heading overlay position to prevent overflow */
+        .heading-section {
+            position: relative;
+            overflow: visible;
         }
 
-        .filter-chip {
-            padding: 10px 28px;
-            border-radius: 40px;
-            background: white;
-            color: #555;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-            font-weight: 600;
-            border: 2px solid #e0e0e0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        @media (max-width: 768px) {
+            .heading-section .subheading {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                font-size: 60px !important;
+                display: block !important;
+                margin-bottom: 10px !important;
+                /* color: rgba(122, 154, 1, 0.15) !important; */
+                line-height: 1 !important;
+                font-family: "Miss Fajardose", cursive !important;
+                z-index: 0 !important;
+            }
+
+            h2 {
+                line-height: 1.4 !important;
+                font-size: 28px !important;
+                word-break: break-word;
+            }
         }
 
-        .filter-chip:hover {
-            background: #7A9A01;
-            color: white;
-            border-color: #7A9A01;
-            transform: translateY(-2px);
+        /* Fix map container on mobile */
+        @media (max-width: 768px) {
+            .map-container {
+                margin: 10px;
+                padding: 0 15px;
+            }
+
+            .map-wrapper {
+                height: 300px;
+            }
         }
 
-        .filter-chip.active {
-            background: #7A9A01;
-            color: white;
-            border-color: #7A9A01;
-            box-shadow: 0 5px 15px rgba(122, 154, 1, 0.3);
+        /* Fix reservation form on mobile */
+        @media (max-width: 768px) {
+            .makereservation {
+                padding: 20px 15px !important;
+            }
+
+            .makereservation .heading-section h2 {
+                font-size: 28px;
+            }
+        }
+
+        /* Prevent any overflow from footer */
+        footer {
+            overflow-x: hidden;
+        }
+
+        .heading-section .subheading {
+            position: static;
+            top: -52px;
+            left: 0;
+            right: 0;
+            font-weight: normal;
+            font-size: 100px;
+            display: block;
+            margin-bottom: 0;
+            color: rgba(0, 0, 0, 0.2);
+            color: #7A9A01;
+            line-height: 1;
+            font-family: "Miss Fajardose", cursive;
+            margin-top: 0;
+            z-index: -1;
+        }
+
+        /* ================= MOBILE NAVBAR FIX ================= */
+
+        @media (max-width: 991px) {
+
+            /* Solid navbar background */
+            .ftco-navbar-light {
+                background: #1a1a1a !important;
+            }
+
+            #ftco-nav {
+                background: #ffffff;
+                padding: 20px 20px 30px;
+                border-radius: 0 0 24px 24px;
+                overflow-y: auto;
+                max-height: 85vh;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            #ftco-nav .navbar-nav {
+                width: 100%;
+                margin-bottom: 25px;
+            }
+
+            #ftco-nav .nav-item {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            #ftco-nav .nav-link {
+                color: #222 !important;
+                font-size: 17px;
+                padding: 12px 16px;
+                display: block;
+                border-radius: 14px;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+
+            #ftco-nav .nav-link:hover {
+                background: #f0f3e8;
+                color: #7A9A01 !important;
+            }
+
+            /* BOOK A TABLE BUTTON - PROMINENT & ATTRACTIVE */
+            #ftco-nav .cta {
+                margin-top: 10px;
+                margin-bottom: 8px;
+            }
+
+            #ftco-nav .cta .nav-link {
+                background: linear-gradient(135deg, #7A9A01 0%, #5c7a00 100%);
+                color: #fff !important;
+                text-align: center;
+                font-weight: 700;
+                border-radius: 50px;
+                padding: 14px 20px;
+                box-shadow: 0 6px 14px rgba(122, 154, 1, 0.35);
+                letter-spacing: 0.5px;
+                font-size: 18px;
+            }
+
+            #ftco-nav .cta .nav-link:before {
+                content: "📅 ";
+                font-size: 1.2em;
+            }
+
+            /* CART ITEM - FULL WIDTH VISIBLE CARD */
+            .nav-cart {
+                margin: 15px 0 8px 0;
+                background: #f8f9fc;
+                border-radius: 60px;
+                padding: 8px 18px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                border: 1px solid #e9ecef;
+            }
+
+            .cart-icon {
+                color: #1e2a2e !important;
+                font-size: 20px;
+                font-weight: 600;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .cart-icon span:first-child {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .cart-icon:before {
+                /* content: "🛒"; */
+                font-size: 1.3rem;
+                margin-right: 8px;
+            }
+
+            .cart-count-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-left: auto;
+                background: #7A9A01;
+                color: white;
+                width: 26px;
+                height: 26px;
+                font-size: 13px;
+            }
+
+            /* USER SECTION - MODERN & EASY TO TAP */
+            .nav-user-section {
+                width: 100%;
+                margin: 10px 0 5px 0;
+                display: block;
+                border-top: 1px solid #e2e8f0;
+                padding-top: 20px;
+            }
+
+            .user-dropdown {
+                width: 100%;
+                padding: 14px;
+                background: #f8fafc;
+                border-radius: 24px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                border: 1px solid #e2e8f0;
+            }
+
+            .user-avatar {
+                width: 48px;
+                height: 48px;
+                background: #7A9A01;
+                font-size: 22px;
+            }
+
+            .user-name {
+                color: #2d3748 !important;
+                font-size: 18px;
+                font-weight: 700;
+                flex: 1;
+                background: transparent;
+            }
+
+            /* dropdown on mobile always visible */
+            .user-dropdown-content {
+                position: relative !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 100%;
+                display: block !important;
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+                margin-top: 16px;
+                border-radius: 20px;
+                background: #ffffff;
+                border: 1px solid #eef2f6;
+            }
+
+            .user-dropdown-content a {
+                padding: 14px 20px;
+                font-size: 16px;
+                border-bottom: 1px solid #f1f5f9;
+                font-weight: 500;
+            }
+
+            .user-dropdown-content a:last-child {
+                border-bottom: none;
+            }
+
+            /* Login/Signup buttons row */
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 48%;
+                display: inline-block;
+                text-align: center;
+                padding: 12px 0;
+                font-size: 16px;
+                margin: 6px 1%;
+                border-radius: 40px;
+            }
+
+            .nav-user-section {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            /* additional spacing */
+            .navbar-collapse {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .user-dropdown {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-name {
+                margin-top: 4px;
+                width: 100%;
+            }
+
+            .user-avatar {
+                margin-bottom: 4px;
+            }
+        }
+
+
+        @media (min-width: 992px) {
+            .user-dropdown:hover .user-dropdown-content {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -751,16 +1146,13 @@
                     <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                     <li class="nav-item cta"><a href="reservation.html" class="nav-link">Book a table</a></li>
-                    <!-- Cart Icon with Badge -->
                     <li class="nav-item nav-cart">
                         <a href="cart.html" class="nav-link cart-icon">
-                            <span class="icon-shopping-cart"></span>
+                            <span><span class="icon-shopping-cart"></span> <span class="cart-text">My Cart</span></span>
                             <span id="cartCountBadge" class="cart-count-badge hidden">0</span>
                         </a>
                     </li>
                 </ul>
-
-                <!-- User Section -->
                 <div id="navbarUserSection" class="nav-user-section"></div>
             </div>
         </div>
@@ -799,7 +1191,8 @@
         <div class="slider-item js-fullheight" style="background-image: url(images/bg_3.jpg);">
             <div class="overlay"></div>
             <div class="container">
-                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+                <div class="row slider-text js-fullheight justify-content-center align-items-center"
+                    data-scrollax-parent="true">
                     <div class="col-md-12 col-sm-12 text-center ftco-animate">
                         <h1 class="mb-4 mt-5">Creamy Hot and Ready to Serve</h1>
                         <p><a href="menu.html" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
@@ -894,7 +1287,7 @@
         </div>
     </section>
 
-    <!-- ========== COUPON SLIDER SECTION with AUTO-SLIDE ========== -->
+    <!-- COUPON SECTION - WITH MOBILE DROPDOWN & SQUARE CARDS -->
     <section class="coupon-section" id="couponSection">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-2">
@@ -905,40 +1298,42 @@
                 </div>
             </div>
 
-            <!-- Coupon Filter Buttons - All 4 types -->
+            <!-- Desktop Filter Chips -->
             <div class="coupon-filter-wrapper">
                 <button class="filter-chip active" data-filter="all">🎯 All Offers</button>
-                <button class="filter-chip" data-filter="percentage">🎉 % Percentage Off</button>
-                <button class="filter-chip" data-filter="fixed">💰 $ Fixed Amount</button>
-                <button class="filter-chip" data-filter="bogo">🎁 Buy One Get One</button>
-                <button class="filter-chip" data-filter="freeshipping">🚚 Free Shipping</button>
+                <button class="filter-chip" data-filter="percentage">🎉 % Off</button>
+                <button class="filter-chip" data-filter="fixed">💰 $ Off</button>
+                <button class="filter-chip" data-filter="bogo">🎁 BOGO</button>
+                <button class="filter-chip" data-filter="freeshipping">🚚 Free Ship</button>
             </div>
 
-            <!-- Loading Spinner -->
-            <div id="couponsLoadingSpinner" class="text-center" style="padding: 60px 0;">
-                <div class="spinner-border text-primary" role="status" style="width: 50px; height: 50px;">
-                    <span class="sr-only">Loading offers...</span>
-                </div>
-                <p class="mt-3">Loading amazing deals...</p>
+            <!-- Mobile Dropdown Filter -->
+            <div class="coupon-filter-dropdown">
+                <select id="mobileFilterSelect" class="filter-select">
+                    <option value="all">🎯 All Offers</option>
+                    <option value="percentage">🎉 % Percentage Off</option>
+                    <option value="fixed">💰 $ Fixed Amount</option>
+                    <option value="bogo">🎁 Buy One Get One</option>
+                    <option value="freeshipping">🚚 Free Shipping</option>
+                </select>
             </div>
 
-            <!-- Coupon Slider Container -->
+            <div id="couponsLoadingSpinner" class="text-center" style="padding: 50px 0;">
+                <div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                <p>Loading amazing deals...</p>
+            </div>
+
             <div id="couponSliderContainer" style="display: none;">
                 <div class="coupon-slider-wrapper">
-                    <div class="slider-nav prev" onclick="manualSlidePrev()">
-                        <span>‹</span>
-                    </div>
+                    <div class="slider-nav prev" onclick="manualSlidePrev()"><span>‹</span></div>
                     <div class="coupon-slider">
                         <div class="coupon-slider-track" id="couponSliderTrack"></div>
                     </div>
-                    <div class="slider-nav next" onclick="manualSlideNext()">
-                        <span>›</span>
-                    </div>
+                    <div class="slider-nav next" onclick="manualSlideNext()"><span>›</span></div>
                 </div>
                 <div class="slider-dots" id="sliderDots"></div>
             </div>
 
-            <!-- No Coupons Message -->
             <div id="noCouponsMessage" class="text-center" style="display: none;">
                 <div class="no-items-msg">
                     <h4>🎁 No coupons available</h4>
@@ -1201,520 +1596,542 @@
     <script src="js/main.js"></script>
 
     <script>
-    const API_BASE_URL = 'https://restaurant-app-ru0u.onrender.com';
-    let allCouponsData = [];
-    let currentFilter = 'all';
-    let currentSlideIndex = 0;
-    let slidesPerView = 3;
-    let autoSlideInterval = null;
-    const AUTO_SLIDE_DELAY = 4000;
-    let isAutoSliding = true;
+        const API_BASE_URL = 'https://restaurant-app-ru0u.onrender.com';
+        let allCouponsData = [];
+        let currentFilter = 'all';
+        let currentSlideIndex = 0;
+        let slidesPerView = 3;
+        let autoSlideInterval = null;
+        const AUTO_SLIDE_DELAY = 4000;
+        let isAutoSliding = true;
 
-    function showToast(message, isError = false) {
-        const toast = document.createElement('div');
-        toast.className = 'toast-message';
-        toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
-        toast.textContent = message;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
-    }
-
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function (m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
-    }
-
-    function isLoggedIn() {
-        return !!(localStorage.getItem('token') && localStorage.getItem('user'));
-    }
-
-    function getCurrentUser() {
-        try {
-            const user = localStorage.getItem('user');
-            return user ? JSON.parse(user) : null;
-        } catch (error) {
-            return null;
-        }
-    }
-
-    // ========== FIXED LOGOUT FUNCTION - Only clears user data, not admin ==========
-    function logout() {
-        // Clear ONLY user-related storage (NOT admin storage)
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('tokenExpiresAt');
-        localStorage.removeItem('guestCart');
-        localStorage.removeItem('pendingReservation');
-        
-        // DO NOT clear admin keys - they use different keys
-        // 'adminAuthToken', 'adminUserData' remain untouched
-        
-        showToast('Logged out successfully!');
-        updateNavbarUserSection();
-        updateCartCount();
-        setTimeout(() => window.location.reload(), 1000);
-    }
-
-    async function updateCartCount() {
-        const badge = document.getElementById('cartCountBadge');
-        if (!badge) return;
-
-        if (!isLoggedIn()) {
-            const guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
-            const count = guestCart.length;
-            badge.textContent = count;
-            if (count > 0) badge.classList.remove('hidden');
-            else badge.classList.add('hidden');
-            return;
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-message';
+            toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
         }
 
-        try {
-            const user = getCurrentUser();
-            const response = await fetch(`${API_BASE_URL}/api/cart/${user?._id || user?.id}`, {
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function (m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
             });
-            if (response.ok) {
-                const cart = await response.json();
-                const count = cart?.items?.length || 0;
+        }
+
+        function isLoggedIn() {
+            return !!(localStorage.getItem('token') && localStorage.getItem('user'));
+        }
+
+        function getCurrentUser() {
+            try {
+                const user = localStorage.getItem('user');
+                return user ? JSON.parse(user) : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('tokenExpiresAt');
+            localStorage.removeItem('guestCart');
+            localStorage.removeItem('pendingReservation');
+            showToast('Logged out successfully!');
+            updateNavbarUserSection();
+            updateCartCount();
+            setTimeout(() => window.location.reload(), 1000);
+        }
+
+        async function updateCartCount() {
+            const badge = document.getElementById('cartCountBadge');
+            if (!badge) return;
+
+            if (!isLoggedIn()) {
+                const guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
+                const count = guestCart.length;
                 badge.textContent = count;
                 if (count > 0) badge.classList.remove('hidden');
                 else badge.classList.add('hidden');
+                return;
             }
-        } catch (error) {
-            console.error('Error updating cart count:', error);
-        }
-    }
 
-    function getImageUrl(imagePath) {
-        if (!imagePath) return 'images/default-menu.jpg';
-        if (imagePath.startsWith('http')) return imagePath;
-        if (imagePath.startsWith('/uploads/')) return `${API_BASE_URL}${imagePath}`;
-        return imagePath;
-    }
-
-    async function addToCart(product) {
-        if (!isLoggedIn()) {
-            let guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
-            const existing = guestCart.find(item => item.productId === product._id);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                guestCart.push({
-                    productId: product._id,
-                    name: product.name,
-                    price: parseFloat(product.price),
-                    quantity: 1,
-                    image: product.image
+            try {
+                const user = getCurrentUser();
+                const response = await fetch(`${API_BASE_URL}/api/cart/${user?._id || user?.id}`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
+                if (response.ok) {
+                    const cart = await response.json();
+                    const count = cart?.items?.length || 0;
+                    badge.textContent = count;
+                    if (count > 0) badge.classList.remove('hidden');
+                    else badge.classList.add('hidden');
+                }
+            } catch (error) {
+                console.error('Error updating cart count:', error);
             }
-            localStorage.setItem('guestCart', JSON.stringify(guestCart));
-            showToast(`${product.name} added to cart!`);
-            updateCartCount();
-            return;
         }
 
-        try {
-            const user = getCurrentUser();
-            const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify({
-                    userId: user?._id || user?.id,
-                    product: {
+        function getImageUrl(imagePath) {
+            if (!imagePath) return 'images/default-menu.jpg';
+            if (imagePath.startsWith('http')) return imagePath;
+            if (imagePath.startsWith('/uploads/')) return `${API_BASE_URL}${imagePath}`;
+            return imagePath;
+        }
+
+        async function addToCart(product) {
+            if (!isLoggedIn()) {
+                let guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
+                const existing = guestCart.find(item => item.productId === product._id);
+                if (existing) {
+                    existing.quantity++;
+                } else {
+                    guestCart.push({
                         productId: product._id,
                         name: product.name,
                         price: parseFloat(product.price),
                         quantity: 1,
                         image: product.image
-                    }
-                })
-            });
-            if (response.ok) {
+                    });
+                }
+                localStorage.setItem('guestCart', JSON.stringify(guestCart));
                 showToast(`${product.name} added to cart!`);
                 updateCartCount();
-            } else {
-                throw new Error('Failed to add to cart');
+                return;
             }
-        } catch (error) {
-            console.error('Error adding to cart:', error);
-            showToast('Failed to add to cart', true);
+
+            try {
+                const user = getCurrentUser();
+                const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({
+                        userId: user?._id || user?.id,
+                        product: {
+                            productId: product._id,
+                            name: product.name,
+                            price: parseFloat(product.price),
+                            quantity: 1,
+                            image: product.image
+                        }
+                    })
+                });
+                if (response.ok) {
+                    showToast(`${product.name} added to cart!`);
+                    updateCartCount();
+                } else {
+                    throw new Error('Failed to add to cart');
+                }
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                showToast('Failed to add to cart', true);
+            }
         }
-    }
 
-    async function loadOMGMenu() {
-        const container = document.getElementById('dynamicOMGMenuContainer');
-        if (!container) return;
+        async function loadOMGMenu() {
+            const container = document.getElementById('dynamicOMGMenuContainer');
+            if (!container) return;
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/products/category/OMG! Menu`);
-            const result = await response.json();
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/products/category/OMG! Menu`);
+                const result = await response.json();
 
-            if (result.success && result.data && result.data.length > 0) {
-                container.innerHTML = result.data.map(product => {
-                    const imageUrl = getImageUrl(product.image);
-                    const price = parseFloat(product.price).toFixed(2);
-                    const productJson = JSON.stringify(product).replace(/'/g, "\\'");
-                    return `
-                        <div class="col-md-6 col-lg-4 mb-4">
-                            <div class="omg-menu-card">
-                                <div class="omg-menu-img" style="background-image: url('${imageUrl}');"></div>
-                                <div class="omg-menu-info">
-                                    <h4>${escapeHtml(product.name)}</h4>
-                                    <div class="price">C$${price}</div>
-                                    <p class="description">${escapeHtml(product.description || 'A delightful specialty from our kitchen')}</p>
-                                    <button class="add-to-cart-btn" onclick='addToCart(${productJson})'>
-                                        <span class="icon-shopping-cart"></span> Add to Cart
-                                    </button>
+                if (result.success && result.data && result.data.length > 0) {
+                    container.innerHTML = result.data.map(product => {
+                        const imageUrl = getImageUrl(product.image);
+                        const price = parseFloat(product.price).toFixed(2);
+                        const productJson = JSON.stringify(product).replace(/'/g, "\\'");
+                        return `
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="omg-menu-card">
+                                    <div class="omg-menu-img" style="background-image: url('${imageUrl}');"></div>
+                                    <div class="omg-menu-info">
+                                        <h4>${escapeHtml(product.name)}</h4>
+                                        <div class="price">C$${price}</div>
+                                        <p class="description">${escapeHtml(product.description || 'A delightful specialty from our kitchen')}</p>
+                                        <button class="add-to-cart-btn" onclick='addToCart(${productJson})'>
+                                            <span class="icon-shopping-cart"></span> Add to Cart
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                }).join('');
-            } else {
-                container.innerHTML = '<div class="col-12 text-center"><h4>✨ OMG! Menu items coming soon ✨</h4></div>';
-            }
-        } catch (error) {
-            console.error('Error loading OMG menu:', error);
-            container.innerHTML = '<div class="col-12 text-center"><h4>⚠️ Unable to load menu</h4></div>';
-        }
-    }
-
-    function startAutoSlide() {
-        if (autoSlideInterval) clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(() => {
-            if (allCouponsData.length > 0 && isAutoSliding) {
-                const totalSlides = allCouponsData.length;
-                const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
-                if (currentSlideIndex < maxIndex) {
-                    currentSlideIndex++;
-                    updateSliderPosition();
+                        `;
+                    }).join('');
                 } else {
-                    currentSlideIndex = 0;
-                    updateSliderPosition();
+                    container.innerHTML = '<div class="col-12 text-center"><h4>✨ OMG! Menu items coming soon ✨</h4></div>';
                 }
+            } catch (error) {
+                console.error('Error loading OMG menu:', error);
+                container.innerHTML = '<div class="col-12 text-center"><h4>⚠️ Unable to load menu</h4></div>';
             }
-        }, AUTO_SLIDE_DELAY);
-    }
-
-    function stopAutoSlide() {
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = null;
-        }
-    }
-
-    function resetAutoSlide() {
-        if (!isAutoSliding) return;
-        stopAutoSlide();
-        startAutoSlide();
-    }
-
-    const ALLOWED_COUPON_TYPES = ['percentage', 'fixed', 'bogo', 'freeshipping'];
-
-    function updateSlidesPerView() {
-        if (window.innerWidth <= 768) slidesPerView = 1;
-        else if (window.innerWidth <= 1200) slidesPerView = 2;
-        else slidesPerView = 3;
-    }
-
-    function generateCouponHTML(coupon) {
-        const expiryDate = new Date(coupon.expiryDate);
-        const daysLeft = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
-
-        let icon = '', typeClass = '', badgeText = '';
-
-        switch (coupon.type) {
-            case 'percentage': icon = '🎉'; typeClass = 'percentage'; badgeText = '🔥 HOT DEAL'; break;
-            case 'fixed': icon = '💰'; typeClass = 'fixed'; badgeText = '💎 SAVE BIG'; break;
-            case 'bogo': icon = '🎁'; typeClass = 'bogo'; badgeText = '⚡ BOGO OFFER'; break;
-            case 'freeshipping': icon = '🚚'; typeClass = 'freeshipping'; badgeText = '🎁 FREE SHIPPING'; break;
-            default: icon = '🎫'; badgeText = '✨ SPECIAL';
         }
 
-        let discountDisplay = '';
-        if (coupon.type === 'percentage') discountDisplay = `<div class="coupon-value">${coupon.value}% <small>OFF</small></div>`;
-        else if (coupon.type === 'fixed') discountDisplay = `<div class="coupon-value">$${coupon.value} <small>OFF</small></div>`;
-        else if (coupon.type === 'bogo') discountDisplay = `<div class="coupon-value">🎯 <small>BUY 1 GET 1 FREE</small></div>`;
-        else if (coupon.type === 'freeshipping') discountDisplay = `<div class="coupon-value">🚚 <small>FREE DELIVERY</small></div>`;
-
-        const minOrderDisplay = coupon.minimumOrderAmount > 0 ? `<span class="coupon-min-order">🛒 Min: C$${coupon.minimumOrderAmount}</span>` : '';
-        const expiryClass = daysLeft <= 3 ? 'urgent' : '';
-        const expiryWarning = daysLeft <= 3 ? `<span class="coupon-expiry ${expiryClass}">⚠️ Expires in ${daysLeft} day${daysLeft !== 1 ? 's' : ''}!</span>` : `<span class="coupon-expiry">📅 Valid until: ${expiryDate.toLocaleDateString()}</span>`;
-
-        return `
-            <div class="coupon-slide">
-                <div class="coupon-card ${typeClass}">
-                    <div class="coupon-badge">${badgeText}</div>
-                    <div class="coupon-content">
-                        <div class="coupon-icon">${icon}</div>
-                        <h3 class="coupon-name">${escapeHtml(coupon.name)}</h3>
-                        ${discountDisplay}
-                        <div class="coupon-code" onclick="copyCouponCode('${coupon.code}')">${coupon.code}</div>
-                        <p class="coupon-description">${escapeHtml(coupon.description || 'Use this code at checkout to claim your discount!')}</p>
-                        <div class="coupon-meta">${minOrderDisplay}${expiryWarning}</div>
-                        <div class="coupon-terms"><small>✓ Click to copy code • Apply at checkout • Terms apply</small></div>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    function renderSlider() {
-        const track = document.getElementById('couponSliderTrack');
-        const dotsContainer = document.getElementById('sliderDots');
-        if (!track || !allCouponsData.length) return;
-        
-        track.innerHTML = allCouponsData.map(coupon => generateCouponHTML(coupon)).join('');
-        const totalSlides = allCouponsData.length;
-        const totalDots = Math.ceil(totalSlides / slidesPerView);
-        
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'slider-dot' + (i === currentSlideIndex ? ' active' : '');
-            dot.onclick = (function(index) { return function() { goToSlide(index); resetAutoSlide(); }; })(i);
-            dotsContainer.appendChild(dot);
+        function startAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => {
+                if (allCouponsData.length > 0 && isAutoSliding) {
+                    const totalSlides = allCouponsData.length;
+                    const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+                    if (currentSlideIndex < maxIndex) {
+                        currentSlideIndex++;
+                        updateSliderPosition();
+                    } else {
+                        currentSlideIndex = 0;
+                        updateSliderPosition();
+                    }
+                }
+            }, AUTO_SLIDE_DELAY);
         }
-        updateSliderPosition();
-        startAutoSlide();
-    }
 
-    function updateSliderPosition() {
-        const track = document.getElementById('couponSliderTrack');
-        if (!track) return;
-        const slideElements = track.querySelectorAll('.coupon-slide');
-        if (slideElements.length === 0) return;
-        const slideWidth = slideElements[0]?.offsetWidth || 0;
-        const gap = 30;
-        const offset = currentSlideIndex * (slideWidth + gap);
-        track.style.transform = `translateX(-${offset}px)`;
-        const dots = document.querySelectorAll('.slider-dot');
-        dots.forEach((dot, index) => dot.classList.toggle('active', index === currentSlideIndex));
-    }
-
-    function manualSlideNext() {
-        const totalSlides = allCouponsData.length;
-        const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
-        if (currentSlideIndex < maxIndex) currentSlideIndex++;
-        else currentSlideIndex = 0;
-        updateSliderPosition();
-        resetAutoSlide();
-    }
-
-    function manualSlidePrev() {
-        if (currentSlideIndex > 0) currentSlideIndex--;
-        else {
-            const totalSlides = allCouponsData.length;
-            currentSlideIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
         }
-        updateSliderPosition();
-        resetAutoSlide();
-    }
 
-    function goToSlide(index) { currentSlideIndex = index; updateSliderPosition(); }
-
-    async function loadActiveCoupons() {
-        const loadingSpinner = document.getElementById('couponsLoadingSpinner');
-        const sliderContainer = document.getElementById('couponSliderContainer');
-        const noCouponsMsg = document.getElementById('noCouponsMessage');
-
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/coupons/public`);
-            if (!response.ok) throw new Error('Failed to fetch coupons');
-            const result = await response.json();
-            let coupons = result.data || [];
-            const now = new Date();
-            coupons = coupons.filter(coupon => {
-                const expiryDate = new Date(coupon.expiryDate);
-                const startDate = new Date(coupon.startDate);
-                return coupon.isActive === true && expiryDate > now && startDate <= now && ALLOWED_COUPON_TYPES.includes(coupon.type);
-            });
-            coupons.sort((a, b) => new Date(a.expiryDate) - new Date(b.expiryDate));
-            loadingSpinner.style.display = 'none';
-            if (coupons.length === 0) { noCouponsMsg.style.display = 'block'; sliderContainer.style.display = 'none'; return; }
-            allCouponsData = coupons;
-            noCouponsMsg.style.display = 'none';
-            sliderContainer.style.display = 'block';
-            currentSlideIndex = 0;
-            updateSlidesPerView();
-            renderSlider();
-        } catch (error) {
-            console.error('Error loading coupons:', error);
-            loadingSpinner.style.display = 'none';
-            noCouponsMsg.style.display = 'block';
+        function resetAutoSlide() {
+            if (!isAutoSliding) return;
+            stopAutoSlide();
+            startAutoSlide();
         }
-    }
 
-    function setupFilterButtons() {
-        const filterButtons = document.querySelectorAll('.filter-chip');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', async function() {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                currentFilter = this.getAttribute('data-filter');
-                stopAutoSlide();
-                const response = await fetch(`${API_BASE_URL}/api/coupons/public`);
-                const result = await response.json();
-                let coupons = result.data || [];
-                const now = new Date();
-                coupons = coupons.filter(coupon => coupon.isActive === true && new Date(coupon.expiryDate) > now && new Date(coupon.startDate) <= now && ALLOWED_COUPON_TYPES.includes(coupon.type));
-                if (currentFilter !== 'all') coupons = coupons.filter(coupon => coupon.type === currentFilter);
-                allCouponsData = coupons;
-                currentSlideIndex = 0;
-                updateSlidesPerView();
-                renderSlider();
-            });
-        });
-    }
+        const ALLOWED_COUPON_TYPES = ['percentage', 'fixed', 'bogo', 'freeshipping'];
 
-    window.copyCouponCode = function(code) {
-        navigator.clipboard.writeText(code).then(() => { showToast(`Coupon code "${code}" copied!`); resetAutoSlide(); })
-            .catch(err => alert(`Coupon Code: ${code}\nPlease remember this code for checkout!`));
-    };
+        function updateSlidesPerView() {
+            if (window.innerWidth <= 768) slidesPerView = 1;
+            else if (window.innerWidth <= 1200) slidesPerView = 2;
+            else slidesPerView = 3;
+        }
 
-    window.manualSlideNext = manualSlideNext;
-    window.manualSlidePrev = manualSlidePrev;
+        function generateCouponHTML(coupon) {
+            const expiryDate = new Date(coupon.expiryDate);
+            const daysLeft = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
 
-    function updateNavbarUserSection() {
-        const section = document.getElementById('navbarUserSection');
-        if (!section) return;
-        if (isLoggedIn()) {
-            const user = getCurrentUser();
-            const name = user?.firstName || 'User';
-            const initial = name.charAt(0).toUpperCase();
-            section.innerHTML = `
-                <div class="user-dropdown">
-                    <div class="user-avatar">${initial}</div>
-                    <span class="user-name">${escapeHtml(name)}</span>
-                    <div class="user-dropdown-content">
-                        <a href="profile.html">My Profile</a>
-                        <a href="#" onclick="viewOrders()">My Orders</a>
-                        <a href="my-reservations.html">My Reservations</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+            let icon = '', typeClass = '', badgeText = '';
+
+            switch (coupon.type) {
+                case 'percentage': icon = '🎉'; typeClass = 'percentage'; badgeText = '🔥 HOT DEAL'; break;
+                case 'fixed': icon = '💰'; typeClass = 'fixed'; badgeText = '💎 SAVE BIG'; break;
+                case 'bogo': icon = '🎁'; typeClass = 'bogo'; badgeText = '⚡ BOGO OFFER'; break;
+                case 'freeshipping': icon = '🚚'; typeClass = 'freeshipping'; badgeText = '🎁 FREE SHIPPING'; break;
+                default: icon = '🎫'; badgeText = '✨ SPECIAL';
+            }
+
+            let discountDisplay = '';
+            if (coupon.type === 'percentage') discountDisplay = `<div class="coupon-value">${coupon.value}% <small>OFF</small></div>`;
+            else if (coupon.type === 'fixed') discountDisplay = `<div class="coupon-value">$${coupon.value} <small>OFF</small></div>`;
+            else if (coupon.type === 'bogo') discountDisplay = `<div class="coupon-value">🎯 <small>BUY 1 GET 1 FREE</small></div>`;
+            else if (coupon.type === 'freeshipping') discountDisplay = `<div class="coupon-value">🚚 <small>FREE DELIVERY</small></div>`;
+
+            const minOrderDisplay = coupon.minimumOrderAmount > 0 ? `<span class="coupon-min-order">🛒 Min: C$${coupon.minimumOrderAmount}</span>` : '';
+            const expiryClass = daysLeft <= 3 ? 'urgent' : '';
+            const expiryWarning = daysLeft <= 3 ? `<span class="coupon-expiry ${expiryClass}">⚠️ Expires in ${daysLeft} day${daysLeft !== 1 ? 's' : ''}!</span>` : `<span class="coupon-expiry">📅 Valid until: ${expiryDate.toLocaleDateString()}</span>`;
+
+            return `
+                <div class="coupon-slide">
+                    <div class="coupon-card ${typeClass}">
+                        <div class="coupon-badge">${badgeText}</div>
+                        <div class="coupon-content">
+                            <div class="coupon-icon">${icon}</div>
+                            <h3 class="coupon-name">${escapeHtml(coupon.name)}</h3>
+                            ${discountDisplay}
+                            <div class="coupon-code" onclick="copyCouponCode('${coupon.code}')">${coupon.code}</div>
+                            <p class="coupon-description">${escapeHtml(coupon.description || 'Use this code at checkout to claim your discount!')}</p>
+                            <div class="coupon-meta">${minOrderDisplay}${expiryWarning}</div>
+                            <div class="coupon-terms"><small>✓ Click to copy code • Apply at checkout • Terms apply</small></div>
+                        </div>
                     </div>
                 </div>
             `;
-        } else {
-            section.innerHTML = `<a href="login.html" class="login-nav-btn"><span class="icon-user"></span> Login</a><a href="signup.html" class="signup-nav-btn">Sign Up</a>`;
         }
-    }
 
-    function viewOrders() {
-        if (isLoggedIn()) window.location.href = 'my-orders.html';
-        else { showToast('Please login to view your orders', true); window.location.href = 'login.html?redirect=my-orders.html'; }
-    }
+        function renderSlider() {
+            const track = document.getElementById('couponSliderTrack');
+            const dotsContainer = document.getElementById('sliderDots');
+            if (!track || !allCouponsData.length) return;
 
-    function initializeDatePicker() {
-        const dateInput = document.getElementById('book_date');
-        if (dateInput) {
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const dd = String(today.getDate()).padStart(2, '0');
-            dateInput.min = `${yyyy}-${mm}-${dd}`;
-            dateInput.value = `${yyyy}-${mm}-${dd}`;
-        }
-    }
+            track.innerHTML = allCouponsData.map(coupon => generateCouponHTML(coupon)).join('');
+            const totalSlides = allCouponsData.length;
+            const totalDots = Math.ceil(totalSlides / slidesPerView);
 
-    window.addEventListener('resize', () => { updateSlidesPerView(); renderSlider(); resetAutoSlide(); });
-
-    const reservationForm = document.getElementById('reservationForm');
-    if (reservationForm) {
-        reservationForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const name = document.getElementById('resName').value.trim();
-            const email = document.getElementById('resEmail').value.trim();
-            const phone = document.getElementById('resPhone').value.trim();
-            const date = document.getElementById('book_date').value;
-            const time = document.getElementById('book_time').value;
-            const guests = document.getElementById('resPerson').value;
-            const specialRequests = document.getElementById('specialRequests').value.trim();
-            if (!name || !email || !phone || !date || !time || !guests) { showToast('Please fill all required fields', true); return; }
-            if (!isLoggedIn()) {
-                const pendingData = { name, email, phone, date, time, guests: parseInt(guests), specialRequests };
-                localStorage.setItem('pendingReservation', JSON.stringify(pendingData));
-                showToast('Please login to complete your reservation.', false);
-                setTimeout(() => { window.location.href = 'login.html?redirect=index.html'; }, 1500);
-                return;
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot' + (i === currentSlideIndex ? ' active' : '');
+                dot.onclick = (function (index) { return function () { goToSlide(index); resetAutoSlide(); }; })(i);
+                dotsContainer.appendChild(dot);
             }
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Booking...';
-            submitBtn.disabled = true;
+            updateSliderPosition();
+            startAutoSlide();
+        }
+
+        function updateSliderPosition() {
+            const track = document.getElementById('couponSliderTrack');
+            if (!track) return;
+            const slideElements = track.querySelectorAll('.coupon-slide');
+            if (slideElements.length === 0) return;
+            const slideWidth = slideElements[0]?.offsetWidth || 0;
+            const gap = 24;
+            const offset = currentSlideIndex * (slideWidth + gap);
+            track.style.transform = `translateX(-${offset}px)`;
+            const dots = document.querySelectorAll('.slider-dot');
+            dots.forEach((dot, index) => dot.classList.toggle('active', index === currentSlideIndex));
+        }
+
+        function manualSlideNext() {
+            const totalSlides = allCouponsData.length;
+            const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+            if (currentSlideIndex < maxIndex) currentSlideIndex++;
+            else currentSlideIndex = 0;
+            updateSliderPosition();
+            resetAutoSlide();
+        }
+
+        function manualSlidePrev() {
+            if (currentSlideIndex > 0) currentSlideIndex--;
+            else {
+                const totalSlides = allCouponsData.length;
+                currentSlideIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+            }
+            updateSliderPosition();
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) { currentSlideIndex = index; updateSliderPosition(); }
+
+        async function loadActiveCoupons() {
+            const loadingSpinner = document.getElementById('couponsLoadingSpinner');
+            const sliderContainer = document.getElementById('couponSliderContainer');
+            const noCouponsMsg = document.getElementById('noCouponsMessage');
+
             try {
-                const currentUser = getCurrentUser();
-                const userId = currentUser ? (currentUser._id || currentUser.id) : null;
-                const response = await fetch(`${API_BASE_URL}/api/reservations/create`, {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, phone, date, time, guests: parseInt(guests), userId, specialRequests: specialRequests || "" })
+                const response = await fetch(`${API_BASE_URL}/api/coupons/public`);
+                if (!response.ok) throw new Error('Failed to fetch coupons');
+                const result = await response.json();
+                let coupons = result.data || [];
+                const now = new Date();
+                coupons = coupons.filter(coupon => {
+                    const expiryDate = new Date(coupon.expiryDate);
+                    const startDate = new Date(coupon.startDate);
+                    return coupon.isActive === true && expiryDate > now && startDate <= now && ALLOWED_COUPON_TYPES.includes(coupon.type);
                 });
-                const data = await response.json();
-                if (data.success) {
-                    showToast(data.message || 'Table booked successfully!');
-                    reservationForm.reset();
-                    initializeDatePicker();
-                    if (isLoggedIn()) {
-                        const user = getCurrentUser();
-                        if (user) {
-                            document.getElementById('resName').value = `${user.firstName || ''} ${user.lastName || ''}`.trim();
-                            document.getElementById('resEmail').value = user.email || '';
-                            document.getElementById('resPhone').value = user.phone || '';
-                        }
-                    }
-                } else { showToast(data.message || 'Booking failed', true); }
-            } catch (error) { console.error('Error booking:', error); showToast('Server connection error', true); }
-            finally { submitBtn.innerHTML = originalText; submitBtn.disabled = false; }
-        });
-    }
-
-    function checkPendingReservation() {
-        const pending = localStorage.getItem('pendingReservation');
-        if (pending) {
-            const data = JSON.parse(pending);
-            document.getElementById('resName').value = data.name || '';
-            document.getElementById('resEmail').value = data.email || '';
-            document.getElementById('resPhone').value = data.phone || '';
-            document.getElementById('book_date').value = data.date || '';
-            document.getElementById('book_time').value = data.time || '';
-            document.getElementById('resPerson').value = data.guests || '';
-            document.getElementById('specialRequests').value = data.specialRequests || '';
-            localStorage.removeItem('pendingReservation');
-            showToast('Please confirm your reservation details and click "Book a Table" again.', false);
-        }
-    }
-
-    function setUserInfoInForm() {
-        if (isLoggedIn()) {
-            const user = getCurrentUser();
-            if (user) {
-                document.getElementById('resName').value = `${user.firstName || ''} ${user.lastName || ''}`.trim();
-                document.getElementById('resEmail').value = user.email || '';
-                document.getElementById('resPhone').value = user.phone || '';
+                coupons.sort((a, b) => new Date(a.expiryDate) - new Date(b.expiryDate));
+                loadingSpinner.style.display = 'none';
+                if (coupons.length === 0) { noCouponsMsg.style.display = 'block'; sliderContainer.style.display = 'none'; return; }
+                allCouponsData = coupons;
+                noCouponsMsg.style.display = 'none';
+                sliderContainer.style.display = 'block';
+                currentSlideIndex = 0;
+                updateSlidesPerView();
+                renderSlider();
+            } catch (error) {
+                console.error('Error loading coupons:', error);
+                loadingSpinner.style.display = 'none';
+                noCouponsMsg.style.display = 'block';
             }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        updateNavbarUserSection();
-        initializeDatePicker();
-        updateCartCount();
-        loadOMGMenu();
-        loadActiveCoupons();
-        setupFilterButtons();
-        setUserInfoInForm();
-        checkPendingReservation();
-    });
-</script>
+        function setupFilterButtons() {
+            // Desktop filter buttons
+            const filterButtons = document.querySelectorAll('.filter-chip');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', async function () {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-filter');
+                    // Update mobile dropdown to match
+                    const mobileSelect = document.getElementById('mobileFilterSelect');
+                    if (mobileSelect) mobileSelect.value = currentFilter;
+                    stopAutoSlide();
+                    const response = await fetch(`${API_BASE_URL}/api/coupons/public`);
+                    const result = await response.json();
+                    let coupons = result.data || [];
+                    const now = new Date();
+                    coupons = coupons.filter(coupon => coupon.isActive === true && new Date(coupon.expiryDate) > now && new Date(coupon.startDate) <= now && ALLOWED_COUPON_TYPES.includes(coupon.type));
+                    if (currentFilter !== 'all') coupons = coupons.filter(coupon => coupon.type === currentFilter);
+                    allCouponsData = coupons;
+                    currentSlideIndex = 0;
+                    updateSlidesPerView();
+                    renderSlider();
+                });
+            });
+
+            // Mobile dropdown filter
+            const mobileSelect = document.getElementById('mobileFilterSelect');
+            if (mobileSelect) {
+                mobileSelect.addEventListener('change', async function () {
+                    currentFilter = this.value;
+                    // Update desktop active state
+                    document.querySelectorAll('.filter-chip').forEach(btn => {
+                        if (btn.getAttribute('data-filter') === currentFilter) btn.classList.add('active');
+                        else btn.classList.remove('active');
+                    });
+                    stopAutoSlide();
+                    const response = await fetch(`${API_BASE_URL}/api/coupons/public`);
+                    const result = await response.json();
+                    let coupons = result.data || [];
+                    const now = new Date();
+                    coupons = coupons.filter(coupon => coupon.isActive === true && new Date(coupon.expiryDate) > now && new Date(coupon.startDate) <= now && ALLOWED_COUPON_TYPES.includes(coupon.type));
+                    if (currentFilter !== 'all') coupons = coupons.filter(coupon => coupon.type === currentFilter);
+                    allCouponsData = coupons;
+                    currentSlideIndex = 0;
+                    updateSlidesPerView();
+                    renderSlider();
+                });
+            }
+        }
+
+        window.copyCouponCode = function (code) {
+            navigator.clipboard.writeText(code).then(() => { showToast(`Coupon code "${code}" copied!`); resetAutoSlide(); })
+                .catch(err => alert(`Coupon Code: ${code}\nPlease remember this code for checkout!`));
+        };
+
+        window.manualSlideNext = manualSlideNext;
+        window.manualSlidePrev = manualSlidePrev;
+
+        function updateNavbarUserSection() {
+            const section = document.getElementById('navbarUserSection');
+            if (!section) return;
+            if (isLoggedIn()) {
+                const user = getCurrentUser();
+                const name = user?.firstName || 'User';
+                const initial = name.charAt(0).toUpperCase();
+                section.innerHTML = `
+                    <div class="user-dropdown">
+                        <div class="user-avatar">${initial}</div>
+                        <span class="user-name">${escapeHtml(name)}</span>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html">My Profile</a>
+                            <a href="#" onclick="viewOrders()">My Orders</a>
+                            <a href="my-reservations.html">My Reservations</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                section.innerHTML = `<a href="login.html" class="login-nav-btn"><span class="icon-user"></span> Login</a><a href="signup.html" class="signup-nav-btn">Sign Up</a>`;
+            }
+        }
+
+        function viewOrders() {
+            if (isLoggedIn()) window.location.href = 'my-orders.html';
+            else { showToast('Please login to view your orders', true); window.location.href = 'login.html?redirect=my-orders.html'; }
+        }
+
+        function initializeDatePicker() {
+            const dateInput = document.getElementById('book_date');
+            if (dateInput) {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                dateInput.min = `${yyyy}-${mm}-${dd}`;
+                dateInput.value = `${yyyy}-${mm}-${dd}`;
+            }
+        }
+
+        window.addEventListener('resize', () => { updateSlidesPerView(); if (allCouponsData.length) renderSlider(); resetAutoSlide(); });
+
+        const reservationForm = document.getElementById('reservationForm');
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const name = document.getElementById('resName').value.trim();
+                const email = document.getElementById('resEmail').value.trim();
+                const phone = document.getElementById('resPhone').value.trim();
+                const date = document.getElementById('book_date').value;
+                const time = document.getElementById('book_time').value;
+                const guests = document.getElementById('resPerson').value;
+                const specialRequests = document.getElementById('specialRequests').value.trim();
+                if (!name || !email || !phone || !date || !time || !guests) { showToast('Please fill all required fields', true); return; }
+                if (!isLoggedIn()) {
+                    const pendingData = { name, email, phone, date, time, guests: parseInt(guests), specialRequests };
+                    localStorage.setItem('pendingReservation', JSON.stringify(pendingData));
+                    showToast('Please login to complete your reservation.', false);
+                    setTimeout(() => { window.location.href = 'login.html?redirect=index.html'; }, 1500);
+                    return;
+                }
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Booking...';
+                submitBtn.disabled = true;
+                try {
+                    const currentUser = getCurrentUser();
+                    const userId = currentUser ? (currentUser._id || currentUser.id) : null;
+                    const response = await fetch(`${API_BASE_URL}/api/reservations/create`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, phone, date, time, guests: parseInt(guests), userId, specialRequests: specialRequests || "" })
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        showToast(data.message || 'Table booked successfully!');
+                        reservationForm.reset();
+                        initializeDatePicker();
+                        if (isLoggedIn()) {
+                            const user = getCurrentUser();
+                            if (user) {
+                                document.getElementById('resName').value = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+                                document.getElementById('resEmail').value = user.email || '';
+                                document.getElementById('resPhone').value = user.phone || '';
+                            }
+                        }
+                    } else { showToast(data.message || 'Booking failed', true); }
+                } catch (error) { console.error('Error booking:', error); showToast('Server connection error', true); }
+                finally { submitBtn.innerHTML = originalText; submitBtn.disabled = false; }
+            });
+        }
+
+        function checkPendingReservation() {
+            const pending = localStorage.getItem('pendingReservation');
+            if (pending) {
+                const data = JSON.parse(pending);
+                document.getElementById('resName').value = data.name || '';
+                document.getElementById('resEmail').value = data.email || '';
+                document.getElementById('resPhone').value = data.phone || '';
+                document.getElementById('book_date').value = data.date || '';
+                document.getElementById('book_time').value = data.time || '';
+                document.getElementById('resPerson').value = data.guests || '';
+                document.getElementById('specialRequests').value = data.specialRequests || '';
+                localStorage.removeItem('pendingReservation');
+                showToast('Please confirm your reservation details and click "Book a Table" again.', false);
+            }
+        }
+
+        function setUserInfoInForm() {
+            if (isLoggedIn()) {
+                const user = getCurrentUser();
+                if (user) {
+                    document.getElementById('resName').value = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+                    document.getElementById('resEmail').value = user.email || '';
+                    document.getElementById('resPhone').value = user.phone || '';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateNavbarUserSection();
+            initializeDatePicker();
+            updateCartCount();
+            loadOMGMenu();
+            loadActiveCoupons();
+            setupFilterButtons();
+            setUserInfoInForm();
+            checkPendingReservation();
+        });
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Our Menu | Olive's Mediterranean Grill</title>
+    <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
+    <meta name="description"
+content="Explore our Mediterranean menu in Red Deer featuring chicken shawarma, falafel wraps, platters, hummus, halal food, and fresh grilled dishes.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
 
@@ -23,6 +26,13 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        html,
+        body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            position: relative;
+        }
+
         .map-container {
             width: 100%;
             margin: 20px;
@@ -90,7 +100,7 @@
             padding: 0 12px;
             box-sizing: border-box;
         }
-        
+
         /* Modern dropdown button style */
         .category-dropdown-btn {
             width: 100%;
@@ -107,37 +117,37 @@
             align-items: center;
             justify-content: space-between;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .category-dropdown-btn:hover {
             background: #fff8f0;
             border-color: #e68a00;
         }
-        
+
         .category-dropdown-btn .btn-icon {
             font-size: 18px;
             margin-right: 10px;
         }
-        
+
         .category-dropdown-btn .selected-text {
             flex: 1;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
+
         .category-dropdown-btn .arrow-icon {
             font-size: 18px;
             transition: transform 0.3s ease;
             color: #7A9A01;
         }
-        
+
         .category-dropdown-btn.active .arrow-icon {
             transform: rotate(180deg);
         }
-        
+
         /* Dropdown menu panel */
         .category-dropdown-panel {
             position: absolute;
@@ -146,7 +156,7 @@
             right: 12px;
             background: white;
             border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             max-height: 380px;
             overflow-y: auto;
             z-index: 1000;
@@ -156,24 +166,24 @@
             transition: all 0.25s ease;
             border: 1px solid #eee;
         }
-        
+
         .category-dropdown-panel.show {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        
+
         .category-dropdown-panel ul {
             list-style: none;
             margin: 0;
             padding: 12px 0;
         }
-        
+
         .category-dropdown-panel li {
             margin: 0;
             padding: 0;
         }
-        
+
         .category-dropdown-panel a {
             display: block;
             padding: 14px 24px;
@@ -184,35 +194,35 @@
             transition: all 0.2s;
             border-left: 3px solid transparent;
         }
-        
+
         .category-dropdown-panel a:hover {
             background-color: #fff5e6;
             color: #7A9A01;
             border-left-color: #7A9A01;
         }
-        
+
         .category-dropdown-panel a.active-mobile {
             background-color: #7A9A0115;
             color: #7A9A01;
             border-left-color: #7A9A01;
             font-weight: 600;
         }
-        
+
         /* Custom scrollbar */
         .category-dropdown-panel::-webkit-scrollbar {
             width: 4px;
         }
-        
+
         .category-dropdown-panel::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 10px;
         }
-        
+
         .category-dropdown-panel::-webkit-scrollbar-thumb {
             background: #7A9A01;
             border-radius: 10px;
         }
-        
+
         /* Overlay when dropdown is open (optional) */
         .dropdown-backdrop {
             position: fixed;
@@ -220,27 +230,30 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             z-index: 98;
             display: none;
         }
-        
+
         .dropdown-backdrop.show {
             display: block;
         }
-        
+
         /* Responsive: on mobile screens (max-width: 768px) hide horizontal list, show new dropdown */
         @media (max-width: 768px) {
             .category-nav .category-list {
                 display: none;
             }
+
             .mobile-category-selector {
                 display: block;
                 position: relative;
             }
+
             .category-nav .container-fluid .row.justify-content-center {
                 margin-bottom: 0.5rem;
             }
+
             .category-nav {
                 padding: 12px 0;
             }
@@ -262,8 +275,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .menu-card {
@@ -383,8 +401,15 @@
         }
 
         @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .nav-user-section {
@@ -529,7 +554,7 @@
             background-color: #dc3545 !important;
             color: white !important;
         }
-        
+
         input[type="date"] {
             width: 100%;
             padding: 12px;
@@ -538,7 +563,7 @@
             font-size: 16px;
             background-color: white;
         }
-        
+
         input[type="date"]:focus {
             border-color: #7A9A01;
             outline: none;
@@ -559,7 +584,7 @@
         .retry-btn:hover {
             background: #a06e3c;
         }
-        
+
         /* extra spacing for mobile */
         @media (max-width: 480px) {
             .category-dropdown-btn {
@@ -568,15 +593,241 @@
             }
         }
 
-           .navbar-brand  img {
-               height: 120px;
-                width: 170px;
-            } 
-         @media (max-width: 768px) {
-             .navbar-brand  img {
-               height: 94px;
+        .navbar-brand img {
+            height: 120px;
+            width: 170px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 94px;
                 width: 119px;
-            } 
+            }
+        }
+
+        /* ================= IMPROVED MOBILE NAVBAR - REPLACE YOUR EXISTING MEDIA QUERY ================= */
+        @media (max-width: 991px) {
+
+            /* Solid navbar background */
+            .ftco-navbar-light {
+                background: #1a1a1a !important;
+            }
+
+            #ftco-nav {
+                background: #ffffff;
+                padding: 20px 20px 30px;
+                border-radius: 0 0 24px 24px;
+                overflow-y: auto;
+                max-height: 85vh;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            #ftco-nav .navbar-nav {
+                width: 100%;
+                margin-bottom: 25px;
+            }
+
+            #ftco-nav .nav-item {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            #ftco-nav .nav-link {
+                color: #222 !important;
+                font-size: 17px;
+                padding: 12px 16px;
+                display: block;
+                border-radius: 14px;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+
+            #ftco-nav .nav-link:hover {
+                background: #f0f3e8;
+                color: #7A9A01 !important;
+            }
+
+            /* BOOK A TABLE BUTTON - PROMINENT & ATTRACTIVE */
+            #ftco-nav .cta {
+                margin-top: 10px;
+                margin-bottom: 8px;
+            }
+
+            #ftco-nav .cta .nav-link {
+                background: linear-gradient(135deg, #7A9A01 0%, #5c7a00 100%);
+                color: #fff !important;
+                text-align: center;
+                font-weight: 700;
+                border-radius: 50px;
+                padding: 14px 20px;
+                box-shadow: 0 6px 14px rgba(122, 154, 1, 0.35);
+                letter-spacing: 0.5px;
+                font-size: 18px;
+            }
+
+            #ftco-nav .cta .nav-link:before {
+                content: "📅 ";
+                font-size: 1.2em;
+            }
+
+            /* CART ITEM - FULL WIDTH VISIBLE CARD */
+            .nav-cart {
+                margin: 15px 0 8px 0;
+                background: #f8f9fc;
+                border-radius: 60px;
+                padding: 8px 18px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                border: 1px solid #e9ecef;
+            }
+
+            .cart-icon {
+                color: #1e2a2e !important;
+                font-size: 20px;
+                font-weight: 600;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .cart-icon span:first-child {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .cart-icon:before {
+                /* content: "🛒"; */
+                font-size: 1.3rem;
+                margin-right: 8px;
+            }
+
+            .cart-count-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-left: auto;
+                background: #7A9A01;
+                color: white;
+                width: 26px;
+                height: 26px;
+                font-size: 13px;
+            }
+
+            /* USER SECTION - MODERN & EASY TO TAP */
+            .nav-user-section {
+                width: 100%;
+                margin: 10px 0 5px 0;
+                display: block;
+                border-top: 1px solid #e2e8f0;
+                padding-top: 20px;
+            }
+
+            .user-dropdown {
+                width: 100%;
+                padding: 14px;
+                background: #f8fafc;
+                border-radius: 24px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                border: 1px solid #e2e8f0;
+            }
+
+            .user-avatar {
+                width: 48px;
+                height: 48px;
+                background: #7A9A01;
+                font-size: 22px;
+            }
+
+            .user-name {
+                color: #2d3748 !important;
+                font-size: 18px;
+                font-weight: 700;
+                flex: 1;
+                background: transparent;
+            }
+
+            /* dropdown on mobile always visible */
+            .user-dropdown-content {
+                position: relative !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 100%;
+                display: block !important;
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+                margin-top: 16px;
+                border-radius: 20px;
+                background: #ffffff;
+                border: 1px solid #eef2f6;
+            }
+
+            .user-dropdown-content a {
+                padding: 14px 20px;
+                font-size: 16px;
+                border-bottom: 1px solid #f1f5f9;
+                font-weight: 500;
+            }
+
+            .user-dropdown-content a:last-child {
+                border-bottom: none;
+            }
+
+            /* Login/Signup buttons row */
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 48%;
+                display: inline-block;
+                text-align: center;
+                padding: 12px 0;
+                font-size: 16px;
+                margin: 6px 1%;
+                border-radius: 40px;
+            }
+
+            .nav-user-section {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            /* additional spacing */
+            .navbar-collapse {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .user-dropdown {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-name {
+                margin-top: 4px;
+                width: 100%;
+            }
+
+            .user-avatar {
+                margin-bottom: 4px;
+            }
         }
     </style>
 </head>
@@ -588,15 +839,18 @@
                 <div class="col-lg-12 d-block">
                     <div class="row d-flex">
                         <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-phone2"></span></div>
                             <span class="text">+1587 272 1088</span>
                         </div>
                         <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-paper-plane"></span></div>
                             <span class="text">olivesmgrill@gmail.com</span>
                         </div>
                         <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
-                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>11:00AM - 9:00PM</span></p>
+                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
+                                <span>11:00AM - 9:00PM</span></p>
                         </div>
                     </div>
                 </div>
@@ -609,7 +863,8 @@
             <a class="navbar-brand" href="index.html">
                 <img src="images/background.png" alt="Olive Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
@@ -623,7 +878,7 @@
                     <li class="nav-item cta"><a href="reservation.html" class="nav-link">Book a table</a></li>
                     <li class="nav-item nav-cart">
                         <a href="cart.html" class="nav-link cart-icon">
-                            <span class="icon-shopping-cart"></span>
+                            <span><span class="icon-shopping-cart"></span> <span class="cart-text">My Cart</span></span>
                             <span id="cartCountBadge" class="cart-count-badge hidden">0</span>
                         </a>
                     </li>
@@ -634,13 +889,16 @@
         </div>
     </nav>
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');"
+        data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
                     <h1 class="mb-2 bread">Our Specialties</h1>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Menu <i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                                    class="ion-ios-arrow-forward"></i></a></span> <span>Menu <i
+                                class="ion-ios-arrow-forward"></i></span></p>
                 </div>
             </div>
         </div>
@@ -660,7 +918,7 @@
                 <ul class="category-list" id="categoryList">
                     <li><a href="#" data-category="all" class="active">All</a></li>
                 </ul>
-                
+
                 <!-- Mobile dropdown - redesigned as toggle button + panel -->
                 <div class="mobile-category-selector" id="mobileCategorySelector">
                     <div class="category-dropdown-btn" id="categoryDropdownBtn">
@@ -703,13 +961,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="resName">Name</label>
-                                    <input type="text" id="resName" class="form-control" placeholder="Your Name" required>
+                                    <input type="text" id="resName" class="form-control" placeholder="Your Name"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="resEmail">Email</label>
-                                    <input type="email" id="resEmail" class="form-control" placeholder="Your Email" required>
+                                    <input type="email" id="resEmail" class="form-control" placeholder="Your Email"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -771,12 +1031,14 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="specialRequests">Special Requests (Optional)</label>
-                                    <textarea id="specialRequests" class="form-control" rows="3" placeholder="Any special requests or dietary requirements?"></textarea>
+                                    <textarea id="specialRequests" class="form-control" rows="3"
+                                        placeholder="Any special requests or dietary requirements?"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary py-3 px-5" id="submitBtn">Book a Table</button>
+                                    <button type="submit" class="btn btn-primary py-3 px-5" id="submitBtn">Book a
+                                        Table</button>
                                 </div>
                             </div>
                         </div>
@@ -787,10 +1049,13 @@
                     <div class="map-container w-100">
                         <h2>Find Us Here</h2>
                         <div class="map-wrapper">
-                            <iframe src="https://www.google.com/maps?q=Olives+Mediterranean+Grill+Red+Deer&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe
+                                src="https://www.google.com/maps?q=Olives+Mediterranean+Grill+Red+Deer&z=17&output=embed"
+                                allowfullscreen="" loading="lazy"></iframe>
                         </div>
                         <div class="map-actions">
-                            <a href="https://maps.google.com/?q=159b+Leva+Ave+%23103+Red+Deer+AB+T4E+0A5" target="_blank" class="btn btn-primary mt-3">Get Directions</a>
+                            <a href="https://maps.google.com/?q=159b+Leva+Ave+%23103+Red+Deer+AB+T4E+0A5"
+                                target="_blank" class="btn btn-primary mt-3">Get Directions</a>
                         </div>
                     </div>
                 </div>
@@ -804,8 +1069,10 @@
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-4">
                     <div class="ftco-footer-widget mb-4">
-                        <img src="images/background.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
-                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <img src="images/background.png" alt="olives Logo"
+                            style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients,
+                            delicious recipes, and a welcoming atmosphere for every food lover.</p>
                         <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
                         <p>📞 +1587 272 1088</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
@@ -815,14 +1082,53 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3"><div class="ftco-footer-widget mb-4"><h2 class="ftco-heading-2">Open Hours</h2><ul class="list-unstyled open-hours"><li class="d-flex"><span>Monday</span><span>11 am–9 pm</span></li><li class="d-flex"><span>Tuesday</span><span>11 am–9 pm</span></li><li class="d-flex"><span>Wednesday</span><span>11 am–9 pm</span></li><li class="d-flex"><span>Thursday</span><span>11 am–9 pm</span></li><li class="d-flex"><span>Friday</span><span>11 am–9 pm</span></li><li class="d-flex"><span>Saturday</span><span>11 am–9 pm</span></li><li class="d-flex"><span>Sunday</span><span>11 am–9 pm</span></li></ul></div></div>
-                <div class="col-md-6 col-lg-4"><div class="ftco-footer-widget mb-4"><h2 class="ftco-heading-2">Instagram</h2><div class="thumb d-sm-flex"><a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.jpg);"></a><a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.jpg);"></a><a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.jpg);"></a></div><div class="thumb d-flex"><a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.jpg);"></a><a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.jpg);"></a><a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.jpg);"></a></div></div></div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Open Hours</h2>
+                        <ul class="list-unstyled open-hours">
+                            <li class="d-flex"><span>Monday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Tuesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Wednesday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Thursday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Friday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Saturday</span><span>11 am–9 pm</span></li>
+                            <li class="d-flex"><span>Sunday</span><span>11 am–9 pm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Instagram</h2>
+                        <div class="thumb d-sm-flex"><a href="#" class="thumb-menu img"
+                                style="background-image: url(images/insta-1.jpg);"></a><a href="#"
+                                class="thumb-menu img" style="background-image: url(images/insta-2.jpg);"></a><a
+                                href="#" class="thumb-menu img" style="background-image: url(images/insta-3.jpg);"></a>
+                        </div>
+                        <div class="thumb d-flex"><a href="#" class="thumb-menu img"
+                                style="background-image: url(images/insta-4.jpg);"></a><a href="#"
+                                class="thumb-menu img" style="background-image: url(images/insta-5.jpg);"></a><a
+                                href="#" class="thumb-menu img" style="background-image: url(images/insta-6.jpg);"></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row"><div class="col-md-12 text-center"><p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com" target="_blank">Astirmind Software Solutions</a></p></div></div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+                            target="_blank">Astirmind Software Solutions</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -855,9 +1161,9 @@
         function showGuestView() { document.getElementById('navbarUserSection').innerHTML = `<a href="login.html" class="login-nav-btn"><span class="icon-user"></span> Login</a><a href="signup.html" class="signup-nav-btn">Sign Up</a>`; }
         function viewOrders() { if (isLoggedIn()) window.location.href = 'my-orders.html'; else showToast('Please login to view your orders', true); }
         function logout() { localStorage.clear(); showToast('Logged out successfully'); updateNavbarUserSection(); updateCartCount(); setTimeout(() => window.location.reload(), 1000); }
-        
+
         async function updateCartCount() { const badge = document.getElementById('cartCountBadge'); if (!isLoggedIn()) { const guestCart = localStorage.getItem('guestCart'); const itemCount = guestCart ? JSON.parse(guestCart).length : 0; if (badge) { badge.textContent = itemCount; if (itemCount > 0) badge.classList.remove('hidden'); else badge.classList.add('hidden'); } return; } try { const token = localStorage.getItem('token'); const user = getCurrentUser(); const response = await fetch(`${API_BASE_URL}/api/cart/${user._id || user.id}`, { headers: { 'Authorization': `Bearer ${token}` } }); if (response.ok) { const cart = await response.json(); const itemCount = cart?.items?.length || 0; if (badge) { badge.textContent = itemCount; if (itemCount > 0) badge.classList.remove('hidden'); else badge.classList.add('hidden'); } } } catch { console.error('Cart count error'); } }
-        
+
         async function fetchRealMenuFromBackend() {
             const container = document.getElementById('menuContainer');
             container.innerHTML = `<div class="loading-spinner"><div class="spinner"></div><p>Fetching authentic menu from our kitchen...</p></div>`;
@@ -873,20 +1179,20 @@
                 container.innerHTML = `<div class="text-center"><p style="color: #dc3545;">⚠️ Unable to load menu from server. Ensure backend is running on port 5000.</p><button class="retry-btn" onclick="location.reload()">Retry Connection</button></div>`;
             }
         }
-        
+
         function displayCategoryNavigation() {
             const categories = [...new Set(allProducts.map(item => item.category).filter(c => c))];
-            categories.sort((a,b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b));
+            categories.sort((a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b));
             const categoryList = document.getElementById('categoryList');
             categoryList.innerHTML = '<li><a href="#" data-category="all" class="active">All</a></li>';
             categories.forEach(c => { categoryList.innerHTML += `<li><a href="#" data-category="${c.replace(/"/g, '&quot;')}">${c}</a></li>`; });
             const mobileList = document.getElementById('mobileCategoryList');
             mobileList.innerHTML = '<li><a href="#" data-category="all" class="active-mobile">📋 All Categories</a></li>';
             categories.forEach(c => { mobileList.innerHTML += `<li><a href="#" data-category="${c.replace(/"/g, '&quot;')}">${c}</a></li>`; });
-            
+
             // desktop events
             document.querySelectorAll('.category-list a').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     document.querySelectorAll('.category-list a').forEach(a => a.classList.remove('active'));
                     this.classList.add('active');
@@ -898,10 +1204,10 @@
                     document.getElementById('dropdownBackdrop').classList.remove('show');
                 });
             });
-            
+
             // mobile dropdown links
             document.querySelectorAll('#mobileCategoryList a').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const cat = this.dataset.category;
                     currentCategory = cat;
@@ -917,23 +1223,23 @@
                     document.getElementById('dropdownBackdrop').classList.remove('show');
                 });
             });
-            
+
             // toggle dropdown on button click
             const btn = document.getElementById('categoryDropdownBtn');
             const panel = document.getElementById('categoryDropdownPanel');
             const backdrop = document.getElementById('dropdownBackdrop');
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 panel.classList.toggle('show');
                 btn.classList.toggle('active');
                 backdrop.classList.toggle('show');
             });
-            backdrop.addEventListener('click', function() {
+            backdrop.addEventListener('click', function () {
                 panel.classList.remove('show');
                 btn.classList.remove('active');
                 backdrop.classList.remove('show');
             });
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (!btn.contains(e.target) && !panel.contains(e.target)) {
                     panel.classList.remove('show');
                     btn.classList.remove('active');
@@ -941,25 +1247,25 @@
                 }
             });
         }
-        
+
         function updateMobileSelectedText(category) {
             const textSpan = document.getElementById('selectedCategoryText');
             if (category === 'all') textSpan.innerText = 'All Categories';
             else textSpan.innerText = category;
         }
-        
+
         function filterMenuItems() {
             if (currentCategory === 'all') displayMenuItems(allProducts);
             else displayMenuItems(allProducts.filter(item => item.category === currentCategory));
         }
-        
+
         function displayMenuItems(products) {
             const container = document.getElementById('menuContainer');
             if (!products || products.length === 0) { container.innerHTML = '<div class="text-center"><p>No menu items in this category.</p></div>'; return; }
             const grouped = {};
             products.forEach(product => { if (!grouped[product.category]) grouped[product.category] = []; grouped[product.category].push(product); });
             let html = '';
-            Object.keys(grouped).sort((a,b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b)).forEach(category => {
+            Object.keys(grouped).sort((a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b)).forEach(category => {
                 html += `<div class="category-section"><div class="row"><div class="col-12"><h3>${escapeHtml(category)}</h3></div></div><div class="row">`;
                 grouped[category].forEach(item => {
                     const imageUrl = getImageUrl(item.image);
@@ -971,13 +1277,13 @@
             });
             container.innerHTML = html;
         }
-        
+
         function escapeHtml(str) { if (!str) return ''; return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
         async function addToCart(product) { const loggedIn = isLoggedIn(); if (!loggedIn) { let guestCart = localStorage.getItem('guestCart'); guestCart = guestCart ? JSON.parse(guestCart) : []; const existingItem = guestCart.find(item => item.productId === product._id); if (existingItem) existingItem.quantity += 1; else guestCart.push({ productId: product._id, name: product.name, price: typeof product.price === 'number' ? product.price : parseFloat(product.price), quantity: 1, image: product.image }); localStorage.setItem('guestCart', JSON.stringify(guestCart)); showToast(`${product.name} added to cart!`); updateCartCount(); return; } try { const token = localStorage.getItem('token'); const user = getCurrentUser(); await fetch(`${API_BASE_URL}/api/cart/add`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ userId: user._id || user.id, product: { productId: product._id, name: product.name, price: typeof product.price === 'number' ? product.price : parseFloat(product.price), quantity: 1, image: product.image } }) }); showToast(`${product.name} added to cart!`); updateCartCount(); } catch (error) { showToast('Failed to add to cart.', true); } }
         function initializeDatePicker() { const dateInput = document.getElementById('book_date'); if (dateInput) { const today = new Date(); const year = today.getFullYear(); const month = String(today.getMonth() + 1).padStart(2, '0'); const day = String(today.getDate()).padStart(2, '0'); dateInput.min = `${year}-${month}-${day}`; dateInput.value = `${year}-${month}-${day}`; } }
-        document.getElementById('reservationForm')?.addEventListener('submit', async function(e) { e.preventDefault(); const name = document.getElementById('resName').value.trim(), email = document.getElementById('resEmail').value.trim(), phone = document.getElementById('resPhone').value.trim(), date = document.getElementById('book_date').value, time = document.getElementById('book_time').value, guests = document.getElementById('resPerson').value, specialRequests = document.getElementById('specialRequests').value.trim(); if (!name || !email || !phone || !date || !time || !guests) { showToast('Please fill in all required fields', true); return; } if (!isLoggedIn()) { localStorage.setItem('pendingReservation', JSON.stringify({ name, email, phone, date, time, guests: parseInt(guests), specialRequests })); showToast('Please login to complete reservation.', false); setTimeout(() => { window.location.href = 'login.html?redirect=menu.html'; }, 1500); return; } const submitBtn = document.getElementById('submitBtn'), originalText = submitBtn.innerHTML; submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Booking...'; submitBtn.disabled = true; try { const currentUser = getCurrentUser(); const response = await fetch(`${API_BASE_URL}/api/reservations/create`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, phone, date, time, guests: parseInt(guests), userId: currentUser?._id || currentUser?.id, specialRequests: specialRequests || "" }) }); const data = await response.json(); if (data.success) { showToast('🎉 Table booked successfully!'); document.getElementById('reservationForm').reset(); initializeDatePicker(); if (isLoggedIn() && getCurrentUser()) { const u = getCurrentUser(); document.getElementById('resName').value = `${u.firstName || ''} ${u.lastName || ''}`.trim(); document.getElementById('resEmail').value = u.email || ''; document.getElementById('resPhone').value = u.phone || ''; } } else showToast(data.message || 'Failed to book table.', true); } catch { showToast('Cannot connect to server.', true); } finally { submitBtn.innerHTML = originalText; submitBtn.disabled = false; } });
+        document.getElementById('reservationForm')?.addEventListener('submit', async function (e) { e.preventDefault(); const name = document.getElementById('resName').value.trim(), email = document.getElementById('resEmail').value.trim(), phone = document.getElementById('resPhone').value.trim(), date = document.getElementById('book_date').value, time = document.getElementById('book_time').value, guests = document.getElementById('resPerson').value, specialRequests = document.getElementById('specialRequests').value.trim(); if (!name || !email || !phone || !date || !time || !guests) { showToast('Please fill in all required fields', true); return; } if (!isLoggedIn()) { localStorage.setItem('pendingReservation', JSON.stringify({ name, email, phone, date, time, guests: parseInt(guests), specialRequests })); showToast('Please login to complete reservation.', false); setTimeout(() => { window.location.href = 'login.html?redirect=menu.html'; }, 1500); return; } const submitBtn = document.getElementById('submitBtn'), originalText = submitBtn.innerHTML; submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Booking...'; submitBtn.disabled = true; try { const currentUser = getCurrentUser(); const response = await fetch(`${API_BASE_URL}/api/reservations/create`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, phone, date, time, guests: parseInt(guests), userId: currentUser?._id || currentUser?.id, specialRequests: specialRequests || "" }) }); const data = await response.json(); if (data.success) { showToast('🎉 Table booked successfully!'); document.getElementById('reservationForm').reset(); initializeDatePicker(); if (isLoggedIn() && getCurrentUser()) { const u = getCurrentUser(); document.getElementById('resName').value = `${u.firstName || ''} ${u.lastName || ''}`.trim(); document.getElementById('resEmail').value = u.email || ''; document.getElementById('resPhone').value = u.phone || ''; } } else showToast(data.message || 'Failed to book table.', true); } catch { showToast('Cannot connect to server.', true); } finally { submitBtn.innerHTML = originalText; submitBtn.disabled = false; } });
         function checkPendingReservation() { const pending = localStorage.getItem('pendingReservation'); if (pending) { const data = JSON.parse(pending); document.getElementById('resName').value = data.name || ''; document.getElementById('resEmail').value = data.email || ''; document.getElementById('resPhone').value = data.phone || ''; document.getElementById('book_date').value = data.date || ''; document.getElementById('book_time').value = data.time || ''; document.getElementById('resPerson').value = data.guests || ''; document.getElementById('specialRequests').value = data.specialRequests || ''; localStorage.removeItem('pendingReservation'); showToast('Confirm your reservation and click "Book a Table".', false); } }
-        document.addEventListener('DOMContentLoaded', function() { updateNavbarUserSection(); fetchRealMenuFromBackend(); updateCartCount(); initializeDatePicker(); checkPendingReservation(); });
+        document.addEventListener('DOMContentLoaded', function () { updateNavbarUserSection(); fetchRealMenuFromBackend(); updateCartCount(); initializeDatePicker(); checkPendingReservation(); });
     </script>
 </body>
 
