@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-     <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
+    <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, viewport-fit=cover">
     <meta name="description"
-    content="Enjoy the best shawarma, falafel, and Mediterranean food in Red Deer. Fresh ingredients, halal options & fast pickup. Order online now!">
+        content="Enjoy the best shawarma, falafel, and Mediterranean food in Red Deer. Fresh ingredients, halal options & fast pickup. Order online now!">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
@@ -1094,6 +1094,71 @@
         @media (min-width: 992px) {
             .user-dropdown:hover .user-dropdown-content {
                 display: block;
+            }
+        }
+
+
+        /* =========================================
+            MOBILE SCROLL FIX
+            ========================================= */
+
+        @media (max-width: 768px) {
+
+            html,
+            body {
+                overflow-x: hidden;
+                overflow-y: auto !important;
+                height: auto !important;
+            }
+
+            /* Remove forced full height on mobile */
+            .js-fullheight,
+            .slider-item,
+            .home-slider,
+            .owl-carousel,
+            .owl-stage-outer,
+            .owl-stage,
+            .owl-item {
+                height: auto !important;
+                min-height: 100vh;
+            }
+
+            /* Hero section spacing */
+            .slider-text {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+
+            /* Testimonials fix */
+            .testimony-section {
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            .carousel-testimony {
+                overflow: visible !important;
+            }
+
+            .testimony-wrap {
+                padding-bottom: 80px;
+            }
+
+            /* Owl carousel mobile fix */
+            .owl-carousel .owl-item {
+                overflow: visible;
+            }
+
+            /* Prevent body lock */
+            body.menu-show {
+                overflow: auto !important;
+                position: static !important;
+            }
+
+            /* Fix container clipping */
+            .container,
+            .container-fluid,
+            section {
+                overflow: visible !important;
             }
         }
     </style>
