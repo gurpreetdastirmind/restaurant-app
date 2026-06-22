@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Manage your Olives Mediterranean Grill profile, update account details, view orders, save preferences, and enjoy online ordering for fresh Mediterranean halal food in Red Deer.">
+    <meta name="description"
+        content="Manage your Olives Mediterranean Grill profile, update account details, view orders, save preferences, and enjoy online ordering for fresh Mediterranean halal food in Red Deer.">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
@@ -224,7 +226,12 @@
             display: inline-block;
             transition: 0.3s;
         }
-        .login-nav-btn:hover { color: white; opacity: 0.85; text-decoration: none; }
+
+        .login-nav-btn:hover {
+            color: white;
+            opacity: 0.85;
+            text-decoration: none;
+        }
 
         .signup-nav-btn {
             background: transparent;
@@ -236,7 +243,12 @@
             display: inline-block;
             transition: 0.3s;
         }
-        .signup-nav-btn:hover { background: #7A9A01; color: white; text-decoration: none; }
+
+        .signup-nav-btn:hover {
+            background: #7A9A01;
+            color: white;
+            text-decoration: none;
+        }
 
         /* FIXED DROPDOWN - click to toggle, stays open */
         .user-dropdown {
@@ -251,7 +263,10 @@
             min-height: 48px;
             user-select: none;
         }
-        .user-dropdown:hover { background: rgba(255,255,255,0.08); }
+
+        .user-dropdown:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
 
         .user-dropdown-content {
             display: none;
@@ -261,7 +276,7 @@
             margin-top: 8px;
             background: white;
             min-width: 210px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             border-radius: 12px;
             z-index: 9999;
             overflow: hidden;
@@ -283,13 +298,24 @@
             transition: background 0.15s;
             border-bottom: 1px solid #f5f5f5;
         }
-        .user-dropdown-content a:last-child { border-bottom: none; }
+
+        .user-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
         .user-dropdown-content a:hover {
             background: #f0f3e8;
             color: #7A9A01;
         }
-        .user-dropdown-content .logout-dropdown-item { color: #dc3545 !important; }
-        .user-dropdown-content .logout-dropdown-item:hover { background: #dc3545 !important; color: white !important; }
+
+        .user-dropdown-content .logout-dropdown-item {
+            color: #dc3545 !important;
+        }
+
+        .user-dropdown-content .logout-dropdown-item:hover {
+            background: #dc3545 !important;
+            color: white !important;
+        }
 
         .nav-cart {
             position: relative;
@@ -333,8 +359,15 @@
         }
 
         @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .navbar-brand img {
@@ -353,33 +386,131 @@
            MOBILE RESPONSIVE FIX
         ========================= */
         @media (max-width: 768px) {
-            html, body { overflow-x: hidden !important; width: 100%; }
-            .container { max-width: 100%; padding-left: 12px; padding-right: 12px; }
-            .profile-container { padding: 20px 0; }
-            .profile-card { padding: 18px; border-radius: 15px; margin-bottom: 20px; }
-            .profile-header { margin-bottom: 20px; padding-bottom: 15px; }
-            .profile-avatar { width: 75px; height: 75px; font-size: 28px; }
-            .profile-header h3 { font-size: 28px; line-height: 1.3; word-break: break-word; }
-            .profile-header p { font-size: 13px; word-break: break-word; }
-            .info-row { display: block; }
-            .info-label { min-width: 100%; margin-bottom: 5px; }
-            .info-value { width: 100%; display: block; font-size: 15px; word-break: break-word; }
-            .form-group input, .form-group select, .form-group textarea { font-size: 14px; padding: 10px; }
-            .row { margin-left: 0; margin-right: 0; }
-            .col-md-6 { padding-left: 0; padding-right: 0; }
-            .edit-mode-actions { flex-direction: column; }
-            .btn-save, .btn-cancel, .btn-edit { width: 100%; margin: 5px 0; }
-            .btn-cancel { margin-left: 0; }
-            .navbar-brand img { height: 80px; width: auto; }
-            .navbar-toggler { font-size: 14px; padding: 5px 10px; }
-            .nav-user-section { margin-top: 15px; flex-direction: column; align-items: flex-start; }
-            .user-dropdown-content { right: auto; left: 0; }
-            .address-section h4 { font-size: 20px; }
+
+            html,
+            body {
+                overflow-x: hidden !important;
+                width: 100%;
+            }
+
+            .container {
+                max-width: 100%;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .profile-container {
+                padding: 20px 0;
+            }
+
+            .profile-card {
+                padding: 18px;
+                border-radius: 15px;
+                margin-bottom: 20px;
+            }
+
+            .profile-header {
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+
+            .profile-avatar {
+                width: 75px;
+                height: 75px;
+                font-size: 28px;
+            }
+
+            .profile-header h3 {
+                font-size: 28px;
+                line-height: 1.3;
+                word-break: break-word;
+            }
+
+            .profile-header p {
+                font-size: 13px;
+                word-break: break-word;
+            }
+
+            .info-row {
+                display: block;
+            }
+
+            .info-label {
+                min-width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .info-value {
+                width: 100%;
+                display: block;
+                font-size: 15px;
+                word-break: break-word;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .col-md-6 {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .edit-mode-actions {
+                flex-direction: column;
+            }
+
+            .btn-save,
+            .btn-cancel,
+            .btn-edit {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .btn-cancel {
+                margin-left: 0;
+            }
+
+            .navbar-brand img {
+                height: 80px;
+                width: auto;
+            }
+
+            .navbar-toggler {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
+
+            .nav-user-section {
+                margin-top: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-dropdown-content {
+                right: auto;
+                left: 0;
+            }
+
+            .address-section h4 {
+                font-size: 20px;
+            }
         }
 
         /* ================= IMPROVED MOBILE NAVBAR ================= */
         @media (max-width: 991px) {
-            .ftco-navbar-light { background: #1a1a1a !important; }
+            .ftco-navbar-light {
+                background: #1a1a1a !important;
+            }
+
             #ftco-nav {
                 background: #ffffff;
                 padding: 20px 20px 30px;
@@ -388,8 +519,17 @@
                 max-height: 85vh;
                 box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             }
-            #ftco-nav .navbar-nav { width: 100%; margin-bottom: 25px; }
-            #ftco-nav .nav-item { width: 100%; margin-bottom: 5px; }
+
+            #ftco-nav .navbar-nav {
+                width: 100%;
+                margin-bottom: 25px;
+            }
+
+            #ftco-nav .nav-item {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
             #ftco-nav .nav-link {
                 color: #222 !important;
                 font-size: 17px;
@@ -399,8 +539,17 @@
                 font-weight: 500;
                 transition: all 0.2s;
             }
-            #ftco-nav .nav-link:hover { background: #f0f3e8; color: #7A9A01 !important; }
-            #ftco-nav .cta { margin-top: 10px; margin-bottom: 8px; }
+
+            #ftco-nav .nav-link:hover {
+                background: #f0f3e8;
+                color: #7A9A01 !important;
+            }
+
+            #ftco-nav .cta {
+                margin-top: 10px;
+                margin-bottom: 8px;
+            }
+
             #ftco-nav .cta .nav-link {
                 background: linear-gradient(135deg, #7A9A01 0%, #5c7a00 100%);
                 color: #fff !important;
@@ -412,7 +561,11 @@
                 letter-spacing: 0.5px;
                 font-size: 18px;
             }
-            #ftco-nav .cta .nav-link:before { content: "📅 "; font-size: 1.2em; }
+
+            #ftco-nav .cta .nav-link:before {
+                content: "📅 ";
+                font-size: 1.2em;
+            }
 
             .nav-cart {
                 margin: 15px 0 8px 0;
@@ -425,6 +578,7 @@
                 width: 100%;
                 border: 1px solid #e9ecef;
             }
+
             .cart-icon {
                 color: #1e2a2e !important;
                 font-size: 20px;
@@ -432,7 +586,13 @@
                 width: 100%;
                 justify-content: space-between;
             }
-            .cart-icon span:first-child { display: flex; align-items: center; gap: 10px; }
+
+            .cart-icon span:first-child {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
             .cart-count-badge {
                 position: relative;
                 top: 0;
@@ -468,7 +628,13 @@
                 border: 1px solid #e2e8f0;
                 min-height: 60px;
             }
-            .user-avatar { width: 48px; height: 48px; font-size: 22px; }
+
+            .user-avatar {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+
             .user-name {
                 color: #2d3748 !important;
                 font-size: 18px;
@@ -489,10 +655,12 @@
                 background: #ffffff;
                 border: 1px solid #eef2f6;
             }
+
             /* On mobile, dropdown is always shown inside the card (but hidden by default, toggled by click) */
             .user-dropdown:not(.active) .user-dropdown-content {
                 display: none !important;
             }
+
             .user-dropdown.active .user-dropdown-content {
                 display: block !important;
             }
@@ -503,7 +671,10 @@
                 border-bottom: 1px solid #f1f5f9;
                 font-weight: 500;
             }
-            .user-dropdown-content a:last-child { border-bottom: none; }
+
+            .user-dropdown-content a:last-child {
+                border-bottom: none;
+            }
 
             .login-nav-btn,
             .signup-nav-btn {
@@ -515,6 +686,7 @@
                 margin: 6px 1%;
                 border-radius: 40px;
             }
+
             .nav-user-section {
                 display: flex;
                 flex-direction: row;
@@ -522,14 +694,34 @@
                 justify-content: space-between;
                 gap: 8px;
             }
-            .navbar-collapse { max-height: 80vh; overflow-y: auto; }
+
+            .navbar-collapse {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
         }
 
         @media (max-width: 480px) {
-            .login-nav-btn, .signup-nav-btn { width: 100%; margin: 6px 0; }
-            .user-dropdown { flex-direction: column; align-items: flex-start; }
-            .user-name { margin-top: 4px; width: 100%; }
-            .user-avatar { margin-bottom: 4px; }
+
+            .login-nav-btn,
+            .signup-nav-btn {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .user-dropdown {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-name {
+                margin-top: 4px;
+                width: 100%;
+            }
+
+            .user-avatar {
+                margin-bottom: 4px;
+            }
         }
     </style>
 </head>
@@ -542,15 +734,19 @@
                 <div class="col-lg-12 d-block">
                     <div class="row d-flex">
                         <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-phone2"></span></div>
                             <span class="text">+1587 272 1088</span>
                         </div>
                         <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+                                    class="icon-paper-plane"></span></div>
                             <span class="text">olivesmgrill@gmail.com</span>
                         </div>
                         <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
-                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>11:00AM - 9:00PM</span></p>
+                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span>
+                                <span>11:00AM - 9:00PM</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -564,7 +760,8 @@
             <a class="navbar-brand" href="index.html">
                 <img src="images/background.png" alt="Olive Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
@@ -588,13 +785,15 @@
     </nav>
 
     <!-- hero -->
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_3.jpg');"
+        data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
                     <h1 class="mb-2 bread">My Profile</h1>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                                    class="ion-ios-arrow-forward"></i></a></span>
                         <span>Profile <i class="ion-ios-arrow-forward"></i></span>
                     </p>
                 </div>
@@ -612,22 +811,48 @@
                             <div class="profile-avatar" id="profileAvatar">G</div>
                             <h3 id="profileName">Loading...</h3>
                             <p id="profileEmail">Loading...</p>
-                            <p><span class="badge" id="profileRole" style="background:#7A9A01; color:white; padding:5px 15px; border-radius:20px;">User</span></p>
+                            <p><span class="badge" id="profileRole"
+                                    style="background:#7A9A01; color:white; padding:5px 15px; border-radius:20px;">User</span>
+                            </p>
                         </div>
 
                         <!-- View Mode -->
                         <div id="viewMode">
-                            <div class="info-row"><div class="info-label">First Name:</div><div class="info-value" id="viewFirstName">-</div></div>
-                            <div class="info-row"><div class="info-label">Last Name:</div><div class="info-value" id="viewLastName">-</div></div>
-                            <div class="info-row"><div class="info-label">Email:</div><div class="info-value" id="viewEmail">-</div></div>
-                            <div class="info-row"><div class="info-label">Phone:</div><div class="info-value" id="viewPhone">-</div></div>
+                            <div class="info-row">
+                                <div class="info-label">First Name:</div>
+                                <div class="info-value" id="viewFirstName">-</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Last Name:</div>
+                                <div class="info-value" id="viewLastName">-</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Email:</div>
+                                <div class="info-value" id="viewEmail">-</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Phone:</div>
+                                <div class="info-value" id="viewPhone">-</div>
+                            </div>
 
                             <div class="address-section">
                                 <h4>Delivery Address</h4>
-                                <div class="info-row"><div class="info-label">Street Address:</div><div class="info-value" id="viewStreet">Not set</div></div>
-                                <div class="info-row"><div class="info-label">City:</div><div class="info-value" id="viewCity">Not set</div></div>
-                                <div class="info-row"><div class="info-label">State/Province:</div><div class="info-value" id="viewState">Not set</div></div>
-                                <div class="info-row"><div class="info-label">Postal Code:</div><div class="info-value" id="viewPostalCode">Not set</div></div>
+                                <div class="info-row">
+                                    <div class="info-label">Street Address:</div>
+                                    <div class="info-value" id="viewStreet">Not set</div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">City:</div>
+                                    <div class="info-value" id="viewCity">Not set</div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">State/Province:</div>
+                                    <div class="info-value" id="viewState">Not set</div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">Postal Code:</div>
+                                    <div class="info-value" id="viewPostalCode">Not set</div>
+                                </div>
                             </div>
 
                             <button class="btn-edit" onclick="enableEditMode()">✏️ Edit Profile</button>
@@ -636,19 +861,31 @@
                         <!-- Edit Mode -->
                         <div id="editMode" style="display: none;">
                             <form id="profileForm">
-                                <div class="form-group"><label>First Name *</label><input type="text" id="editFirstName" required></div>
-                                <div class="form-group"><label>Last Name *</label><input type="text" id="editLastName" required></div>
-                                <div class="form-group"><label>Email *</label><input type="email" id="editEmail" required></div>
-                                <div class="form-group"><label>Phone Number *</label><input type="tel" id="editPhone" required placeholder="Enter your phone number"></div>
+                                <div class="form-group"><label>First Name *</label><input type="text" id="editFirstName"
+                                        required></div>
+                                <div class="form-group"><label>Last Name *</label><input type="text" id="editLastName"
+                                        required></div>
+                                <div class="form-group"><label>Email *</label><input type="email" id="editEmail"
+                                        required></div>
+                                <div class="form-group"><label>Phone Number *</label><input type="tel" id="editPhone"
+                                        required placeholder="Enter your phone number"></div>
 
                                 <div class="address-section">
                                     <h4>Delivery Address Information</h4>
-                                    <div class="form-group"><label>Street Address</label><input type="text" id="editStreet" placeholder="Enter your street address"></div>
+                                    <div class="form-group"><label>Street Address</label><input type="text"
+                                            id="editStreet" placeholder="Enter your street address"></div>
                                     <div class="row">
-                                        <div class="col-md-6"><div class="form-group"><label>City</label><input type="text" id="editCity" placeholder="Enter your city"></div></div>
-                                        <div class="col-md-6"><div class="form-group"><label>State/Province</label><input type="text" id="editState" placeholder="Enter your state"></div></div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>City</label><input type="text" id="editCity"
+                                                    placeholder="Enter your city"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>State/Province</label><input type="text"
+                                                    id="editState" placeholder="Enter your state"></div>
+                                        </div>
                                     </div>
-                                    <div class="form-group"><label>Postal Code</label><input type="text" id="editPostalCode" placeholder="Enter postal code"></div>
+                                    <div class="form-group"><label>Postal Code</label><input type="text"
+                                            id="editPostalCode" placeholder="Enter postal code"></div>
                                 </div>
 
                                 <div class="edit-mode-actions">
@@ -669,8 +906,10 @@
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-4">
                     <div class="ftco-footer-widget mb-4">
-                        <img src="images/background.png" alt="olives Logo" style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
-                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients, delicious recipes, and a welcoming atmosphere for every food lover.</p>
+                        <img src="images/background.png" alt="olives Logo"
+                            style="height: 115px; width: auto; margin-right: 10px; vertical-align: middle;">
+                        <p>Enjoy authentic Mediterranean flavors at Olives Mediterranean Grill. Fresh ingredients,
+                            delicious recipes, and a welcoming atmosphere for every food lover.</p>
                         <p>📍 159b Leva Ave #103, Red Deer, AB T4E 0A5</p>
                         <p>📞 +1587 272 1088</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
@@ -712,13 +951,21 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com" target="_blank">Astirmind Software Solutions</a></p>
+                    <p>Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+                            target="_blank">Astirmind Software Solutions</a>
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -794,7 +1041,7 @@
         }
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('.user-dropdown')) {
                 document.querySelectorAll('.user-dropdown.active').forEach(el => {
                     el.classList.remove('active');
@@ -847,6 +1094,8 @@
 
         async function logout() {
             const token = localStorage.getItem('token');
+
+            const userAddress = localStorage.getItem('userAddress');
             if (token) {
                 try {
                     await fetch('https://restaurant-app-ru0u.onrender.com/api/auth/logout', {
@@ -855,7 +1104,21 @@
                     });
                 } catch (error) { }
             }
-            localStorage.clear();
+            // ✅ Clear everything except userAddress
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            localStorage.removeItem('tokenExpiresAt');
+            localStorage.removeItem('guestCart');
+            localStorage.removeItem('redirectAfterLogin');
+            sessionStorage.removeItem('pendingCheckoutCart');
+            sessionStorage.removeItem('checkoutCartItems');
+            sessionStorage.removeItem('justLoggedIn');
+
+            // ✅ Restore address if it was saved
+            if (userAddress) {
+                localStorage.setItem('userAddress', userAddress);
+            }
             showToast('Logged out successfully!');
             setTimeout(() => { window.location.href = 'index.html'; }, 1500);
         }
@@ -893,9 +1156,18 @@
             const isAuth = await checkAuth();
             if (!isAuth) return;
 
-            const savedAddress = localStorage.getItem('userAddress');
-            if (savedAddress) {
-                userAddress = JSON.parse(savedAddress);
+            // ✅ First try to get address from user object (from backend)
+            if (currentUser && currentUser.address) {
+                userAddress = currentUser.address;
+                localStorage.setItem('userAddress', JSON.stringify(userAddress));
+            } else {
+                // Fallback to localStorage
+                const savedAddress = localStorage.getItem('userAddress');
+                if (savedAddress) {
+                    userAddress = JSON.parse(savedAddress);
+                } else {
+                    userAddress = { street: "", city: "", state: "", postalCode: "" };
+                }
             }
 
             displayProfile();
@@ -944,24 +1216,46 @@
             displayProfile();
         }
 
-        async function updateUserProfile(firstName, lastName, email, phone) {
+        async function updateUserProfile(firstName, lastName, email, phone, address) {
             try {
                 const token = localStorage.getItem('token');
+
+                // ✅ Include address in the request
                 const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ firstName, lastName, email, phone })
+                    body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        address: address // ✅ Send address to backend
+                    })
                 });
 
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    const updatedUser = { ...currentUser, firstName, lastName, email, phone };
+                    // ✅ Update user with address from response
+                    const updatedUser = {
+                        ...currentUser,
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        address: data.data.address || address
+                    };
                     localStorage.setItem('user', JSON.stringify(updatedUser));
                     currentUser = updatedUser;
+
+                    // ✅ Save address in localStorage as backup
+                    if (address) {
+                        localStorage.setItem('userAddress', JSON.stringify(address));
+                    }
+
                     return true;
                 } else {
                     showToast(data.message || 'Failed to update profile', true);
@@ -1008,10 +1302,12 @@
             submitBtn.disabled = true;
 
             try {
-                const profileUpdated = await updateUserProfile(firstName, lastName, email, phone);
+                // ✅ Create address object
+                const address = { street, city, state, postalCode };
+
+                const profileUpdated = await updateUserProfile(firstName, lastName, email, phone, address);
 
                 if (profileUpdated) {
-                    saveAddressToLocalStorage(street, city, state, postalCode);
                     showToast('✅ Profile updated successfully!');
                     disableEditMode();
                     displayProfile();
@@ -1034,4 +1330,5 @@
         });
     </script>
 </body>
+
 </html>

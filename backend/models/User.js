@@ -53,7 +53,15 @@ const userSchema = new mongoose.Schema({
   resetOTPExpires: {
     type: Date,
     select: false,
+  },
+  // ✅ ADD ADDRESS FIELDS HERE
+  address: {
+    street: { type: String, default: "" },
+    city: { type: String, default: "" },
+    state: { type: String, default: "" },
+    postalCode: { type: String, default: "" }
   }
+
 });
 
 // IMPORTANT FIX: Correct pre-save hook without async/await issues

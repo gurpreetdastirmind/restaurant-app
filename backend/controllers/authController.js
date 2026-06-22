@@ -88,6 +88,7 @@ const registerUser = async (req, res) => {
         email: user.email,
         phone: user.phone,
         role: user.role,
+        address: { street: "", city: "", state: "", postalCode: "" }, 
         token: token,
         refreshToken: refreshToken,
         expiresIn: 7 * 24 * 60 * 60 * 1000,
@@ -184,6 +185,7 @@ const loginUser = async (req, res) => {
         email: user.email,
         phone: user.phone,
         role: user.role,
+        address: user.address || { street: "", city: "", state: "", postalCode: "" },
         token: token,
         refreshToken: refreshToken,
         expiresIn: 7 * 24 * 60 * 60 * 1000,
@@ -356,9 +358,12 @@ const getTokenStatus = async (req, res) => {
 // @desc    Update user profile (for logged in users)
 // @route   PUT /api/auth/profile
 // @access  Private
+// @desc    Update user profile (for logged in users)
+// @route   PUT /api/auth/profile
+// @access  Private
 const updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, email, phone } = req.body;
+    const { firstName, lastName, email, phone, address } = req.body;
     const userId = req.user._id;
 
     const user = await User.findById(userId);
@@ -380,12 +385,23 @@ const updateProfile = async (req, res) => {
       }
     }
 
+    // Update basic fields
     if (firstName) user.firstName = firstName;
     if (lastName) user.lastName = lastName;
     if (email) user.email = email.toLowerCase();
     if (phone) user.phone = phone;
+    
+    // ✅ Update address fields
+    if (address) {
+      user.address = {
+        street: address.street || user.address?.street || "",
+        city: address.city || user.address?.city || "",
+        state: address.state || user.address?.state || "",
+        postalCode: address.postalCode || user.address?.postalCode || ""
+      };
+    }
+    
     user.updatedAt = Date.now();
-
     await user.save();
 
     const updatedUser = {
@@ -395,6 +411,7 @@ const updateProfile = async (req, res) => {
       email: user.email,
       phone: user.phone,
       role: user.role,
+      address: user.address, // ✅ Include address in response
     };
 
     res.status(200).json({
