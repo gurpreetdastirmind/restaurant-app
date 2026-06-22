@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-     <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
+    <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Review your cart and order fresh Mediterranean food online from Olives Mediterranean Grill in Red Deer. Shawarma, falafel, halal wraps, platters, and more.">
+    <meta name="description"
+        content="Review your cart and order fresh Mediterranean food online from Olives Mediterranean Grill in Red Deer. Shawarma, falafel, halal wraps, platters, and more.">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -1053,14 +1054,30 @@
 
             if (!cartItems || cartItems.length === 0) {
                 container.innerHTML = `
-                <div class="empty-cart">
-                    <h3>Your cart is empty</h3>
-                    <p>Add some delicious items from our menu!</p>
-                    <a href="menu.html" class="btn btn-primary">Browse Menu</a>
-                </div>
-            `;
+            <div class="empty-cart">
+                <h3>Your cart is empty</h3>
+                <p>Add some delicious items from our menu!</p>
+                <a href="menu.html" class="btn btn-primary">Browse Menu</a>
+            </div>
+        `;
                 summary.style.display = 'none';
+
+                // Make the cart items column full width when empty
+                const cartCol = container.closest('.col-lg-8');
+                const summaryCol = document.querySelector('.col-lg-4');
+                if (cartCol && summaryCol) {
+                    cartCol.className = 'col-lg-12';
+                    summaryCol.style.display = 'none';
+                }
                 return;
+            }
+
+            // When cart has items, restore the normal layout
+            const cartCol = container.closest('.col-lg-8');
+            const summaryCol = document.querySelector('.col-lg-4');
+            if (cartCol && summaryCol) {
+                cartCol.className = 'col-lg-8';
+                summaryCol.style.display = 'block';
             }
 
             summary.style.display = 'block';
@@ -1075,23 +1092,23 @@
                 const isMinDisabled = item.quantity <= 1;
 
                 html += `
-                <div class="cart-item">
-                    <img src="${imageUrl}" class="cart-item-image" onerror="this.src='images/default-menu.jpg'" alt="${escapeHtml(item.name)}">
-                    <div class="cart-item-details">
-                        <h4>${escapeHtml(item.name)}</h4>
-                        <div class="cart-item-price">C$${item.price.toFixed(2)}</div>
-                    </div>
-                    <div class="quantity-control">
-                        <button onclick="updateQuantity('${item.productId}', -1)" ${isMinDisabled ? 'disabled' : ''}>-</button>
-                        <span>${item.quantity}</span>
-                        <button onclick="updateQuantity('${item.productId}', 1)">+</button>
-                    </div>
-                    <div class="action-buttons">
-                        <div class="cart-item-price" style="min-width: 80px;">C$${itemTotal.toFixed(2)}</div>
-                        <button class="btn-remove btn-sm" onclick="removeItem('${item.productId}')">Remove</button>
-                    </div>
+            <div class="cart-item">
+                <img src="${imageUrl}" class="cart-item-image" onerror="this.src='images/default-menu.jpg'" alt="${escapeHtml(item.name)}">
+                <div class="cart-item-details">
+                    <h4>${escapeHtml(item.name)}</h4>
+                    <div class="cart-item-price">C$${item.price.toFixed(2)}</div>
                 </div>
-            `;
+                <div class="quantity-control">
+                    <button onclick="updateQuantity('${item.productId}', -1)" ${isMinDisabled ? 'disabled' : ''}>-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity('${item.productId}', 1)">+</button>
+                </div>
+                <div class="action-buttons">
+                    <div class="cart-item-price" style="min-width: 80px;">C$${itemTotal.toFixed(2)}</div>
+                    <button class="btn-remove btn-sm" onclick="removeItem('${item.productId}')">Remove</button>
+                </div>
+            </div>
+        `;
             });
 
             container.innerHTML = html;
