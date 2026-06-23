@@ -1508,6 +1508,7 @@
             sessionStorage.removeItem('pendingCheckoutCart');
             sessionStorage.removeItem('checkoutCartItems');
             sessionStorage.removeItem('justLoggedIn');
+            sessionStorage.removeItem('cartCache');
             if (userAddress) {
                 localStorage.setItem('userAddress', userAddress);
             }
@@ -1515,32 +1516,70 @@
             setTimeout(() => { window.location.href = 'index.html'; }, 1500);
         }
 
+        // ===== FIXED: Calculate total quantity (sum of all item quantities) =====
         async function updateCartCount() {
             const badge = document.getElementById('cartCountBadge');
             if (!badge) return;
 
+            let totalQuantity = 0;
+
             if (!isLoggedIn()) {
-                const guestCart = localStorage.getItem('guestCart');
-                const count = guestCart ? JSON.parse(guestCart).length : 0;
-                badge.textContent = count;
-                badge.classList.toggle('hidden', count === 0);
+                // Guest cart - sum all quantities
+                let guestCart = localStorage.getItem('guestCart');
+                if (guestCart) {
+                    try {
+                        const items = JSON.parse(guestCart);
+                        items.forEach(item => {
+                            totalQuantity += (item.quantity || 1);
+                        });
+                    } catch (e) {}
+                }
+                badge.textContent = totalQuantity;
+                badge.classList.toggle('hidden', totalQuantity === 0);
                 return;
             }
 
+            // Logged in - try cache first for instant display
+            const cachedCart = sessionStorage.getItem('cartCache');
+            if (cachedCart) {
+                try {
+                    const items = JSON.parse(cachedCart);
+                    items.forEach(item => {
+                        totalQuantity += (item.quantity || 1);
+                    });
+                    badge.textContent = totalQuantity;
+                    badge.classList.toggle('hidden', totalQuantity === 0);
+                } catch (e) {}
+            }
+
+            // Then fetch from server in background
             try {
                 const token = localStorage.getItem('token');
                 const user = getCurrentUser();
+                if (!user) return;
+
                 const response = await fetch(`${API_BASE_URL}/api/cart/${user._id || user.id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (response.ok) {
                     const cart = await response.json();
-                    const count = cart?.items?.length || 0;
-                    badge.textContent = count;
-                    badge.classList.toggle('hidden', count === 0);
+                    const items = cart?.items || [];
+                    
+                    // Update cache
+                    sessionStorage.setItem('cartCache', JSON.stringify(items));
+
+                    // Calculate total quantity from all items
+                    let serverTotal = 0;
+                    items.forEach(item => {
+                        serverTotal += (item.quantity || 1);
+                    });
+
+                    badge.textContent = serverTotal;
+                    badge.classList.toggle('hidden', serverTotal === 0);
                 }
             } catch (error) {
                 console.error('Error updating cart count:', error);
+                // If server fails but we have cache, keep showing cached value
             }
         }
 

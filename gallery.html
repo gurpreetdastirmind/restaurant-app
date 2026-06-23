@@ -261,7 +261,7 @@
       }
     }
 
-    /* ================= IMPROVED MOBILE NAVBAR - REPLACE YOUR EXISTING MEDIA QUERY ================= */
+    /* ================= IMPROVED MOBILE NAVBAR ================= */
     @media (max-width: 991px) {
 
       /* Solid navbar background */
@@ -1045,18 +1045,6 @@
             </ul>
           </div>
         </div>
-        <!-- <div class="col-md-6 col-lg-3">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Newsletter</h2>
-            <p>Far far away, behind the word mountains, far from the countries.</p>
-            <form action="#" class="subscribe-form">
-              <div class="form-group">
-                <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="form-control submit px-3">
-              </div>
-            </form>
-          </div>
-        </div> -->
         <div class="col-md-6 col-lg-4">
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Instagram</h2>
@@ -1215,16 +1203,6 @@
       }
     }
 
-    // function viewProfile() {
-    //   const userData = localStorage.getItem('user');
-    //   if (userData) {
-    //     const user = JSON.parse(userData);
-    //     showToast(`👤 Name: ${user.firstName} ${user.lastName}\n📧 Email: ${user.email}\n👑 Role: ${user.role || 'User'}`, false);
-    //   } else {
-    //     showToast('Please login to view profile', true);
-    //   }
-    // }
-
     function viewOrders() {
       if (isLoggedIn()) {
         window.location.href = 'my-orders.html';
@@ -1235,7 +1213,12 @@
     }
 
     function viewMyReservations() {
-      showToast('📅 Your reservations will appear here soon!', false);
+      if (isLoggedIn()) {
+        window.location.href = 'my-reservations.html';
+      } else {
+        showToast('Please login to view your reservations', true);
+        window.location.href = 'login.html?redirect=my-reservations.html';
+      }
     }
 
     async function logout() {
@@ -1260,6 +1243,7 @@
       localStorage.removeItem('user');
       localStorage.removeItem('tokenExpiresAt');
       localStorage.removeItem('guestCart');
+      sessionStorage.removeItem('cartCache');
 
       showToast('You have been successfully logged out!');
       updateNavbarUserSection();
@@ -1270,30 +1254,50 @@
       }, 1500);
     }
 
-    // ========== CART FUNCTIONS ==========
+    // ========== CART FUNCTIONS - FIXED ==========
 
+    // ===== FIXED: Calculate total quantity (sum of all item quantities) =====
     async function updateCartCount() {
       const badge = document.getElementById('cartCountBadge');
+      if (!badge) return;
 
+      let totalQuantity = 0;
+
+      // Check if logged in
       if (!isLoggedIn()) {
-        const guestCart = localStorage.getItem('guestCart');
-        const cartItems = guestCart ? JSON.parse(guestCart) : [];
-        const itemCount = cartItems.length;
-
-        if (badge) {
-          badge.textContent = itemCount;
-          if (itemCount > 0) {
-            badge.classList.remove('hidden');
-          } else {
-            badge.classList.add('hidden');
-          }
+        // Guest cart - sum all quantities
+        let guestCart = localStorage.getItem('guestCart');
+        if (guestCart) {
+          try {
+            const items = JSON.parse(guestCart);
+            items.forEach(item => {
+              totalQuantity += (item.quantity || 1);
+            });
+          } catch (e) {}
         }
+        badge.textContent = totalQuantity;
+        badge.classList.toggle('hidden', totalQuantity === 0);
         return;
       }
 
+      // Logged in - try cache first for instant display
+      const cachedCart = sessionStorage.getItem('cartCache');
+      if (cachedCart) {
+        try {
+          const items = JSON.parse(cachedCart);
+          items.forEach(item => {
+            totalQuantity += (item.quantity || 1);
+          });
+          badge.textContent = totalQuantity;
+          badge.classList.toggle('hidden', totalQuantity === 0);
+        } catch (e) {}
+      }
+
+      // Then fetch from server in background
       try {
         const token = localStorage.getItem('token');
         const user = getCurrentUser();
+        if (!user) return;
 
         const response = await fetch(`${API_BASE_URL}/api/cart/${user._id || user.id}`, {
           headers: {
@@ -1303,19 +1307,23 @@
 
         if (response.ok) {
           const cart = await response.json();
-          const itemCount = cart?.items?.length || 0;
+          const items = cart?.items || [];
+          
+          // Update cache
+          sessionStorage.setItem('cartCache', JSON.stringify(items));
 
-          if (badge) {
-            badge.textContent = itemCount;
-            if (itemCount > 0) {
-              badge.classList.remove('hidden');
-            } else {
-              badge.classList.add('hidden');
-            }
-          }
+          // Calculate total quantity from all items
+          let serverTotal = 0;
+          items.forEach(item => {
+            serverTotal += (item.quantity || 1);
+          });
+
+          badge.textContent = serverTotal;
+          badge.classList.toggle('hidden', serverTotal === 0);
         }
       } catch (error) {
         console.error('Error updating cart count:', error);
+        // If server fails but we have cache, keep showing cached value
       }
     }
 

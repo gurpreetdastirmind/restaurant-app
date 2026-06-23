@@ -620,12 +620,6 @@
         gap: 10px;
       }
 
-      .cart-icon:before {
-        /* content: "🛒"; */
-        font-size: 1.3rem;
-        margin-right: 8px;
-      }
-
       .cart-count-badge {
         position: relative;
         top: 0;
@@ -1013,8 +1007,7 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <p>Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-            with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made            with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://astirmind.com"
               target="_blank">Astirmind Software Solutions</a>
           </p>
         </div>
@@ -1192,6 +1185,7 @@
       localStorage.removeItem('user');
       localStorage.removeItem('tokenExpiresAt');
       localStorage.removeItem('guestCart');
+      sessionStorage.removeItem('cartCache');
 
       showToast('You have been successfully logged out!');
       updateNavbarUserSection();
@@ -1202,30 +1196,50 @@
       }, 1500);
     }
 
-    // ========== CART FUNCTIONS ==========
+    // ========== CART FUNCTIONS - FIXED ==========
 
+    // ===== FIXED: Calculate total quantity (sum of all item quantities) =====
     async function updateCartCount() {
       const badge = document.getElementById('cartCountBadge');
+      if (!badge) return;
 
+      let totalQuantity = 0;
+
+      // Check if logged in
       if (!isLoggedIn()) {
-        const guestCart = localStorage.getItem('guestCart');
-        const cartItems = guestCart ? JSON.parse(guestCart) : [];
-        const itemCount = cartItems.length;
-
-        if (badge) {
-          badge.textContent = itemCount;
-          if (itemCount > 0) {
-            badge.classList.remove('hidden');
-          } else {
-            badge.classList.add('hidden');
-          }
+        // Guest cart - sum all quantities
+        let guestCart = localStorage.getItem('guestCart');
+        if (guestCart) {
+          try {
+            const items = JSON.parse(guestCart);
+            items.forEach(item => {
+              totalQuantity += (item.quantity || 1);
+            });
+          } catch (e) {}
         }
+        badge.textContent = totalQuantity;
+        badge.classList.toggle('hidden', totalQuantity === 0);
         return;
       }
 
+      // Logged in - try cache first for instant display
+      const cachedCart = sessionStorage.getItem('cartCache');
+      if (cachedCart) {
+        try {
+          const items = JSON.parse(cachedCart);
+          items.forEach(item => {
+            totalQuantity += (item.quantity || 1);
+          });
+          badge.textContent = totalQuantity;
+          badge.classList.toggle('hidden', totalQuantity === 0);
+        } catch (e) {}
+      }
+
+      // Then fetch from server in background
       try {
         const token = localStorage.getItem('token');
         const user = getCurrentUser();
+        if (!user) return;
 
         const response = await fetch(`${API_BASE_URL}/api/cart/${user._id || user.id}`, {
           headers: {
@@ -1235,19 +1249,23 @@
 
         if (response.ok) {
           const cart = await response.json();
-          const itemCount = cart?.items?.length || 0;
+          const items = cart?.items || [];
+          
+          // Update cache
+          sessionStorage.setItem('cartCache', JSON.stringify(items));
 
-          if (badge) {
-            badge.textContent = itemCount;
-            if (itemCount > 0) {
-              badge.classList.remove('hidden');
-            } else {
-              badge.classList.add('hidden');
-            }
-          }
+          // Calculate total quantity from all items
+          let serverTotal = 0;
+          items.forEach(item => {
+            serverTotal += (item.quantity || 1);
+          });
+
+          badge.textContent = serverTotal;
+          badge.classList.toggle('hidden', serverTotal === 0);
         }
       } catch (error) {
         console.error('Error updating cart count:', error);
+        // If server fails but we have cache, keep showing cached value
       }
     }
 

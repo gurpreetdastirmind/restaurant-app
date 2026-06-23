@@ -1021,6 +1021,15 @@
             }
         }
 
+        // ===== FIXED: Calculate total item count (sum of all quantities) =====
+        function getTotalItemCount() {
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.quantity || 1;
+            });
+            return total;
+        }
+
         function displayCart() {
             const container = document.getElementById('cartItemsContainer');
             const summary = document.getElementById('cartSummary');
@@ -1219,13 +1228,22 @@
             window.location.href = 'checkout.html';
         }
 
+        // ===== FIXED: Update cart count with total quantity (sum of all quantities) =====
         async function updateCartCount() {
             const badge = document.getElementById('cartCountBadge');
-            const count = cartItems.length;
+            // Calculate total quantity across all items
+            let totalQuantity = 0;
+            cartItems.forEach(item => {
+                totalQuantity += item.quantity || 1;
+            });
+            
             if (badge) {
-                badge.textContent = count;
-                badge.classList.toggle('hidden', count === 0);
+                badge.textContent = totalQuantity;
+                badge.classList.toggle('hidden', totalQuantity === 0);
             }
+            
+            // Also update session storage cache with correct count
+            sessionStorage.setItem('cartTotalCount', totalQuantity.toString());
         }
 
         function escapeHtml(str) {
