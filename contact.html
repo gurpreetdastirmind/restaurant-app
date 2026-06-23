@@ -265,32 +265,188 @@
       }
     }
 
-    /* Contact form enhancements */
-    .contact-form-section {
-      padding: 4rem 0;
+    /* ===== ENHANCED CONTACT SECTION ===== */
+    .contact-info-cards {
+      padding: 60px 0 40px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     }
 
-    .contact-info {
+    .contact-info-card {
       background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(122, 154, 1, 0.06);
+      height: 100%;
     }
 
-    .form-control {
-      border-radius: 10px;
-      padding: 12px 15px;
-      border: 1px solid #e0e0e0;
-    }
-
-    .form-control:focus {
+    .contact-info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
       border-color: #7A9A01;
-      box-shadow: 0 0 0 3px rgba(196, 154, 108, 0.1);
     }
 
-    .map-actions {
-      margin-bottom: 20px;
+    .contact-info-card .card-icon {
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, #7A9A01, #5c7a00);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      color: white;
+      font-size: 28px;
+    }
+
+    .contact-info-card h5 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a2a2e;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info-card p {
+      color: #6c7a89;
+      font-size: 15px;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .contact-info-card p a {
+      color: #7A9A01;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info-card p a:hover {
+      color: #5c7a00;
+      text-decoration: underline;
+    }
+
+    /* ===== ENHANCED CONTACT FORM & MAP ===== */
+    .contact-form-map-section {
+      padding: 40px 0 70px;
+      background: #f8f9fa;
+    }
+
+    .contact-form-wrapper {
+      background: white;
+      border-radius: 24px;
+      padding: 45px 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      height: 100%;
+    }
+
+    .contact-form-wrapper h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a2a2e;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-wrapper .form-subtitle {
+      color: #6c7a89;
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+
+    .contact-form-wrapper .form-control {
+      border-radius: 12px;
+      padding: 14px 18px;
+      border: 2px solid #e8ecef;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      background: #fafbfc;
+    }
+
+    .contact-form-wrapper .form-control:focus {
+      border-color: #7A9A01;
+      box-shadow: 0 0 0 4px rgba(122, 154, 1, 0.08);
+      background: white;
+    }
+
+    .contact-form-wrapper .form-control::placeholder {
+      color: #b0bec5;
+    }
+
+    .contact-form-wrapper textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form-wrapper .btn-send {
+      background: linear-gradient(135deg, #7A9A01, #5c7a00);
+      color: white;
+      border: none;
+      padding: 14px 45px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(122, 154, 1, 0.25);
+      width: 100%;
+    }
+
+    .contact-form-wrapper .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(122, 154, 1, 0.35);
+      color: white;
+    }
+
+    .map-wrapper-enhanced {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      height: 100%;
+    }
+
+    .map-wrapper-enhanced h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a2a2e;
+      margin-bottom: 15px;
+    }
+
+    .map-wrapper-enhanced .map-frame {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .map-wrapper-enhanced .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .map-directions-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: #7A9A01;
+      border: 2px solid #7A9A01;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      margin-top: 18px;
+      text-decoration: none;
+    }
+
+    .map-directions-btn:hover {
+      background: #7A9A01;
+      color: white;
+      transform: translateY(-2px);
+      text-decoration: none;
     }
 
     .navbar-brand img {
@@ -303,13 +459,76 @@
         height: 94px;
         width: 119px;
       }
+
+      .contact-info-cards {
+        padding: 30px 0 20px;
+      }
+
+      .contact-info-card {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+      }
+
+      .contact-form-map-section {
+        padding: 20px 0 40px;
+      }
+
+      .contact-form-wrapper {
+        padding: 25px 20px;
+        margin-bottom: 25px;
+      }
+
+      .contact-form-wrapper h2 {
+        font-size: 24px;
+      }
+
+      .map-wrapper-enhanced {
+        padding: 15px;
+      }
+
+      .map-wrapper-enhanced .map-frame {
+        height: 250px;
+      }
+
+      .contact-form-wrapper .btn-send {
+        padding: 12px 30px;
+        font-size: 15px;
+      }
+
+      .contact-info-card .card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+      }
     }
 
-    .p-5 {
-      padding: 2rem !important;
+    @media (max-width: 480px) {
+      .contact-form-wrapper {
+        padding: 18px 14px;
+      }
+
+      .contact-form-wrapper h2 {
+        font-size: 20px;
+      }
+
+      .contact-form-wrapper .form-control {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .map-wrapper-enhanced .map-frame {
+        height: 200px;
+      }
+
+      .map-directions-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 100%;
+        justify-content: center;
+      }
     }
 
-    /* ================= IMPROVED MOBILE NAVBAR - REPLACE YOUR EXISTING MEDIA QUERY ================= */
+    /* ================= IMPROVED MOBILE NAVBAR ================= */
     @media (max-width: 991px) {
 
       /* Solid navbar background */
@@ -613,76 +832,93 @@
     </div>
   </section>
 
-  <section class="ftco-section contact-section bg-light">
+  <!-- ===== ENHANCED CONTACT INFO CARDS ===== -->
+  <section class="contact-info-cards">
     <div class="container">
-      <div class="row d-flex contact-info">
-        <div class="col-md-12 mb-4">
-          <h2 class="h4 font-weight-bold">Contact Information</h2>
-        </div>
-        <div class="w-100"></div>
-        <div class="col-md-3 d-flex">
-          <div class="dbox">
-            <p><span>Address:</span> 159 B Leva Avenue, Unit 103, Red Deer County AB T4E 0A5</p>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="contact-info-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="card-icon">
+              <span class="icon-map-signs"></span>
+            </div>
+            <h5>Address</h5>
+            <p>159 B Leva Avenue,<br>Unit 103, Red Deer County<br>AB T4E 0A5</p>
           </div>
         </div>
-        <div class="col-md-3 d-flex">
-          <div class="dbox">
-            <p><span>Phone:</span> <a href="tel://1234567920">+1587 272 1088</a></p>
+        <div class="col-md-3 col-sm-6">
+          <div class="contact-info-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon">
+              <span class="icon-phone2"></span>
+            </div>
+            <h5>Phone</h5>
+            <p><a href="tel:+15872721088">+1587 272 1088</a></p>
           </div>
         </div>
-        <div class="col-md-3 d-flex">
-          <div class="dbox">
-            <p><span>Email:</span> <a href="mailto:olivesmgrill@gmail.com">olivesmgrill@gmail.com</a></p>
+        <div class="col-md-3 col-sm-6">
+          <div class="contact-info-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon">
+              <span class="icon-envelope"></span>
+            </div>
+            <h5>Email</h5>
+            <p><a href="mailto:olivesmgrill@gmail.com">olivesmgrill@gmail.com</a></p>
           </div>
         </div>
-        <div class="col-md-3 d-flex">
-          <div class="dbox">
-            <p><span>Website</span> <a href="#">Olives Mediterranean Grill.com</a></p>
+        <div class="col-md-3 col-sm-6">
+          <div class="contact-info-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-icon">
+              <span class="icon-clock-o"></span>
+            </div>
+            <h5>Open Hours</h5>
+            <p>Monday - Sunday<br><strong>11:00AM - 9:00PM</strong></p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="ftco-section ftco-no-pt ftco-no-pb contact-section">
+  <!-- ===== ENHANCED CONTACT FORM & MAP ===== -->
+  <section class="contact-form-map-section">
     <div class="container">
-      <div class="row d-flex align-items-stretch no-gutters">
-        <div class="col-md-6 p-5 order-md-last">
-          <h2 class="h4 mb-5 font-weight-bold">Send Us a Message</h2>
-          <form id="contactForm">
-            <div class="form-group">
-              <input type="text" id="contactName" class="form-control" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" id="contactEmail" class="form-control" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-              <input type="text" id="contactSubject" class="form-control" placeholder="Subject" required>
-            </div>
-            <div class="form-group">
-              <textarea id="contactMessage" cols="30" rows="7" class="form-control" placeholder="Message"
-                required></textarea>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary py-3 px-5" id="sendMessageBtn">Send Message</button>
-            </div>
-          </form>
-          <div id="contactMessageAlert" style="display:none; margin-top:15px;"></div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="contact-form-wrapper" data-aos="fade-right">
+            <h2>Send Us a Message</h2>
+            <p class="form-subtitle">We'd love to hear from you! Drop us a message and we'll get back to you as soon as possible.</p>
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" id="contactName" class="form-control" placeholder="Your Full Name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="contactEmail" class="form-control" placeholder="Your Email Address" required>
+              </div>
+              <div class="form-group">
+                <input type="text" id="contactSubject" class="form-control" placeholder="Subject" required>
+              </div>
+              <div class="form-group">
+                <textarea id="contactMessage" cols="30" rows="5" class="form-control" placeholder="Your Message"
+                  required></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn-send" id="sendMessageBtn">
+                  <span class="icon-paper-plane mr-2"></span> Send Message
+                </button>
+              </div>
+            </form>
+            <div id="contactMessageAlert" style="display:none; margin-top:15px;"></div>
+          </div>
         </div>
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="map-container w-100">
+        <div class="col-lg-6">
+          <div class="map-wrapper-enhanced" data-aos="fade-left">
             <h2>Find Us Here</h2>
-
-            <div class="map-wrapper">
+            <div class="map-frame">
               <iframe src="https://www.google.com/maps?q=Olives+Mediterranean+Grill+Red+Deer&z=17&output=embed"
                 allowfullscreen="" loading="lazy">
               </iframe>
             </div>
-
-            <div class="map-actions">
+            <div class="text-center">
               <a href="https://maps.google.com/?q=159b+Leva+Ave+%23103+Red+Deer+AB+T4E+0A5" target="_blank"
-                class="btn btn-primary mt-3">
-                Get Directions
+                class="map-directions-btn">
+                <span class="icon-direction"></span> Get Directions
               </a>
             </div>
           </div>
@@ -758,18 +994,6 @@
             </ul>
           </div>
         </div>
-        <!-- <div class="col-md-6 col-lg-3">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Newsletter</h2>
-            <p>Far far away, behind the word mountains, far from the countries.</p>
-            <form action="#" class="subscribe-form">
-              <div class="form-group">
-                <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="form-control submit px-3">
-              </div>
-            </form>
-          </div>
-        </div> -->
         <div class="col-md-6 col-lg-4">
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Instagram</h2>
@@ -928,16 +1152,6 @@
       }
     }
 
-    // function viewProfile() {
-    //   const userData = localStorage.getItem('user');
-    //   if (userData) {
-    //     const user = JSON.parse(userData);
-    //     showToast(`👤 Name: ${user.firstName} ${user.lastName}\n📧 Email: ${user.email}\n👑 Role: ${user.role || 'User'}`, false);
-    //   } else {
-    //     showToast('Please login to view profile', true);
-    //   }
-    // }
-
     function viewOrders() {
       if (isLoggedIn()) {
         window.location.href = 'my-orders.html';
@@ -1039,8 +1253,6 @@
 
     // ========== CONTACT FORM FUNCTIONS ==========
 
-    // ========== CONTACT FORM FUNCTIONS ==========
-
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', async function (e) {
@@ -1050,7 +1262,6 @@
         const email = document.getElementById('contactEmail').value.trim();
         const subject = document.getElementById('contactSubject').value.trim();
         const message = document.getElementById('contactMessage').value.trim();
-        const phone = ''; // Add phone field if you have one
 
         if (!name || !email || !subject || !message) {
           showToast('Please fill in all fields', true);
@@ -1077,7 +1288,6 @@
             body: JSON.stringify({
               name,
               email,
-              phone,
               subject,
               message
             })
@@ -1098,6 +1308,15 @@
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
         }
+      });
+    }
+
+    // Initialize AOS animations
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
       });
     }
 

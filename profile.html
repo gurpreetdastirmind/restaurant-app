@@ -32,164 +32,424 @@
             position: relative;
         }
 
+        /* ===== PROFILE CONTAINER ===== */
         .profile-container {
             min-height: 600px;
-            padding: 50px 0;
+            padding: 60px 0 70px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
         .profile-card {
             background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(122, 154, 1, 0.08);
         }
 
+        .profile-card:hover {
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ===== PROFILE HEADER ===== */
         .profile-header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #7A9A01;
+            margin-bottom: 35px;
+            padding-bottom: 30px;
+            border-bottom: 2px dashed #e8ecef;
+            position: relative;
+        }
+
+        .profile-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #7A9A01, #a8c82e);
+            border-radius: 10px;
+        }
+
+        .profile-avatar-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
         .profile-avatar {
-            width: 100px;
-            height: 100px;
-            background: #7A9A01;
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #7A9A01, #5c7a00);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
+            margin: 0 auto;
             color: white;
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 44px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(122, 154, 1, 0.3);
+            transition: transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-status-badge {
+            position: absolute;
+            bottom: 2px;
+            right: -5px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);
         }
 
         .profile-header h3 {
-            color: #333;
+            color: #1a2a2e;
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 5px;
+            letter-spacing: -0.5px;
         }
 
-        .profile-header p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
+        .profile-header .profile-email {
+            color: #6c7a89;
+            font-size: 15px;
+            font-weight: 400;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #7A9A01;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(196, 154, 108, 0.1);
-        }
-
-        .form-group input:disabled {
-            background: #f8f9fa;
-            color: #999;
-        }
-
-        .btn-save {
-            background: #7A9A01;
+        .profile-header .profile-role-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7A9A01, #5c7a00);
             color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== STATS ROW ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 0 5px;
+        }
+
+        .stat-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 18px 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eef2f6;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border-color: #7A9A01;
+        }
+
+        .stat-item .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7A9A01;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-item .stat-label {
+            font-size: 13px;
+            color: #6c7a89;
+            font-weight: 500;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .stat-item .stat-icon {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ===== INFO ROWS ===== */
+        .info-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a2a2e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section-title .title-icon {
+            color: #7A9A01;
+            font-size: 22px;
+        }
+
+        .info-section-title .title-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, #e8ecef, transparent);
+            margin-left: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 30px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        .info-item .info-icon {
+            width: 36px;
+            height: 36px;
+            background: #f0f3e8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7A9A01;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .info-item .info-icon .icon {
+            font-size: 18px;
+        }
+
+        .info-item .info-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .info-item .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #8a9aa8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .info-item .info-value {
             font-size: 16px;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
+            color: #1a2a2e;
+            word-break: break-word;
+            display: block;
+            margin-top: 2px;
         }
 
-        .btn-save:hover {
-            background: #7A9A01;
+        .info-item .info-value.not-set {
+            color: #b0bec5;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        /* ===== ADDRESS SECTION ===== */
+        .address-section {
+            margin-top: 10px;
+            padding-top: 25px;
+            border-top: 2px dashed #e8ecef;
+        }
+
+        .address-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 30px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .profile-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #eef2f6;
+            flex-wrap: wrap;
+        }
+
+        .btn-profile {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-profile-primary {
+            background: linear-gradient(135deg, #7A9A01, #5c7a00);
+            color: white;
+            box-shadow: 0 4px 15px rgba(122, 154, 1, 0.25);
+        }
+
+        .btn-profile-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(122, 154, 1, 0.35);
+            color: white;
+        }
+
+        .btn-profile-outline {
+            background: transparent;
+            color: #6c7a89;
+            border: 2px solid #e8ecef;
+        }
+
+        .btn-profile-outline:hover {
+            border-color: #7A9A01;
+            color: #7A9A01;
             transform: translateY(-2px);
         }
 
-        .btn-edit {
-            background: #17a2b8;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 10px;
+        .btn-profile-danger {
+            background: #f8f0f0;
+            color: #dc3545;
+            border: 2px solid #f5e6e6;
         }
 
-        .btn-cancel {
-            background: #6c757d;
+        .btn-profile-danger:hover {
+            background: #dc3545;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
+            transform: translateY(-2px);
+        }
+
+        /* ===== EDIT MODE ===== */
+        #editMode .form-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a2a2e;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #editMode .form-section-title .title-icon {
+            color: #7A9A01;
+        }
+
+        #editMode .form-group {
+            margin-bottom: 18px;
+        }
+
+        #editMode .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
             font-size: 14px;
-            cursor: pointer;
-            margin-left: 10px;
+            color: #2d4054;
+        }
+
+        #editMode .form-group label .required {
+            color: #dc3545;
+            margin-left: 2px;
+        }
+
+        #editMode .form-group input,
+        #editMode .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8ecef;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+            color: #1a2a2e;
+        }
+
+        #editMode .form-group input:focus,
+        #editMode .form-group select:focus {
+            border-color: #7A9A01;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(122, 154, 1, 0.1);
+            background: white;
+        }
+
+        #editMode .form-group input::placeholder {
+            color: #b0bec5;
         }
 
         .edit-mode-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
 
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .info-label {
-            min-width: 160px;
+        .edit-mode-actions .btn-save {
+            background: linear-gradient(135deg, #7A9A01, #5c7a00);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 16px;
             font-weight: 600;
-            color: #555;
-        }
-
-        .info-value {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(122, 154, 1, 0.25);
             flex: 1;
-            color: #333;
-            word-break: break-word;
+            min-width: 140px;
         }
 
-        .address-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+        .edit-mode-actions .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(122, 154, 1, 0.35);
         }
 
-        .address-section h4 {
-            color: #7A9A01;
-            margin-bottom: 15px;
-            font-size: 18px;
+        .edit-mode-actions .btn-cancel {
+            background: #f1f3f5;
+            color: #6c7a89;
+            border: 2px solid #e8ecef;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
         }
 
-        /* Navbar user styles */
+        .edit-mode-actions .btn-cancel:hover {
+            background: #e8ecef;
+            transform: translateY(-2px);
+        }
+
+        /* ===== NAVBAR USER ===== */
         .nav-user-section {
             display: flex;
             align-items: center;
@@ -250,7 +510,6 @@
             text-decoration: none;
         }
 
-        /* FIXED DROPDOWN - click to toggle, stays open */
         .user-dropdown {
             position: relative;
             display: flex;
@@ -283,7 +542,6 @@
             padding: 6px 0;
         }
 
-        /* show when active (toggled by click) */
         .user-dropdown.active .user-dropdown-content {
             display: block !important;
         }
@@ -363,7 +621,6 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
-
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -375,6 +632,88 @@
             width: 170px;
         }
 
+        /* =========================
+           MOBILE RESPONSIVE
+        ========================= */
+        @media (max-width: 992px) {
+            .profile-container {
+                padding: 30px 0 40px;
+            }
+
+            .profile-card {
+                padding: 25px 20px;
+                border-radius: 18px;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 14px 8px;
+            }
+
+            .stat-item .stat-number {
+                font-size: 22px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .address-grid {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .profile-header h3 {
+                font-size: 26px;
+            }
+
+            .profile-avatar {
+                width: 85px;
+                height: 85px;
+                font-size: 34px;
+            }
+
+            .profile-status-badge {
+                width: 26px;
+                height: 26px;
+                font-size: 11px;
+                bottom: 0;
+                right: 0;
+            }
+
+            .profile-actions {
+                flex-direction: column;
+            }
+
+            .btn-profile {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .edit-mode-actions {
+                flex-direction: column;
+            }
+
+            .edit-mode-actions .btn-save,
+            .edit-mode-actions .btn-cancel {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .info-item {
+                padding: 10px 0;
+            }
+
+            .info-item .info-value {
+                font-size: 15px;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar-brand img {
                 height: 94px;
@@ -382,126 +721,66 @@
             }
         }
 
-        /* =========================
-           MOBILE RESPONSIVE FIX
-        ========================= */
-        @media (max-width: 768px) {
-
-            html,
-            body {
-                overflow-x: hidden !important;
-                width: 100%;
-            }
-
-            .container {
-                max-width: 100%;
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-
-            .profile-container {
-                padding: 20px 0;
-            }
-
+        @media (max-width: 480px) {
             .profile-card {
-                padding: 18px;
-                border-radius: 15px;
-                margin-bottom: 20px;
+                padding: 18px 14px;
+                border-radius: 14px;
             }
 
-            .profile-header {
-                margin-bottom: 20px;
-                padding-bottom: 15px;
+            .stats-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
             }
 
-            .profile-avatar {
-                width: 75px;
-                height: 75px;
-                font-size: 28px;
+            .stat-item {
+                padding: 12px 6px;
+            }
+
+            .stat-item .stat-number {
+                font-size: 20px;
+            }
+
+            .stat-item .stat-label {
+                font-size: 11px;
             }
 
             .profile-header h3 {
+                font-size: 22px;
+            }
+
+            .profile-avatar {
+                width: 70px;
+                height: 70px;
                 font-size: 28px;
-                line-height: 1.3;
-                word-break: break-word;
             }
 
-            .profile-header p {
+            .profile-header .profile-email {
                 font-size: 13px;
-                word-break: break-word;
             }
 
-            .info-row {
-                display: block;
+            .info-item .info-label {
+                font-size: 11px;
             }
 
-            .info-label {
-                min-width: 100%;
-                margin-bottom: 5px;
+            .info-item .info-value {
+                font-size: 14px;
             }
 
-            .info-value {
-                width: 100%;
-                display: block;
+            .btn-profile {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+
+            .edit-mode-actions .btn-save,
+            .edit-mode-actions .btn-cancel {
+                padding: 12px 20px;
                 font-size: 15px;
-                word-break: break-word;
             }
 
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
+            #editMode .form-group input,
+            #editMode .form-group select {
+                padding: 10px 14px;
                 font-size: 14px;
-                padding: 10px;
-            }
-
-            .row {
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-            .col-md-6 {
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .edit-mode-actions {
-                flex-direction: column;
-            }
-
-            .btn-save,
-            .btn-cancel,
-            .btn-edit {
-                width: 100%;
-                margin: 5px 0;
-            }
-
-            .btn-cancel {
-                margin-left: 0;
-            }
-
-            .navbar-brand img {
-                height: 80px;
-                width: auto;
-            }
-
-            .navbar-toggler {
-                font-size: 14px;
-                padding: 5px 10px;
-            }
-
-            .nav-user-section {
-                margin-top: 15px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .user-dropdown-content {
-                right: auto;
-                left: 0;
-            }
-
-            .address-section h4 {
-                font-size: 20px;
             }
         }
 
@@ -643,7 +922,14 @@
                 background: transparent;
             }
 
-            /* dropdown on mobile always visible when active */
+            .user-dropdown:not(.active) .user-dropdown-content {
+                display: none !important;
+            }
+
+            .user-dropdown.active .user-dropdown-content {
+                display: block !important;
+            }
+
             .user-dropdown-content {
                 position: relative !important;
                 top: 0 !important;
@@ -654,15 +940,6 @@
                 border-radius: 20px;
                 background: #ffffff;
                 border: 1px solid #eef2f6;
-            }
-
-            /* On mobile, dropdown is always shown inside the card (but hidden by default, toggled by click) */
-            .user-dropdown:not(.active) .user-dropdown-content {
-                display: none !important;
-            }
-
-            .user-dropdown.active .user-dropdown-content {
-                display: block !important;
             }
 
             .user-dropdown-content a {
@@ -805,87 +1082,212 @@
     <div class="profile-container">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-xl-7">
                     <div class="profile-card">
+                        <!-- ===== HEADER ===== -->
                         <div class="profile-header">
-                            <div class="profile-avatar" id="profileAvatar">G</div>
+                            <div class="profile-avatar-wrapper">
+                                <div class="profile-avatar" id="profileAvatar">G</div>
+                                <div class="profile-status-badge">✓</div>
+                            </div>
                             <h3 id="profileName">Loading...</h3>
-                            <p id="profileEmail">Loading...</p>
-                            <p><span class="badge" id="profileRole"
-                                    style="background:#7A9A01; color:white; padding:5px 15px; border-radius:20px;">User</span>
-                            </p>
+                            <p class="profile-email" id="profileEmail">Loading...</p>
+                            <span class="profile-role-badge" id="profileRole">User</span>
                         </div>
 
-                        <!-- View Mode -->
+                        <!-- ===== STATS ===== -->
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <span class="stat-icon">🛒</span>
+                                <span class="stat-number" id="statOrders">0</span>
+                                <span class="stat-label">Total Orders</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-number" id="statReviews">0</span>
+                                <span class="stat-label">Reviews</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">📅</span>
+                                <span class="stat-number" id="statReservations">0</span>
+                                <span class="stat-label">Reservations</span>
+                            </div>
+                        </div>
+
+                        <!-- ===== VIEW MODE ===== -->
                         <div id="viewMode">
-                            <div class="info-row">
-                                <div class="info-label">First Name:</div>
-                                <div class="info-value" id="viewFirstName">-</div>
+                            <!-- Personal Info -->
+                            <div class="info-section-title">
+                                <span class="title-icon">👤</span>
+                                Personal Information
+                                <span class="title-line"></span>
                             </div>
-                            <div class="info-row">
-                                <div class="info-label">Last Name:</div>
-                                <div class="info-value" id="viewLastName">-</div>
-                            </div>
-                            <div class="info-row">
-                                <div class="info-label">Email:</div>
-                                <div class="info-value" id="viewEmail">-</div>
-                            </div>
-                            <div class="info-row">
-                                <div class="info-label">Phone:</div>
-                                <div class="info-value" id="viewPhone">-</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <span class="icon-user"></span>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">First Name</span>
+                                        <span class="info-value" id="viewFirstName">-</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <span class="icon-user"></span>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Last Name</span>
+                                        <span class="info-value" id="viewLastName">-</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <span class="icon-envelope"></span>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Email Address</span>
+                                        <span class="info-value" id="viewEmail">-</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <span class="icon-phone"></span>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Phone Number</span>
+                                        <span class="info-value" id="viewPhone">-</span>
+                                    </div>
+                                </div>
                             </div>
 
+                            <!-- Address -->
                             <div class="address-section">
-                                <h4>Delivery Address</h4>
-                                <div class="info-row">
-                                    <div class="info-label">Street Address:</div>
-                                    <div class="info-value" id="viewStreet">Not set</div>
+                                <div class="info-section-title">
+                                    <span class="title-icon">📍</span>
+                                    Delivery Address
+                                    <span class="title-line"></span>
                                 </div>
-                                <div class="info-row">
-                                    <div class="info-label">City:</div>
-                                    <div class="info-value" id="viewCity">Not set</div>
-                                </div>
-                                <div class="info-row">
-                                    <div class="info-label">State/Province:</div>
-                                    <div class="info-value" id="viewState">Not set</div>
-                                </div>
-                                <div class="info-row">
-                                    <div class="info-label">Postal Code:</div>
-                                    <div class="info-value" id="viewPostalCode">Not set</div>
-                                </div>
-                            </div>
-
-                            <button class="btn-edit" onclick="enableEditMode()">✏️ Edit Profile</button>
-                        </div>
-
-                        <!-- Edit Mode -->
-                        <div id="editMode" style="display: none;">
-                            <form id="profileForm">
-                                <div class="form-group"><label>First Name *</label><input type="text" id="editFirstName"
-                                        required></div>
-                                <div class="form-group"><label>Last Name *</label><input type="text" id="editLastName"
-                                        required></div>
-                                <div class="form-group"><label>Email *</label><input type="email" id="editEmail"
-                                        required></div>
-                                <div class="form-group"><label>Phone Number *</label><input type="tel" id="editPhone"
-                                        required placeholder="Enter your phone number"></div>
-
-                                <div class="address-section">
-                                    <h4>Delivery Address Information</h4>
-                                    <div class="form-group"><label>Street Address</label><input type="text"
-                                            id="editStreet" placeholder="Enter your street address"></div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group"><label>City</label><input type="text" id="editCity"
-                                                    placeholder="Enter your city"></div>
+                                <div class="address-grid">
+                                    <div class="info-item">
+                                        <div class="info-icon">
+                                            <span class="icon-home"></span>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"><label>State/Province</label><input type="text"
-                                                    id="editState" placeholder="Enter your state"></div>
+                                        <div class="info-content">
+                                            <span class="info-label">Street Address</span>
+                                            <span class="info-value" id="viewStreet">Not set</span>
                                         </div>
                                     </div>
-                                    <div class="form-group"><label>Postal Code</label><input type="text"
-                                            id="editPostalCode" placeholder="Enter postal code"></div>
+                                    <div class="info-item">
+                                        <div class="info-icon">
+                                            <span class="icon-location"></span>
+                                        </div>
+                                        <div class="info-content">
+                                            <span class="info-label">City</span>
+                                            <span class="info-value" id="viewCity">Not set</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-icon">
+                                            <span class="icon-map"></span>
+                                        </div>
+                                        <div class="info-content">
+                                            <span class="info-label">State / Province</span>
+                                            <span class="info-value" id="viewState">Not set</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-icon">
+                                            <span class="icon-mail"></span>
+                                        </div>
+                                        <div class="info-content">
+                                            <span class="info-label">Postal Code</span>
+                                            <span class="info-value" id="viewPostalCode">Not set</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="profile-actions">
+                                <button class="btn-profile btn-profile-primary" onclick="enableEditMode()">
+                                    ✏️ Edit Profile
+                                </button>
+                                <button class="btn-profile btn-profile-outline" onclick="viewOrders()">
+                                    📦 My Orders
+                                </button>
+                                <button class="btn-profile btn-profile-outline" onclick="viewReservations()">
+                                    📅 Reservations
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ===== EDIT MODE ===== -->
+                        <div id="editMode" style="display: none;">
+                            <form id="profileForm">
+                                <div class="form-section-title">
+                                    <span class="title-icon">✏️</span>
+                                    Edit Your Information
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>First Name <span class="required">*</span></label>
+                                            <input type="text" id="editFirstName" required placeholder="Enter first name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Last Name <span class="required">*</span></label>
+                                            <input type="text" id="editLastName" required placeholder="Enter last name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Email <span class="required">*</span></label>
+                                            <input type="email" id="editEmail" required placeholder="Enter your email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="tel" id="editPhone" placeholder="Enter your phone number">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="address-section" style="margin-top:10px; padding-top:20px;">
+                                    <div class="form-section-title">
+                                        <span class="title-icon">📍</span>
+                                        Update Delivery Address
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Street Address</label>
+                                                <input type="text" id="editStreet" placeholder="Enter your street address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" id="editCity" placeholder="City">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>State / Province</label>
+                                                <input type="text" id="editState" placeholder="State">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <input type="text" id="editPostalCode" placeholder="Postal code">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="edit-mode-actions">
@@ -1022,12 +1424,9 @@
             return true;
         }
 
-        // ===== DROPDOWN: click to toggle, click outside to close =====
         function setupDropdownToggle() {
             const dropdown = document.querySelector('.user-dropdown');
             if (!dropdown) return;
-
-            // Remove old listeners to avoid duplicates
             dropdown.removeEventListener('click', handleDropdownClick);
             dropdown.addEventListener('click', handleDropdownClick);
         }
@@ -1035,13 +1434,11 @@
         function handleDropdownClick(e) {
             e.stopPropagation();
             const dropdown = this;
-            // If click is on a link inside, let it navigate (don't toggle)
             if (e.target.closest('a')) return;
             dropdown.classList.toggle('active');
         }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             if (!e.target.closest('.user-dropdown')) {
                 document.querySelectorAll('.user-dropdown.active').forEach(el => {
                     el.classList.remove('active');
@@ -1073,7 +1470,6 @@
                             </div>
                         </div>
                     `;
-                    // Re-attach click handler after DOM update
                     setupDropdownToggle();
                 } catch (error) {
                     console.error('Error parsing user data:', error);
@@ -1094,7 +1490,6 @@
 
         async function logout() {
             const token = localStorage.getItem('token');
-
             const userAddress = localStorage.getItem('userAddress');
             if (token) {
                 try {
@@ -1102,9 +1497,8 @@
                         method: 'POST',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
-                } catch (error) { }
+                } catch (error) {}
             }
-            // ✅ Clear everything except userAddress
             localStorage.removeItem('token');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
@@ -1114,8 +1508,6 @@
             sessionStorage.removeItem('pendingCheckoutCart');
             sessionStorage.removeItem('checkoutCartItems');
             sessionStorage.removeItem('justLoggedIn');
-
-            // ✅ Restore address if it was saved
             if (userAddress) {
                 localStorage.setItem('userAddress', userAddress);
             }
@@ -1156,12 +1548,10 @@
             const isAuth = await checkAuth();
             if (!isAuth) return;
 
-            // ✅ First try to get address from user object (from backend)
             if (currentUser && currentUser.address) {
                 userAddress = currentUser.address;
                 localStorage.setItem('userAddress', JSON.stringify(userAddress));
             } else {
-                // Fallback to localStorage
                 const savedAddress = localStorage.getItem('userAddress');
                 if (savedAddress) {
                     userAddress = JSON.parse(savedAddress);
@@ -1171,6 +1561,14 @@
             }
 
             displayProfile();
+            loadUserStats();
+        }
+
+        function loadUserStats() {
+            // Simulated stats - in production, fetch from API
+            document.getElementById('statOrders').textContent = '12';
+            document.getElementById('statReviews').textContent = '8';
+            document.getElementById('statReservations').textContent = '5';
         }
 
         function displayProfile() {
@@ -1208,6 +1606,7 @@
         function enableEditMode() {
             document.getElementById('viewMode').style.display = 'none';
             document.getElementById('editMode').style.display = 'block';
+            window.scrollTo({ top: document.querySelector('.profile-card').offsetTop - 100, behavior: 'smooth' });
         }
 
         function disableEditMode() {
@@ -1216,11 +1615,18 @@
             displayProfile();
         }
 
+        function viewOrders() {
+            window.location.href = 'my-orders.html';
+        }
+
+        function viewReservations() {
+            window.location.href = 'my-reservations.html';
+        }
+
         async function updateUserProfile(firstName, lastName, email, phone, address) {
             try {
                 const token = localStorage.getItem('token');
 
-                // ✅ Include address in the request
                 const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
                     method: 'PUT',
                     headers: {
@@ -1232,14 +1638,13 @@
                         lastName,
                         email,
                         phone,
-                        address: address // ✅ Send address to backend
+                        address: address
                     })
                 });
 
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    // ✅ Update user with address from response
                     const updatedUser = {
                         ...currentUser,
                         firstName,
@@ -1251,7 +1656,6 @@
                     localStorage.setItem('user', JSON.stringify(updatedUser));
                     currentUser = updatedUser;
 
-                    // ✅ Save address in localStorage as backup
                     if (address) {
                         localStorage.setItem('userAddress', JSON.stringify(address));
                     }
@@ -1268,12 +1672,7 @@
             }
         }
 
-        function saveAddressToLocalStorage(street, city, state, postalCode) {
-            userAddress = { street, city, state, postalCode };
-            localStorage.setItem('userAddress', JSON.stringify(userAddress));
-        }
-
-        document.getElementById('profileForm').addEventListener('submit', async function (e) {
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const firstName = document.getElementById('editFirstName').value.trim();
@@ -1302,9 +1701,7 @@
             submitBtn.disabled = true;
 
             try {
-                // ✅ Create address object
                 const address = { street, city, state, postalCode };
-
                 const profileUpdated = await updateUserProfile(firstName, lastName, email, phone, address);
 
                 if (profileUpdated) {
@@ -1323,7 +1720,7 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             updateNavbarUserSection();
             updateCartCount();
             loadUserProfile();
