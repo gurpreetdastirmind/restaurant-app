@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-     <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
+    <title>Best Mediterranean Restaurant in Red Deer | Olives Mediterranean Grill</title>
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, viewport-fit=cover">
     <meta name="description"
-    content="Enjoy the best shawarma, falafel, and Mediterranean food in Red Deer. Fresh ingredients, halal options & fast pickup. Order online now!">
+        content="Enjoy the best shawarma, falafel, and Mediterranean food in Red Deer. Fresh ingredients, halal options & fast pickup. Order online now!">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
@@ -657,6 +657,212 @@
             .coupon-slide {
                 flex: 0 0 calc(50% - 12px);
                 min-width: calc(50% - 12px);
+            }
+        }
+
+        /* ========== EXTRA SMALL SCREEN FIX (320px and below) ========== */
+        @media (max-width: 380px) {
+            .coupon-section {
+                padding: 30px 0;
+            }
+
+            .coupon-slider-wrapper {
+                padding: 5px 25px;
+            }
+
+            .coupon-slide {
+                flex: 0 0 100%;
+                min-width: 100%;
+                padding: 0 2px;
+            }
+
+            .coupon-card {
+                aspect-ratio: auto !important;
+                min-height: 280px;
+                max-height: 340px;
+                border-radius: 16px;
+                margin: 0 2px;
+            }
+
+            .coupon-content {
+                padding: 12px 10px 14px;
+            }
+
+            .coupon-icon {
+                font-size: 28px;
+                margin-bottom: 4px;
+            }
+
+            .coupon-name {
+                font-size: 14px;
+                margin-bottom: 4px;
+                line-height: 1.2;
+            }
+
+            .coupon-value {
+                font-size: 20px;
+                margin: 4px 0;
+            }
+
+            .coupon-value small {
+                font-size: 11px;
+            }
+
+            .coupon-code {
+                font-size: 11px;
+                padding: 5px 8px;
+                letter-spacing: 1px;
+                margin: 6px 0;
+                word-break: break-all;
+            }
+
+            .coupon-description {
+                font-size: 10px;
+                margin-bottom: 4px;
+                -webkit-line-clamp: 1;
+                line-height: 1.2;
+            }
+
+            .coupon-meta {
+                gap: 4px;
+                margin: 2px 0;
+                flex-wrap: wrap;
+            }
+
+            .coupon-min-order,
+            .coupon-expiry {
+                font-size: 8px;
+                padding: 2px 6px;
+                border-radius: 20px;
+            }
+
+            .coupon-terms {
+                font-size: 7px;
+                margin-top: 4px;
+                padding-top: 4px;
+            }
+
+            .coupon-badge {
+                font-size: 8px;
+                padding: 2px 8px;
+                top: 6px;
+                right: 6px;
+            }
+
+            .slider-nav {
+                width: 24px;
+                height: 24px;
+                background: rgba(255, 255, 255, 0.9);
+            }
+
+            .slider-nav span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .slider-nav.prev {
+                left: 0;
+            }
+
+            .slider-nav.next {
+                right: 0;
+            }
+
+            .slider-dots {
+                gap: 6px;
+                margin-top: 15px;
+            }
+
+            .slider-dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .slider-dot.active {
+                width: 20px;
+            }
+
+            .coupon-filter-dropdown {
+                margin-bottom: 20px;
+            }
+
+            .filter-select {
+                padding: 10px 16px;
+                font-size: 12px;
+                width: 95%;
+                max-width: 240px;
+                background-size: 14px;
+                background-position: right 12px center;
+            }
+        }
+
+        /* ========== EXTRA EXTRA SMALL (280px - e.g., very old phones) ========== */
+        @media (max-width: 300px) {
+            .coupon-card {
+                min-height: 240px;
+                max-height: 290px;
+            }
+
+            .coupon-content {
+                padding: 8px 6px 10px;
+            }
+
+            .coupon-icon {
+                font-size: 22px;
+                margin-bottom: 2px;
+            }
+
+            .coupon-name {
+                font-size: 12px;
+            }
+
+            .coupon-value {
+                font-size: 17px;
+                margin: 2px 0;
+            }
+
+            .coupon-code {
+                font-size: 10px;
+                padding: 4px 6px;
+                letter-spacing: 0.5px;
+                margin: 4px 0;
+            }
+
+            .coupon-description {
+                font-size: 9px;
+                display: none;
+            }
+
+            .coupon-min-order,
+            .coupon-expiry {
+                font-size: 7px;
+                padding: 1px 4px;
+            }
+
+            .coupon-terms {
+                font-size: 6px;
+                margin-top: 2px;
+                padding-top: 2px;
+            }
+
+            .coupon-badge {
+                font-size: 7px;
+                padding: 1px 6px;
+                top: 4px;
+                right: 4px;
+            }
+
+            .slider-nav {
+                width: 20px;
+                height: 20px;
+            }
+
+            .slider-nav span {
+                font-size: 12px;
+            }
+
+            .coupon-slider-wrapper {
+                padding: 5px 18px;
             }
         }
 
@@ -1647,7 +1853,7 @@
                         items.forEach(item => {
                             totalQuantity += (item.quantity || 1);
                         });
-                    } catch (e) {}
+                    } catch (e) { }
                 }
                 badge.textContent = totalQuantity;
                 badge.classList.toggle('hidden', totalQuantity === 0);
@@ -1664,7 +1870,7 @@
                     });
                     badge.textContent = totalQuantity;
                     badge.classList.toggle('hidden', totalQuantity === 0);
-                } catch (e) {}
+                } catch (e) { }
             }
 
             // Then fetch from server in background
@@ -1676,7 +1882,7 @@
                 if (response.ok) {
                     const cart = await response.json();
                     const items = cart?.items || [];
-                    
+
                     // Update cache
                     sessionStorage.setItem('cartCache', JSON.stringify(items));
 
@@ -1825,8 +2031,9 @@
         const ALLOWED_COUPON_TYPES = ['percentage', 'fixed', 'bogo', 'freeshipping'];
 
         function updateSlidesPerView() {
-            if (window.innerWidth <= 768) slidesPerView = 1;
-            else if (window.innerWidth <= 1200) slidesPerView = 2;
+            if (window.innerWidth <= 380) slidesPerView = 1;
+            else if (window.innerWidth <= 768) slidesPerView = 1;
+            else if (window.innerWidth <= 992) slidesPerView = 2;
             else slidesPerView = 3;
         }
 
@@ -1834,42 +2041,42 @@
             const expiryDate = new Date(coupon.expiryDate);
             const daysLeft = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
 
-            let icon = '', typeClass = '', badgeText = '';
+            let icon = '', badgeText = '';
 
             switch (coupon.type) {
-                case 'percentage': icon = '🎉'; typeClass = 'percentage'; badgeText = '🔥 HOT DEAL'; break;
-                case 'fixed': icon = '💰'; typeClass = 'fixed'; badgeText = '💎 SAVE BIG'; break;
-                case 'bogo': icon = '🎁'; typeClass = 'bogo'; badgeText = '⚡ BOGO OFFER'; break;
-                case 'freeshipping': icon = '🚚'; typeClass = 'freeshipping'; badgeText = '🎁 FREE SHIPPING'; break;
-                default: icon = '🎫'; badgeText = '✨ SPECIAL';
+                case 'percentage': icon = '🎉'; badgeText = '🔥 HOT'; break;
+                case 'fixed': icon = '💰'; badgeText = '💎 SAVE'; break;
+                case 'bogo': icon = '🎁'; badgeText = '⚡ BOGO'; break;
+                case 'freeshipping': icon = '🚚'; badgeText = '🎁 FREE'; break;
+                default: icon = '🎫'; badgeText = '✨ OFF';
             }
 
             let discountDisplay = '';
             if (coupon.type === 'percentage') discountDisplay = `<div class="coupon-value">${coupon.value}% <small>OFF</small></div>`;
             else if (coupon.type === 'fixed') discountDisplay = `<div class="coupon-value">$${coupon.value} <small>OFF</small></div>`;
-            else if (coupon.type === 'bogo') discountDisplay = `<div class="coupon-value">🎯 <small>BUY 1 GET 1 FREE</small></div>`;
-            else if (coupon.type === 'freeshipping') discountDisplay = `<div class="coupon-value">🚚 <small>FREE DELIVERY</small></div>`;
+            else if (coupon.type === 'bogo') discountDisplay = `<div class="coupon-value">🎯 <small>BOGO</small></div>`;
+            else if (coupon.type === 'freeshipping') discountDisplay = `<div class="coupon-value">🚚 <small>FREE</small></div>`;
 
-            const minOrderDisplay = coupon.minimumOrderAmount > 0 ? `<span class="coupon-min-order">🛒 Min: C$${coupon.minimumOrderAmount}</span>` : '';
+            const minOrderDisplay = coupon.minimumOrderAmount > 0 ? `<span class="coupon-min-order">Min: C$${coupon.minimumOrderAmount}</span>` : '';
             const expiryClass = daysLeft <= 3 ? 'urgent' : '';
-            const expiryWarning = daysLeft <= 3 ? `<span class="coupon-expiry ${expiryClass}">⚠️ Expires in ${daysLeft} day${daysLeft !== 1 ? 's' : ''}!</span>` : `<span class="coupon-expiry">📅 Valid until: ${expiryDate.toLocaleDateString()}</span>`;
+            const expiryWarning = daysLeft <= 3 ? `<span class="coupon-expiry ${expiryClass}">⚠️ ${daysLeft}d</span>` : `<span class="coupon-expiry">📅 ${expiryDate.toLocaleDateString()}</span>`;
 
             return `
-                <div class="coupon-slide">
-                    <div class="coupon-card ${typeClass}">
-                        <div class="coupon-badge">${badgeText}</div>
-                        <div class="coupon-content">
-                            <div class="coupon-icon">${icon}</div>
-                            <h3 class="coupon-name">${escapeHtml(coupon.name)}</h3>
-                            ${discountDisplay}
-                            <div class="coupon-code" onclick="copyCouponCode('${coupon.code}')">${coupon.code}</div>
-                            <p class="coupon-description">${escapeHtml(coupon.description || 'Use this code at checkout to claim your discount!')}</p>
-                            <div class="coupon-meta">${minOrderDisplay}${expiryWarning}</div>
-                            <div class="coupon-terms"><small>✓ Click to copy code • Apply at checkout • Terms apply</small></div>
-                        </div>
-                    </div>
+        <div class="coupon-slide">
+            <div class="coupon-card">
+                <div class="coupon-badge">${badgeText}</div>
+                <div class="coupon-content">
+                    <div class="coupon-icon">${icon}</div>
+                    <h3 class="coupon-name">${escapeHtml(coupon.name)}</h3>
+                    ${discountDisplay}
+                    <div class="coupon-code" onclick="copyCouponCode('${coupon.code}')">${coupon.code}</div>
+                    <p class="coupon-description">${escapeHtml(coupon.description || 'Use at checkout!')}</p>
+                    <div class="coupon-meta">${minOrderDisplay}${expiryWarning}</div>
+                    <div class="coupon-terms"><small>Click to copy • Terms apply</small></div>
                 </div>
-            `;
+            </div>
+        </div>
+        `;
         }
 
         function renderSlider() {
@@ -2028,11 +2235,11 @@
                         <div class="user-avatar">${initial}</div>
                         <span class="user-name">${escapeHtml(name)}</span>
                         <div class="user-dropdown-content">
-                            <a href="profile.html">My Profile</a>
-                            <a href="#" onclick="viewOrders()">My Orders</a>
-                            <a href="my-reservations.html">My Reservations</a>
+                            <a href="profile.html">👤 My Profile</a>
+                            <a href="#" onclick="viewOrders()">📋 My Orders</a>
+                            <a href="my-reservations.html">📅 My Reservations</a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+                            <a href="#" onclick="logout()" class="logout-dropdown-item">🚪Logout</a>
                         </div>
                     </div>
                 `;

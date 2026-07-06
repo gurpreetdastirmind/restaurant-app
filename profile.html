@@ -621,6 +621,7 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -1234,7 +1235,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>First Name <span class="required">*</span></label>
-                                            <input type="text" id="editFirstName" required placeholder="Enter first name">
+                                            <input type="text" id="editFirstName" required
+                                                placeholder="Enter first name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -1266,7 +1268,8 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label>Street Address</label>
-                                                <input type="text" id="editStreet" placeholder="Enter your street address">
+                                                <input type="text" id="editStreet"
+                                                    placeholder="Enter your street address">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -1438,7 +1441,7 @@
             dropdown.classList.toggle('active');
         }
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('.user-dropdown')) {
                 document.querySelectorAll('.user-dropdown.active').forEach(el => {
                     el.classList.remove('active');
@@ -1462,11 +1465,11 @@
                             <div class="user-avatar">${userInitial}</div>
                             <span class="user-name">${firstName}</span>
                             <div class="user-dropdown-content">
-                                <a href="profile.html">My Profile</a>
-                                <a href="my-orders.html">My Orders</a>
-                                <a href="my-reservations.html">My Reservations</a>
+                                <a href="profile.html">👤 My Profile</a>
+                                <a href="my-orders.html">📋My Orders</a>
+                                <a href="my-reservations.html">📅 My Reservations</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a>
+                                <a href="#" onclick="logout()" class="logout-dropdown-item">🚪Logout</a>
                             </div>
                         </div>
                     `;
@@ -1497,7 +1500,7 @@
                         method: 'POST',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
-                } catch (error) {}
+                } catch (error) { }
             }
             localStorage.removeItem('token');
             localStorage.removeItem('refreshToken');
@@ -1532,7 +1535,7 @@
                         items.forEach(item => {
                             totalQuantity += (item.quantity || 1);
                         });
-                    } catch (e) {}
+                    } catch (e) { }
                 }
                 badge.textContent = totalQuantity;
                 badge.classList.toggle('hidden', totalQuantity === 0);
@@ -1549,7 +1552,7 @@
                     });
                     badge.textContent = totalQuantity;
                     badge.classList.toggle('hidden', totalQuantity === 0);
-                } catch (e) {}
+                } catch (e) { }
             }
 
             // Then fetch from server in background
@@ -1564,7 +1567,7 @@
                 if (response.ok) {
                     const cart = await response.json();
                     const items = cart?.items || [];
-                    
+
                     // Update cache
                     sessionStorage.setItem('cartCache', JSON.stringify(items));
 
@@ -1611,11 +1614,27 @@
         }
 
         function displayProfile() {
+            // Make sure we have the latest user data from localStorage
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                try {
+                    currentUser = JSON.parse(storedUser);
+                } catch (e) { }
+            }
+
             const firstName = currentUser.firstName || currentUser.first_name || 'User';
             const lastName = currentUser.lastName || currentUser.last_name || '';
             const email = currentUser.email || '';
             const phone = currentUser.phone || '';
             const role = currentUser.role || 'user';
+
+            // Get address from localStorage
+            const savedAddress = localStorage.getItem('userAddress');
+            if (savedAddress) {
+                try {
+                    userAddress = JSON.parse(savedAddress);
+                } catch (e) { }
+            }
 
             document.getElementById('profileAvatar').textContent = firstName.charAt(0).toUpperCase();
             document.getElementById('profileName').textContent = `${firstName} ${lastName}`;
@@ -1684,34 +1703,43 @@
                 const data = await response.json();
 
                 if (response.ok && data.success) {
+                    // Get the updated user data from the response
+                    const updatedUserData = data.data || data.user || {};
+
+                    // Create updated user object with new data
                     const updatedUser = {
                         ...currentUser,
-                        firstName,
-                        lastName,
-                        email,
-                        phone,
-                        address: data.data.address || address
+                        firstName: updatedUserData.firstName || firstName,
+                        lastName: updatedUserData.lastName || lastName,
+                        email: updatedUserData.email || email,
+                        phone: updatedUserData.phone || phone,
+                        address: updatedUserData.address || address
                     };
+
+                    // Save to localStorage
                     localStorage.setItem('user', JSON.stringify(updatedUser));
+
+                    // Update the currentUser variable
                     currentUser = updatedUser;
 
+                    // Save address separately
                     if (address) {
                         localStorage.setItem('userAddress', JSON.stringify(address));
                     }
 
-                    return true;
+                    return { success: true, user: updatedUser };
                 } else {
                     showToast(data.message || 'Failed to update profile', true);
-                    return false;
+                    return { success: false };
                 }
             } catch (error) {
                 console.error('Error updating profile:', error);
                 showToast('Network error. Please try again.', true);
-                return false;
+                return { success: false };
             }
         }
 
-        document.getElementById('profileForm').addEventListener('submit', async function(e) {
+        document.getElementById('profileForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const firstName = document.getElementById('editFirstName').value.trim();
@@ -1741,12 +1769,28 @@
 
             try {
                 const address = { street, city, state, postalCode };
-                const profileUpdated = await updateUserProfile(firstName, lastName, email, phone, address);
+                const result = await updateUserProfile(firstName, lastName, email, phone, address);
 
-                if (profileUpdated) {
+                if (result.success) {
                     showToast('✅ Profile updated successfully!');
-                    disableEditMode();
+
+                    // Force a complete refresh of the display with updated data
+                    // First, close edit mode
+                    document.getElementById('viewMode').style.display = 'block';
+                    document.getElementById('editMode').style.display = 'none';
+
+                    // Then completely reload the profile display
+                    // This ensures all fields show the latest values
                     displayProfile();
+
+                    // Also update the navbar to show the updated name
+                    updateNavbarUserSection();
+
+                    // Scroll to top of profile card to show updated info
+                    document.querySelector('.profile-card').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 } else {
                     showToast('Failed to update profile. Please try again.', true);
                 }
@@ -1759,7 +1803,7 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updateNavbarUserSection();
             updateCartCount();
             loadUserProfile();

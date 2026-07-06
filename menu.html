@@ -313,6 +313,9 @@
             .category-nav {
                 padding: 12px 0;
             }
+            .heading-section{
+                position: none;
+            }
         }
 
         .loading-spinner {
@@ -1220,7 +1223,7 @@
                     const user = JSON.parse(userData);
                     const firstName = user.firstName || user.first_name || 'User';
                     const userInitial = firstName.charAt(0).toUpperCase();
-                    userSection.innerHTML = `<div class="user-dropdown"><div class="user-avatar">${userInitial}</div><span class="user-name">${firstName}</span><div class="user-dropdown-content"><a href="profile.html">My Profile</a><a href="#" onclick="viewOrders()">My Orders</a><a href="my-reservations.html">My Reservations</a><div class="dropdown-divider"></div><a href="#" onclick="logout()" class="logout-dropdown-item">Logout</a></div></div>`;
+                    userSection.innerHTML = `<div class="user-dropdown"><div class="user-avatar">${userInitial}</div><span class="user-name">${firstName}</span><div class="user-dropdown-content"><a href="profile.html">👤 My Profile</a><a href="#" onclick="viewOrders()">📋 My Orders</a><a href="my-reservations.html">📅 My Reservations</a><div class="dropdown-divider"></div><a href="#" onclick="logout()" class="logout-dropdown-item">🚪 Logout</a></div></div>`;
                     if (getCurrentUser()) {
                         const user = getCurrentUser();
                         const resName = document.getElementById('resName');

@@ -8980,8 +8980,8 @@ textarea.form-control {
 .heading-section {
   position: relative; }
   .heading-section .subheading {
-    position: absolute;
-    top: -45px;
+    /* position: absolute;
+    top: -45px; */
     left: 0;
     right: 0;
     font-weight: normal;
